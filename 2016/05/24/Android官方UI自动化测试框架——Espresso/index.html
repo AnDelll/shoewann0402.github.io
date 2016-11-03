@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android官方UI自动化测试框架——Espresso | Shoewann&#39;s Personal Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上周在美国山景城的Google公司，举办了一年一度的Google IO 大会，主要是发布一些新的产品和开发工具，以及接下来一年的发展方向。在其中也推出了Android Studio 2.2 预览版1，对其进行了强化，内置了部分新工具，比如Firebase、Espresso 测试记录器 、APK 分析器等等。正好无意中看到Espresso这部分，自己也没有使用过，那今天就来说说: Espress">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android官方UI自动化测试框架——Espresso">
+<meta property="og:url" content="https://shoewann0402.github.io/2016/05/24/Android官方UI自动化测试框架——Espresso/index.html">
+<meta property="og:site_name" content="Shoewann's Personal Blog">
+<meta property="og:description" content="上周在美国山景城的Google公司，举办了一年一度的Google IO 大会，主要是发布一些新的产品和开发工具，以及接下来一年的发展方向。在其中也推出了Android Studio 2.2 预览版1，对其进行了强化，内置了部分新工具，比如Firebase、Espresso 测试记录器 、APK 分析器等等。正好无意中看到Espresso这部分，自己也没有使用过，那今天就来说说: Espress">
+<meta property="og:image" content="https://shoewann0402.github.io/images/espresso.png">
+<meta property="og:updated_time" content="2016-05-24T13:36:51.775Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android官方UI自动化测试框架——Espresso">
+<meta name="twitter:description" content="上周在美国山景城的Google公司，举办了一年一度的Google IO 大会，主要是发布一些新的产品和开发工具，以及接下来一年的发展方向。在其中也推出了Android Studio 2.2 预览版1，对其进行了强化，内置了部分新工具，比如Firebase、Espresso 测试记录器 、APK 分析器等等。正好无意中看到Espresso这部分，自己也没有使用过，那今天就来说说: Espress">
+<meta name="twitter:image" content="https://shoewann0402.github.io/images/espresso.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shoewann&#39;s Personal Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shoewann&#39;s Personal Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Love Google Technology , Just Do It !</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://shoewann0402.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Android官方UI自动化测试框架——Espresso" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/24/Android官方UI自动化测试框架——Espresso/" class="article-date">
+  <time datetime="2016-05-24T04:42:09.000Z" itemprop="datePublished">2016-05-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/images/espresso.png" rel="gallery_civ2c4zlz000z6wpb24jrxgns">
+        <img src="/images/espresso.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android官方UI自动化测试框架——Espresso
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  上周在美国山景城的Google公司，举办了一年一度的Google IO 大会，主要是发布一些新的产品和开发工具，以及接下来一年的发展方向。在其中也推出了Android Studio 2.2 预览版1，对其进行了强化，内置了部分新工具，比如Firebase、Espresso 测试记录器 、APK 分析器等等。正好无意中看到Espresso这部分，自己也没有使用过，那今天就来说说: <strong>Espresso</strong> ，也作为笔记记录一下</p>
+<a id="more"></a>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Espresso 测试工具，相对于其他工具，API更加精确。并且规模更小、更简洁并且容易学习。它最初是2013年GTAC大会上推出的，目标是让开发者写出更简洁的针对APP的UI测试代码。虽然针对的是开发者（Developer），但是对于测试人员来说也是可以用的。</p>
+<p>官方文档网址：</p>
+<p><a href="https://google.github.io/android-testing-support-library/docs/espresso/index.html" target="_blank" rel="external">https://google.github.io/android-testing-support-library/docs/espresso/index.html</a></p>
+<p>官方示例地址：</p>
+<p><a href="https://github.com/googlesamples/android-testing" target="_blank" rel="external">https://github.com/googlesamples/android-testing</a></p>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p>Espresso 支持以下API版本:</p>
+<p>Froyo (API 8)<br>Gingerbread (API 10)<br>Ice Cream Sandwich  (API 15)<br>Jelly Bean (API 16, 17 ,18)<br>KitKat (API 19)<br>Lollipop (API 21)</p>
+<h2 id="设置测试环境"><a href="#设置测试环境" class="headerlink" title="设置测试环境"></a>设置测试环境</h2><p>为你避免对测试效果的影响，需要关闭虚拟机或者物理设备上的系统动画的使用:</p>
+<p>在你的设备上，<strong>设置</strong> -&gt; <strong>开发者选项</strong> 下关闭以下3个选项设置：</p>
+<blockquote>
+<ul>
+<li>窗口动画缩放 -&gt; 关闭动画 </li>
+<li>过渡动画缩放 -&gt; 关闭动画</li>
+<li>动画程序时长缩放 -&gt; 关闭动画</li>
+</ul>
+</blockquote>
+<h2 id="下载Espresso"><a href="#下载Espresso" class="headerlink" title="下载Espresso"></a>下载Espresso</h2><blockquote>
+<ul>
+<li>确保你在SDK里面的Extra下已经安装了最新版本的<strong>Android Support Repository</strong></li>
+<li>打开你app的<strong>build.gradle</strong>文件，它通常不是位于第一个<strong>build.gradle</strong>文件，但是是<strong>app/build.gradle</strong></li>
+<li>添加如下行到dependencies里面:</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">androidTestCompile <span class="string">'com.android.support.test.espresso:espresso-core:2.2.2'</span></div><div class="line">androidTestCompile <span class="string">'com.android.support.test:runner:0.5'</span></div></pre></td></tr></table></figure>
+<h2 id="设置-instrumentation-runner"><a href="#设置-instrumentation-runner" class="headerlink" title="设置 instrumentation runner"></a>设置 instrumentation runner</h2><blockquote>
+<ul>
+<li>在相同的<strong>build.gradle</strong>文件里，添加如下行到<strong>android.defaultConfig</strong>里面:</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">test</span>InstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div></pre></td></tr></table></figure>
+<h2 id="build-gradle-文件示例"><a href="#build-gradle-文件示例" class="headerlink" title="build.gradle 文件示例"></a>build.gradle 文件示例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'com.android.application'</span></div><div class="line"></div><div class="line">android &#123;</div><div class="line"></div><div class="line">   compileSdkVersion 23</div><div class="line">   buildToolsVersion <span class="string">"23.0.3"</span></div><div class="line">   defaultConfig &#123;</div><div class="line">      applicationId <span class="string">"com.example.shoewann.espressouiautomation"</span></div><div class="line">      minSdkVersion 15</div><div class="line">      targetSdkVersion 23</div><div class="line">      versionCode 1</div><div class="line">      versionName <span class="string">"1.0"</span></div><div class="line">      <span class="built_in">test</span>InstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div><div class="line">   &#125;</div><div class="line"></div><div class="line">   buildTypes &#123;</div><div class="line">       release &#123;</div><div class="line">          minifyEnabled <span class="literal">false</span></div><div class="line">          proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">    compile fileTree(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</div><div class="line">    compile <span class="string">'com.android.support:appcompat-v7:23.4.0'</span></div><div class="line">    compile <span class="string">'com.android.support.constraint:constraint-layout:1.0.0-alpha1'</span></div><div class="line">    <span class="built_in">test</span>Compile <span class="string">'junit:junit:4.12'</span></div><div class="line"></div><div class="line">    // Testing-only dependencies</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test.espresso:espresso-core:2.2.2'</span></div><div class="line">    androidTestCompile <span class="string">'com.android.support.test:runner:0.5'</span></div><div class="line"></div><div class="line">    // App<span class="string">'s dependencies, including test</span></div><div class="line">    androidTestCompile 'com.android.support:support-annotations:23.4.0<span class="string">'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Espresso-基本使用方法"><a href="#Espresso-基本使用方法" class="headerlink" title="Espresso 基本使用方法"></a>Espresso 基本使用方法</h2><blockquote>
+<ul>
+<li>Espresso – 与视图（views）交互的入口，并暴露了一些视图（views）无关的API（例如回退按钮）。</li>
+<li>ViewMatchers – 实现匹配器的一组对象。允许可以通过多次的onView方法，在层次图中找到目标视图（views）。</li>
+<li>ViewActions – 对视图触发动作（例如点击）。</li>
+<li>ViewAssertions – 用于插入测试关键点的一组断言，可用于判断某视图（view）的状态。</li>
+</ul>
+</blockquote>
+<p><strong>示例:</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">onView(withId(R.id.my_view))      // withId(R.id.my_view) is a ViewMatcher</div><div class="line">  .perform(click())               // click() is a ViewAction</div><div class="line">  .check(matches(isDisplayed())); // matches(isDisplayed()) is a ViewAssertion</div></pre></td></tr></table></figure></p>
+<h3 id="ViewMatcher-寻找View"><a href="#ViewMatcher-寻找View" class="headerlink" title="ViewMatcher : 寻找View"></a>ViewMatcher : 寻找View</h3><blockquote>
+<ul>
+<li><p>根据ID找View : </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">withId(R.id.my_view)</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据View的文本内容找View:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">withText(<span class="string">"my_view_text"</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>  withText 內还可以使用其他过滤字串的方法,withContentDescription、startsWith、endsWith、equalToIgnoringCase、equalToIgnoringWhiteSpace、containsString、allOf、anyOf等等,在过滤中，也可以用 hasSibling() 、is() 、instanceOf() 等等来判断条件。如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">withText(startsWith(<span class="string">"MY_VIEW_TEXT"</span>)</div></pre></td></tr></table></figure>
+<h3 id="ViewAction-操作View"><a href="#ViewAction-操作View" class="headerlink" title="ViewAction : 操作View"></a>ViewAction : 操作View</h3><p>使用 perform() 进行想要的 ViewAction，参数可带多个，常见的有:</p>
+<blockquote>
+<ul>
+<li><p>Click（）点击操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onView(...).perform(click())</div></pre></td></tr></table></figure>
+</li>
+<li><p>typeText() 、clearText() 键盘开关的操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onView(...).perform(<span class="built_in">type</span>Text(<span class="string">"I'm shoewann;"</span>),closeSoftKeyboard()) perform(clearText())</div></pre></td></tr></table></figure>
+</li>
+<li><p>scrollTo() Scroll View 时，此 View 必须是继承 ScrollView 且 Visibilty 为 true 的控件,若为 listView 另有方法。</p>
+</li>
+<li>swiftLeft()、swiftRight() 向左右滑动</li>
+<li>pressKey() 键盘事件操作 如:pressBack();可单独使用，或是用 EspressoKey Builder 创建 pressKey 连续顺序键盘操作。<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">EspressoKey.Builder builder = new EspressoKey.Builder();</div><div class="line"></div><div class="line">builder.withKeyCode(KeyEvent.KEYCODE_VOLUME_UP);</div><div class="line">builder.withKeyCode(KeyEvent.KEYCODE_MUTE);</div><div class="line">builder.withKeyCode(KeyEvent.KEYCODE_POWER);</div><div class="line">builder.withKeyCode(KeyEvent.KEYCODE_BACK);</div><div class="line"></div><div class="line">pressKey(builder.build());</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h3 id="ViewAssertion-验证-View"><a href="#ViewAssertion-验证-View" class="headerlink" title="ViewAssertion : 验证 View"></a>ViewAssertion : 验证 View</h3><blockquote>
+<ul>
+<li>matches()：指定 View 为存在</li>
+<li>doesNotExist ()：指定 View 为不存在</li>
+<li>selectedDescendantsMatch()：指定 View 的 Parent View 存在 方法內依然都是传人 ViewMatcher 來找到指定的 View，若 Assert 失敗，则会跳出 Exception 并結束 Test。</li>
+</ul>
+</blockquote>
+<p><strong>示例:</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">onView(withId(R.id.test_view))</div><div class="line">  .check(matches(withText(<span class="string">"hello espresso !!"</span>)));</div></pre></td></tr></table></figure></p>
+<h3 id="用onData处理列表view"><a href="#用onData处理列表view" class="headerlink" title="用onData处理列表view"></a>用onData处理列表view</h3><p><strong>示例:</strong><br>有一个Spinner,当item选中后，将其值显示显示在TextView上 </p>
+<p>1.点击Spinner打开选项列表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onView(withId(R.id.spinner_simple)).perform(click());</div></pre></td></tr></table></figure></p>
+<p>2.点击在item “Americano”<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onData(allOf(is(instanceOf(String.class)), is(<span class="string">"Americano"</span>))).perform(click());</div></pre></td></tr></table></figure></p>
+<p>3.验证TextView显示的是否为点击的item<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">onView(withId(R.id.spinnertext_simple))</div><div class="line">  .check(matches(withText(containsString(<span class="string">"Americano"</span>))));</div></pre></td></tr></table></figure></p>
+<p><img src="/images/espresso-cheat-sheet-2.1.0.png" alt="espresso-cheat-sheet-2.1.0"></p>
+<p>(espresso-cheat-sheet-2.1.0)</p>
+<h2 id="添加Espresso的TestRunner"><a href="#添加Espresso的TestRunner" class="headerlink" title="添加Espresso的TestRunner."></a>添加Espresso的TestRunner.</h2><p>1) 点击顶栏菜单<strong>Run</strong>-&gt;<strong>Edit Configurations</strong>;<br>2) 出现如下的窗口后,点击左上角绿色的<strong>“+”</strong>,选择<strong>“Android Tests”</strong>;</p>
+<p><img src="/images/espresso_1.png" alt="espresso_1"></p>
+<p>3) 修改新<strong>Configuration</strong>的名字,选中<strong>App Module</strong>,输入<strong>Runner</strong>,选择<strong>“Show chooer dialog”</strong>.<br>   点击<strong>“OK”</strong>完成!</p>
+<p><img src="/images/espresso_2.png" alt="espresso_2"></p>
+<h2 id="新建测试用例类"><a href="#新建测试用例类" class="headerlink" title="新建测试用例类."></a>新建测试用例类.</h2><p>Android Studio 在创建新项目的同时会默认的创建一个<strong>android test</strong>的测试用例类在<strong>app/androidTest/java</strong>下，你可以删除了自己创建一个新的，或者修改这个存在的测试类的类名和里面的内容。</p>
+<p><img src="/images/espresso_2_1.png" alt="espresso_2_1"></p>
+<h2 id="开始编写——布局文件"><a href="#开始编写——布局文件" class="headerlink" title="开始编写——布局文件"></a>开始编写——布局文件</h2><p>我在这里创建了一个登录界面，来自动测试登录效果</p>
+<p><img src="/images/espresso_3.png" alt="espresso_3"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</div><div class="line">&lt;android.support.constraint.ConstraintLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">  xmlns:app=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">  xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">  android:id=<span class="string">"@+id/activity_main"</span></div><div class="line">  android:layout_width=<span class="string">"match_parent"</span></div><div class="line">  android:layout_height=<span class="string">"match_parent"</span></div><div class="line">  tools:context=<span class="string">"com.example.shoewann.espressouiautomation.MainActivity"</span></div><div class="line">  tools:layout_editor_absoluteX=<span class="string">"0dp"</span></div><div class="line">  tools:layout_editor_absoluteY=<span class="string">"81dp"</span>&gt;</div><div class="line"></div><div class="line">  &lt;EditText</div><div class="line">      android:layout_width=<span class="string">"0dp"</span></div><div class="line">      android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">      android:inputType=<span class="string">"textEmailAddress"</span></div><div class="line">      android:ems=<span class="string">"10"</span></div><div class="line">      tools:layout_editor_absoluteX=<span class="string">"8dp"</span></div><div class="line">      tools:layout_editor_absoluteY=<span class="string">"16dp"</span></div><div class="line">      android:id=<span class="string">"@+id/editText"</span></div><div class="line">      android:hint=<span class="string">"请输入邮箱号"</span></div><div class="line">      app:layout_constraintLeft_toLeftOf=<span class="string">"@+id/activity_main"</span></div><div class="line">      android:layout_marginLeft=<span class="string">"8dp"</span></div><div class="line">      android:layout_marginStart=<span class="string">"8dp"</span></div><div class="line">      tools:layout_constraintLeft_creator=<span class="string">"1"</span></div><div class="line">      app:layout_constraintTop_toTopOf=<span class="string">"@+id/activity_main"</span></div><div class="line">      android:layout_marginTop=<span class="string">"16dp"</span></div><div class="line">      tools:layout_constraintTop_creator=<span class="string">"1"</span></div><div class="line">      app:layout_constraintRight_toRightOf=<span class="string">"@+id/activity_main"</span></div><div class="line">      android:layout_marginRight=<span class="string">"8dp"</span></div><div class="line">      android:layout_marginEnd=<span class="string">"8dp"</span></div><div class="line">      tools:layout_constraintRight_creator=<span class="string">"1"</span> /&gt;</div><div class="line"></div><div class="line">  &lt;EditText</div><div class="line">      android:layout_width=<span class="string">"0dp"</span></div><div class="line">      android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">      android:inputType=<span class="string">"numberSigned"</span></div><div class="line">      android:ems=<span class="string">"10"</span></div><div class="line">      tools:layout_editor_absoluteX=<span class="string">"8dp"</span></div><div class="line">      tools:layout_editor_absoluteY=<span class="string">"66dp"</span></div><div class="line">      android:id=<span class="string">"@+id/editText2"</span></div><div class="line">      android:layout_margin=<span class="string">"8dp"</span></div><div class="line">      android:hint=<span class="string">"请输入密码"</span></div><div class="line">      app:layout_constraintLeft_toLeftOf=<span class="string">"@+id/activity_main"</span></div><div class="line">      android:layout_marginLeft=<span class="string">"8dp"</span></div><div class="line">      android:layout_marginStart=<span class="string">"8dp"</span></div><div class="line">      tools:layout_constraintLeft_creator=<span class="string">"1"</span></div><div class="line">      app:layout_constraintTop_toBottomOf=<span class="string">"@+id/editText"</span></div><div class="line">      android:layout_marginTop=<span class="string">"8dp"</span></div><div class="line">      tools:layout_constraintTop_creator=<span class="string">"1"</span></div><div class="line">      app:layout_constraintRight_toRightOf=<span class="string">"@+id/activity_main"</span></div><div class="line">      android:layout_marginRight=<span class="string">"8dp"</span></div><div class="line">      android:layout_marginEnd=<span class="string">"8dp"</span></div><div class="line">      tools:layout_constraintRight_creator=<span class="string">"1"</span> /&gt;</div><div class="line"></div><div class="line">  &lt;Button</div><div class="line">      android:text=<span class="string">"登录"</span></div><div class="line">      android:layout_width=<span class="string">"wrap_content"</span></div><div class="line">      android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">      tools:layout_editor_absoluteX=<span class="string">"16dp"</span></div><div class="line">      tools:layout_editor_absoluteY=<span class="string">"123dp"</span></div><div class="line">      android:id=<span class="string">"@+id/button"</span></div><div class="line">      android:layout_margin=<span class="string">"8dp"</span></div><div class="line">      app:layout_constraintLeft_toLeftOf=<span class="string">"@+id/activity_main"</span></div><div class="line">      android:layout_marginLeft=<span class="string">"16dp"</span></div><div class="line">      android:layout_marginStart=<span class="string">"16dp"</span></div><div class="line">      tools:layout_constraintLeft_creator=<span class="string">"1"</span></div><div class="line">      app:layout_constraintTop_toBottomOf=<span class="string">"@+id/editText2"</span></div><div class="line">      android:layout_marginTop=<span class="string">"15dp"</span></div><div class="line">      tools:layout_constraintTop_creator=<span class="string">"1"</span> /&gt;</div><div class="line"></div><div class="line">  &lt;TextView</div><div class="line">      android:text=<span class="string">"状态：未登录"</span></div><div class="line">      android:layout_width=<span class="string">"wrap_content"</span></div><div class="line">      android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">      tools:layout_editor_absoluteX=<span class="string">"8dp"</span></div><div class="line">      tools:layout_editor_absoluteY=<span class="string">"187dp"</span></div><div class="line">      android:id=<span class="string">"@+id/textView"</span></div><div class="line">      app:layout_constraintLeft_toLeftOf=<span class="string">"@+id/activity_main"</span></div><div class="line">      android:layout_marginLeft=<span class="string">"8dp"</span></div><div class="line">      android:layout_marginStart=<span class="string">"8dp"</span></div><div class="line">      tools:layout_constraintLeft_creator=<span class="string">"1"</span></div><div class="line">      app:layout_constraintTop_toBottomOf=<span class="string">"@+id/button"</span></div><div class="line">      android:layout_marginTop=<span class="string">"16dp"</span></div><div class="line">      tools:layout_constraintTop_creator=<span class="string">"1"</span> /&gt;</div><div class="line">&lt;/android.support.constraint.ConstraintLayout&gt;</div></pre></td></tr></table></figure>
+<h2 id="开始编写——代码源文件"><a href="#开始编写——代码源文件" class="headerlink" title="开始编写——代码源文件"></a>开始编写——代码源文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">public class MainActivity extends AppCompatActivity implements View.OnClickListener&#123;</div><div class="line"></div><div class="line">  private EditText et_email,et_pwd;</div><div class="line">  private Button btn_login;</div><div class="line">  private TextView tv_status;</div><div class="line">  @Override</div><div class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">      super.onCreate(savedInstanceState);</div><div class="line">      <span class="built_in">set</span>ContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">      initView();</div><div class="line">      initData();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  public void <span class="function"><span class="title">initView</span></span>()&#123;</div><div class="line">      et_email= (EditText) findViewById(R.id.editText);</div><div class="line">      et_pwd= (EditText) findViewById(R.id.editText2);</div><div class="line">      btn_login=(Button) findViewById(R.id.button);</div><div class="line">      tv_status=(TextView)findViewById(R.id.textView);</div><div class="line">  &#125;</div><div class="line">  public void <span class="function"><span class="title">initData</span></span>()&#123;</div><div class="line">      btn_login.setOnClickListener(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  @Override</div><div class="line">  public void onClick(View v) &#123;</div><div class="line">      switch (v.getId())&#123;</div><div class="line">          <span class="keyword">case</span> R.id.button:</div><div class="line">              String getEmail=et_email.getText().toString();</div><div class="line">              String getPwd=et_pwd.getText().toString();</div><div class="line">              <span class="keyword">if</span>(TextUtils.isEmpty(getEmail) || TextUtils.isEmpty(getPwd))&#123;</div><div class="line">                  ShowLoginFailed();</div><div class="line">                  <span class="built_in">return</span>;</div><div class="line">              &#125;<span class="keyword">else</span> <span class="keyword">if</span> (!getEmail.equals(<span class="string">"xuwang0402@gmail.com"</span>)|| !getPwd.equals(<span class="string">"1234567890"</span>))&#123;</div><div class="line">                  ShowLoginFailed();</div><div class="line">              &#125;<span class="keyword">else</span> &#123;</div><div class="line">                  ShowLoginSuccessful();</div><div class="line">              &#125;</div><div class="line">              <span class="built_in">break</span>;</div><div class="line">          default:</div><div class="line">              <span class="built_in">break</span>;</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">  public void <span class="function"><span class="title">ShowLoginSuccessful</span></span>()&#123;</div><div class="line"></div><div class="line">      tv_status.setText(<span class="string">"登录状态:登录成功,欢迎回来~"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  public void <span class="function"><span class="title">ShowLoginFailed</span></span>()&#123;</div><div class="line"></div><div class="line">      tv_status.setText(<span class="string">"登录状态:登录失败,帐号或密码不合法,请重试！"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="开始编写——测试用例"><a href="#开始编写——测试用例" class="headerlink" title="开始编写——测试用例"></a>开始编写——测试用例</h2><p>1) 首先创建一个@Rule,ActivityTestRule用来指明被测试的Activity;<br>2) 测试用例的方法都是@Test的Annotation注解的,方法名字可以随意.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line">import android.support.test.filters.MediumTest;</div><div class="line">import android.support.test.rule.ActivityTestRule;</div><div class="line">import android.support.test.runner.AndroidJUnit4;</div><div class="line"></div><div class="line">import org.junit.Before;</div><div class="line">import org.junit.Rule;</div><div class="line">import org.junit.Test;</div><div class="line">import org.junit.runner.RunWith;</div><div class="line"></div><div class="line">import static android.support.test.espresso.Espresso.onView;</div><div class="line">import static android.support.test.espresso.action.ViewActions.clearText;</div><div class="line">import static android.support.test.espresso.action.ViewActions.click;</div><div class="line">import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;</div><div class="line">import static android.support.test.espresso.action.ViewActions.typeText;</div><div class="line">import static android.support.test.espresso.assertion.ViewAssertions.matches;</div><div class="line">import static android.support.test.espresso.matcher.ViewMatchers.withId;</div><div class="line">import static android.support.test.espresso.matcher.ViewMatchers.withText;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Instrumentation <span class="built_in">test</span>, <span class="built_in">which</span> will execute on an Android device.</div><div class="line"> *</div><div class="line"> * @see &lt;a href=<span class="string">"http://d.android.com/tools/testing"</span>&gt;Testing documentation&lt;/a&gt;</div><div class="line"> */</div><div class="line">@MediumTest</div><div class="line">@RunWith(AndroidJUnit4.class)</div><div class="line">public class MainActivityUITest &#123;</div><div class="line"></div><div class="line">    private String <span class="built_in">test</span>Email_correct,<span class="built_in">test</span>Pwd_correct,tv_status_incorrect;</div><div class="line">    private String <span class="built_in">test</span>Email_incorrect,<span class="built_in">test</span>Pwd_incorrect,tv_status_correct;</div><div class="line"></div><div class="line">    @Rule</div><div class="line">    public ActivityTestRule&lt;MainActivity&gt; mActivityRule = new ActivityTestRule&lt;&gt;(MainActivity.class);</div><div class="line">  </div><div class="line">    @Before</div><div class="line">    public void <span class="function"><span class="title">initLogInAccountInfo</span></span>()&#123;</div><div class="line"></div><div class="line">             //incorrect</div><div class="line">             <span class="built_in">test</span>Email_incorrect=<span class="string">"zhangsan@gmail.com"</span>;</div><div class="line">             <span class="built_in">test</span>Pwd_incorrect=<span class="string">"123456"</span>;</div><div class="line">             tv_status_incorrect=<span class="string">"登录状态:登录失败,帐号或密码不合法,请重试！"</span>;</div><div class="line"></div><div class="line">             //correct</div><div class="line">             <span class="built_in">test</span>Email_correct=<span class="string">"xuwang0402@gmail.com"</span>;</div><div class="line">             <span class="built_in">test</span>Pwd_correct=<span class="string">"1234567890"</span>;</div><div class="line">             tv_status_correct=<span class="string">"登录状态:登录成功,欢迎回来~"</span>;</div><div class="line">        &#125;</div><div class="line">    @Test</div><div class="line">    public void <span class="function"><span class="title">testLogInMethod</span></span>()&#123;</div><div class="line"></div><div class="line">    //incorrect</div><div class="line">    onView(withId(R.id.editText)).perform(<span class="built_in">type</span>Text(<span class="built_in">test</span>Email_incorrect), closeSoftKeyboard());</div><div class="line">    onView(withId(R.id.editText2)).perform(<span class="built_in">type</span>Text(<span class="built_in">test</span>Pwd_incorrect), closeSoftKeyboard());</div><div class="line">    onView(withId(R.id.button)).perform(click());</div><div class="line">    onView(withId(R.id.textView)).check(matches(withText(tv_status_incorrect)));</div><div class="line">    //clearEditText</div><div class="line">    onView(withId(R.id.editText)).perform(clearText());</div><div class="line">    onView(withId(R.id.editText2)).perform(clearText());</div><div class="line">    //correct</div><div class="line">    onView(withId(R.id.editText)).perform(<span class="built_in">type</span>Text(<span class="built_in">test</span>Email_correct), closeSoftKeyboard());</div><div class="line">    onView(withId(R.id.editText2)).perform(<span class="built_in">type</span>Text(<span class="built_in">test</span>Pwd_correct), closeSoftKeyboard());</div><div class="line">    onView(withId(R.id.button)).perform(click());</div><div class="line">    onView(withId(R.id.textView)).check(matches(withText(tv_status_correct)));</div><div class="line"></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这里我用了一个正确的帐号和一个错误的帐号来自动化模拟登录效果，系统会先自动输入错误的邮箱号码和密码，然后自动点击登录,然后自动获取到显示文本上的内容判断是否和我预期定义的一致，然后自动清除账号和密码输入框，重新自动输入正确的帐号密码，然后自动点击登录,然后自动获取到显示文本上的内容判断是否和我预期定义的一致，达到自动化测试的效果。</p>
+<p>Espress推荐写测试用例的时候使用static import来简化代码.在Android Studio中,static import的快捷键是,当你输入了”onView”,然后按键盘的Alt+Enter会出现一个菜单选static import那个就OK了的!</p>
+<h2 id="运行测试用例-查看运行结果"><a href="#运行测试用例-查看运行结果" class="headerlink" title="运行测试用例,查看运行结果."></a>运行测试用例,查看运行结果.</h2><p>展开下拉列表，选择我们刚刚创建的测试类的对应模块的名字 “appTest”</p>
+<p><img src="/images/espresso_4.png" alt="espresso_4"></p>
+<p><img src="/images/espresso_5.png" alt="espresso_5"></p>
+<p>可以看到所有测试已通过</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shoewann0402.github.io/2016/05/24/Android官方UI自动化测试框架——Espresso/" data-id="civ2c4zlz000z6wpb24jrxgns" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-UI-Test/">Android UI Test</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/29/Android性能优化之——渲染篇/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android性能优化之——渲染篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/20/Android-Studio-2-2-预览版-——-新的UI设计器和约束布局/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android-Studio-2-2-预览版-——-新的UI设计器和约束布局</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/">Android Developer</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Security/">Security</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Vector-Drawable/">Vector Drawable</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/">Firebase</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/Google-cloud/">Google cloud</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/网络通信/">网络通信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Material-Design/">Material Design</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Wifi/">Wifi</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/">Android N</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/Notiification/">Notiification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/加密解密/">加密解密</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Studio/">Android Studio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Wear/">Android Wear</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-性能优化/">Android 性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义/">Android 自定义</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/">Dart</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/Flutter/">Flutter</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google-IO/">Google IO</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Android/">Android</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-0/">Android 7.0</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-1/">Android 7.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Customview/">Android Customview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-N/">Android N</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Performance/">Android Performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio-Tips/">Android Studio Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Support-Library/">Android Support Library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI-Test/">Android UI Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Wear/">Android Wear</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-性能优化/">Android 性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义/">Android 自定义</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Shortcuts/">App Shortcuts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bottom-Sheets/">Bottom Sheets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Featured/">Featured</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firebase/">Firebase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flat-Button/">Flat Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Floating-Action-Button/">Floating Action Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-Cloud/">Google Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-I-O/">Google I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nougat/">Nougat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/">Process</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raised-Button/">Raised Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seekbar/">Seekbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Traceview/">Traceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector-Drawable/">Vector Drawable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wifi/">Wifi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb-no-permissions/">adb no permissions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flexbox-layout/">flexbox-layout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google-io/">google io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/io/">io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel/">kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile-vision-APIs/">mobile vision APIs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nio/">nio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/notification/">notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stack/">stack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/task/">task</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任务/">任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密解密/">加密解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件读写/">文件读写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络通信/">网络通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/返回栈/">返回栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通知/">通知</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-7-0/" style="font-size: 13.33px;">Android 7.0</a> <a href="/tags/Android-7-1/" style="font-size: 16.67px;">Android 7.1</a> <a href="/tags/Android-Customview/" style="font-size: 10px;">Android Customview</a> <a href="/tags/Android-N/" style="font-size: 13.33px;">Android N</a> <a href="/tags/Android-Performance/" style="font-size: 13.33px;">Android Performance</a> <a href="/tags/Android-Studio/" style="font-size: 13.33px;">Android Studio</a> <a href="/tags/Android-Studio-Tips/" style="font-size: 13.33px;">Android Studio Tips</a> <a href="/tags/Android-Support-Library/" style="font-size: 10px;">Android Support Library</a> <a href="/tags/Android-UI-Test/" style="font-size: 10px;">Android UI Test</a> <a href="/tags/Android-Wear/" style="font-size: 10px;">Android Wear</a> <a href="/tags/Android-性能优化/" style="font-size: 13.33px;">Android 性能优化</a> <a href="/tags/Android-自定义/" style="font-size: 10px;">Android 自定义</a> <a href="/tags/App-Shortcuts/" style="font-size: 10px;">App Shortcuts</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/Bottom-Sheets/" style="font-size: 10px;">Bottom Sheets</a> <a href="/tags/Featured/" style="font-size: 10px;">Featured</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Flat-Button/" style="font-size: 10px;">Flat Button</a> <a href="/tags/Floating-Action-Button/" style="font-size: 10px;">Floating Action Button</a> <a href="/tags/Flutter/" style="font-size: 13.33px;">Flutter</a> <a href="/tags/Google-Cloud/" style="font-size: 10px;">Google Cloud</a> <a href="/tags/Google-I-O/" style="font-size: 10px;">Google I/O</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Nougat/" style="font-size: 13.33px;">Nougat</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/Raised-Button/" style="font-size: 10px;">Raised Button</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Seekbar/" style="font-size: 10px;">Seekbar</a> <a href="/tags/Snackbar/" style="font-size: 10px;">Snackbar</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Traceview/" style="font-size: 10px;">Traceview</a> <a href="/tags/Vector-Drawable/" style="font-size: 10px;">Vector Drawable</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/Wifi/" style="font-size: 10px;">Wifi</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/adb-no-permissions/" style="font-size: 10px;">adb no permissions</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/flexbox-layout/" style="font-size: 10px;">flexbox-layout</a> <a href="/tags/google-io/" style="font-size: 10px;">google io</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/library/" style="font-size: 10px;">library</a> <a href="/tags/mobile-vision-APIs/" style="font-size: 10px;">mobile vision APIs</a> <a href="/tags/nio/" style="font-size: 10px;">nio</a> <a href="/tags/notification/" style="font-size: 10px;">notification</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/stack/" style="font-size: 10px;">stack</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/任务/" style="font-size: 10px;">任务</a> <a href="/tags/加密解密/" style="font-size: 10px;">加密解密</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/网络通信/" style="font-size: 10px;">网络通信</a> <a href="/tags/返回栈/" style="font-size: 10px;">返回栈</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/03/AES-in-Android/">Android中的AES加密解密技术</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/03/support-ended-for-eclipse-android/">终止Android开发工具对与Eclipse的支持</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/21/android71-dev-preview-app-shortcuts/">Android 7.1 应用快捷键详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/20/android71-dev-preview-available/">现在可用：Android 7.1开发者预览版</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/12/android-71-developer-preview/">即将到来：Android 7.1 开发者预览版</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Shoewann<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

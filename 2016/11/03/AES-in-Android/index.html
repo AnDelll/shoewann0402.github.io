@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android中的AES加密解密技术 | Shoewann&#39;s Personal Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近需要在项目中加密数据，首先想到要使用到AES加密技术。在网上找了很多，都是适合Java工程，在Android上无法正常达到预期的解密。花了两天的时间终于找到了可以在Android上顺利实现加密解密的代码，在这里有必要的记录一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中的AES加密解密技术">
+<meta property="og:url" content="https://shoewann0402.github.io/2016/11/03/AES-in-Android/index.html">
+<meta property="og:site_name" content="Shoewann's Personal Blog">
+<meta property="og:description" content="最近需要在项目中加密数据，首先想到要使用到AES加密技术。在网上找了很多，都是适合Java工程，在Android上无法正常达到预期的解密。花了两天的时间终于找到了可以在Android上顺利实现加密解密的代码，在这里有必要的记录一下。">
+<meta property="og:image" content="https://shoewann0402.github.io/images/security-crypto-provider.png">
+<meta property="og:updated_time" content="2016-09-23T07:07:53.610Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android中的AES加密解密技术">
+<meta name="twitter:description" content="最近需要在项目中加密数据，首先想到要使用到AES加密技术。在网上找了很多，都是适合Java工程，在Android上无法正常达到预期的解密。花了两天的时间终于找到了可以在Android上顺利实现加密解密的代码，在这里有必要的记录一下。">
+<meta name="twitter:image" content="https://shoewann0402.github.io/images/security-crypto-provider.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shoewann&#39;s Personal Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shoewann&#39;s Personal Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Love Google Technology , Just Do It !</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://shoewann0402.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-AES-in-Android" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/03/AES-in-Android/" class="article-date">
+  <time datetime="2016-11-03T12:35:01.021Z" itemprop="datePublished">2016-11-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android-N/">Android N</a>►<a class="article-category-link" href="/categories/Android-N/加密解密/">加密解密</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/images/security-crypto-provider.png" rel="gallery_civ2c4zki00026wpbgqqxchxb">
+        <img src="/images/security-crypto-provider.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android中的AES加密解密技术
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近需要在项目中加密数据，首先想到要使用到AES加密技术。在网上找了很多，都是适合Java工程，在Android上无法正常达到预期的解密。花了两天的时间终于找到了可以在Android上顺利实现加密解密的代码，在这里有必要的记录一下。</p>
+<a id="more"></a>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>对于AES的概念，以下摘自维基百科，它是这样解释的:</p>
+<blockquote>
+<p><em>高级加密标准（英语：Advanced Encryption Standard，缩写：AES），在密码学中又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由美国国家标准与技术研究院（NIST）于2001年11月26日发布于FIPS PUB 197，并在2002年5月26日成为有效的标准。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一。</em></p>
+</blockquote>
+<p>其余的就不多说了，以下直接进入主题 …</p>
+<h2 id="Android中的用法"><a href="#Android中的用法" class="headerlink" title="Android中的用法"></a>Android中的用法</h2><p>以下示例是基于Android的，Java不通用</p>
+<h3 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wt.aes;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">import</span> java.security.SecureRandom;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.crypto.Cipher;</div><div class="line"><span class="keyword">import</span> javax.crypto.KeyGenerator;</div><div class="line"><span class="keyword">import</span> javax.crypto.SecretKey;</div><div class="line"><span class="keyword">import</span> javax.crypto.spec.IvParameterSpec;</div><div class="line"><span class="keyword">import</span> javax.crypto.spec.SecretKeySpec;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by shoewann on 16-9-23.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AESUtils</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">encrypt</span><span class="params">(String seed, String cleartext)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">byte</span>[] rawKey = getRawKey(seed.getBytes());</div><div class="line">        <span class="keyword">byte</span>[] result = encrypt(rawKey, cleartext.getBytes());</div><div class="line">        <span class="keyword">return</span> toHex(result);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decrypt</span><span class="params">(String seed, String encrypted)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">byte</span>[] rawKey = getRawKey(seed.getBytes());</div><div class="line">        <span class="keyword">byte</span>[] enc = toByte(encrypted);</div><div class="line">        <span class="keyword">byte</span>[] result = decrypt(rawKey, enc);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(result);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getRawKey(<span class="keyword">byte</span>[] seed) <span class="keyword">throws</span> Exception &#123;</div><div class="line">        KeyGenerator kgen = KeyGenerator.getInstance(<span class="string">"AES"</span>);</div><div class="line">        SecureRandom sr = SecureRandom.getInstance(<span class="string">"SHA1PRNG"</span>, <span class="string">"Crypto"</span>);</div><div class="line">        sr.setSeed(seed);</div><div class="line">        kgen.init(<span class="number">128</span>, sr); <span class="comment">// 192 and 256 bits may not be available</span></div><div class="line">        SecretKey skey = kgen.generateKey();</div><div class="line">        <span class="keyword">byte</span>[] raw = skey.getEncoded();</div><div class="line">        <span class="keyword">return</span> raw;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] encrypt(<span class="keyword">byte</span>[] raw, <span class="keyword">byte</span>[] clear) <span class="keyword">throws</span> Exception &#123;</div><div class="line">        SecretKeySpec skeySpec = <span class="keyword">new</span> SecretKeySpec(raw, <span class="string">"AES"</span>);</div><div class="line">        Cipher cipher = Cipher.getInstance(<span class="string">"AES"</span>);</div><div class="line">        cipher.init(Cipher.ENCRYPT_MODE, skeySpec, <span class="keyword">new</span> IvParameterSpec(<span class="keyword">new</span> <span class="keyword">byte</span>[cipher.getBlockSize()]));</div><div class="line">        <span class="keyword">byte</span>[] encrypted = cipher.doFinal(clear);</div><div class="line">        <span class="keyword">return</span> encrypted;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] decrypt(<span class="keyword">byte</span>[] raw, <span class="keyword">byte</span>[] encrypted) <span class="keyword">throws</span> Exception &#123;</div><div class="line">        SecretKeySpec skeySpec = <span class="keyword">new</span> SecretKeySpec(raw, <span class="string">"AES"</span>);</div><div class="line">        Cipher cipher = Cipher.getInstance(<span class="string">"AES"</span>);</div><div class="line">        cipher.init(Cipher.DECRYPT_MODE, skeySpec, <span class="keyword">new</span> IvParameterSpec(<span class="keyword">new</span> <span class="keyword">byte</span>[cipher.getBlockSize()]));</div><div class="line">        <span class="keyword">byte</span>[] decrypted = cipher.doFinal(encrypted);</div><div class="line">        <span class="keyword">return</span> decrypted;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">toHex</span><span class="params">(String txt)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> toHex(txt.getBytes());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">fromHex</span><span class="params">(String hex)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(toByte(hex));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] toByte(String hexString) &#123;</div><div class="line">        <span class="keyword">int</span> len = hexString.length() / <span class="number">2</span>;</div><div class="line">        <span class="keyword">byte</span>[] result = <span class="keyword">new</span> <span class="keyword">byte</span>[len];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</div><div class="line">            result[i] = Integer.valueOf(hexString.substring(<span class="number">2</span> * i, <span class="number">2</span> * i + <span class="number">2</span>), <span class="number">16</span>).byteValue();</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">toHex</span><span class="params">(<span class="keyword">byte</span>[] buf)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (buf == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        StringBuffer result = <span class="keyword">new</span> StringBuffer(<span class="number">2</span> * buf.length);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; buf.length; i++) &#123;</div><div class="line">            appendHex(result, buf[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result.toString();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String HEX = <span class="string">"0123456789ABCDEF"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">appendHex</span><span class="params">(StringBuffer sb, <span class="keyword">byte</span> b)</span> </span>&#123;</div><div class="line">        sb.append(HEX.charAt((b &gt;&gt; <span class="number">4</span>) &amp; <span class="number">0x0f</span>)).append(HEX.charAt(b &amp; <span class="number">0x0f</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="示例调用"><a href="#示例调用" class="headerlink" title="示例调用"></a>示例调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wt.aes;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.os.Bundle;</div><div class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</div><div class="line"><span class="keyword">import</span> android.util.Log;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by shoewann on 16-9-23.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"MainActivity"</span>;</div><div class="line"></div><div class="line">    String content=<span class="string">"我是需要加密的数据内容"</span>;</div><div class="line">    String key=<span class="string">"com.sina.com"</span>;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Log.d(TAG,<span class="string">"加密前："</span>+content);</div><div class="line">            <span class="comment">//encrypt （加密）</span></div><div class="line">            String encrypt = AESUtils.encrypt(key, content);</div><div class="line">            Log.d(TAG,<span class="string">"加密后："</span>+encrypt);</div><div class="line">            <span class="comment">//decrypt （解密）</span></div><div class="line">            String decrypt = AESUtils.decrypt(key, encrypt);</div><div class="line">            Log.d(TAG,<span class="string">"解密后："</span>+decrypt);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">            Log.d(TAG,<span class="string">"ERROR："</span>+e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果,如果是这样:</p>
+<p><img src="/images/aes_success.png" alt="aes_success.png"></p>
+<p>根据以上log信息可以看出，数据能在设备上成功被加密和解密出来，说明你当前的调试设备版本在Android 7.0(API 24)以下，你依然可以使用以上的方式来加密解密。</p>
+<h2 id="Android-N-已弃用Crypto"><a href="#Android-N-已弃用Crypto" class="headerlink" title="Android N 已弃用Crypto"></a>Android N 已弃用Crypto</h2><blockquote>
+<ul>
+<li>如果你在Android系统版本是<strong>7.0</strong>的设备上运行以上代码，结果是这样的:</li>
+</ul>
+</blockquote>
+<p><img src="/images/aes_7.0_error.png" alt="aes_7.0_error"></p>
+<p>根据以上的log信息可以看出，在<strong>Android 7.0 新版本</strong> Android SDK 不再支持 <strong>Crypto</strong>,至于详细可以访问<a href="http://android-developers.blogspot.com/2016/06/security-crypto-provider-deprecated-in.html" target="_blank" rel="external">http://android-developers.blogspot.com/2016/06/security-crypto-provider-deprecated-in.html</a><br>或者<br>查看之前我翻译提交的<a href="https://shoewann0402.github.io/2016/06/10/security-crypto-provider-deprecated-in-android-n/">这篇文章</a>。</p>
+<p>以下是，修改过后的工具类:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wt.aes;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.crypto.Cipher;</div><div class="line"><span class="keyword">import</span> javax.crypto.SecretKey;</div><div class="line"><span class="keyword">import</span> javax.crypto.spec.IvParameterSpec;</div><div class="line"><span class="keyword">import</span> javax.crypto.spec.SecretKeySpec;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by shoewann on 16-9-23.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AESUtils</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">encrypt</span><span class="params">(String seed, String cleartext)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">byte</span>[] rawKey = deriveKeyInsecurely(seed,<span class="number">32</span>).getEncoded();</div><div class="line">        <span class="keyword">byte</span>[] result = encrypt(rawKey, cleartext.getBytes());</div><div class="line">        <span class="keyword">return</span> toHex(result);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decrypt</span><span class="params">(String seed, String encrypted)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">byte</span>[] rawKey = deriveKeyInsecurely(seed,<span class="number">32</span>).getEncoded();</div><div class="line">        <span class="keyword">byte</span>[] enc = toByte(encrypted);</div><div class="line">        <span class="keyword">byte</span>[] result = decrypt(rawKey, enc);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(result);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> SecretKey <span class="title">deriveKeyInsecurely</span><span class="params">(String password, <span class="keyword">int</span></span></span></div><div class="line">            keySizeInBytes) &#123;</div><div class="line">        <span class="keyword">byte</span>[] passwordBytes = password.getBytes(StandardCharsets.US_ASCII);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SecretKeySpec(</div><div class="line">                InsecureSHA1PRNGKeyDerivator.deriveInsecureKey(</div><div class="line">                        passwordBytes, keySizeInBytes),</div><div class="line">                <span class="string">"AES"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] encrypt(<span class="keyword">byte</span>[] raw, <span class="keyword">byte</span>[] clear) <span class="keyword">throws</span> Exception &#123;</div><div class="line">        SecretKeySpec skeySpec = <span class="keyword">new</span> SecretKeySpec(raw, <span class="string">"AES"</span>);</div><div class="line">        Cipher cipher = Cipher.getInstance(<span class="string">"AES"</span>);</div><div class="line">        cipher.init(Cipher.ENCRYPT_MODE, skeySpec, <span class="keyword">new</span> IvParameterSpec(<span class="keyword">new</span> <span class="keyword">byte</span>[cipher.getBlockSize()]));</div><div class="line">        <span class="keyword">byte</span>[] encrypted = cipher.doFinal(clear);</div><div class="line">        <span class="keyword">return</span> encrypted;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] decrypt(<span class="keyword">byte</span>[] raw, <span class="keyword">byte</span>[] encrypted) <span class="keyword">throws</span> Exception &#123;</div><div class="line">        SecretKeySpec skeySpec = <span class="keyword">new</span> SecretKeySpec(raw, <span class="string">"AES"</span>);</div><div class="line">        Cipher cipher = Cipher.getInstance(<span class="string">"AES"</span>);</div><div class="line">        cipher.init(Cipher.DECRYPT_MODE, skeySpec, <span class="keyword">new</span> IvParameterSpec(<span class="keyword">new</span> <span class="keyword">byte</span>[cipher.getBlockSize()]));</div><div class="line">        <span class="keyword">byte</span>[] decrypted = cipher.doFinal(encrypted);</div><div class="line">        <span class="keyword">return</span> decrypted;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">toHex</span><span class="params">(String txt)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> toHex(txt.getBytes());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">fromHex</span><span class="params">(String hex)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(toByte(hex));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] toByte(String hexString) &#123;</div><div class="line">        <span class="keyword">int</span> len = hexString.length() / <span class="number">2</span>;</div><div class="line">        <span class="keyword">byte</span>[] result = <span class="keyword">new</span> <span class="keyword">byte</span>[len];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</div><div class="line">            result[i] = Integer.valueOf(hexString.substring(<span class="number">2</span> * i, <span class="number">2</span> * i + <span class="number">2</span>), <span class="number">16</span>).byteValue();</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">toHex</span><span class="params">(<span class="keyword">byte</span>[] buf)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (buf == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        StringBuffer result = <span class="keyword">new</span> StringBuffer(<span class="number">2</span> * buf.length);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; buf.length; i++) &#123;</div><div class="line">            appendHex(result, buf[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result.toString();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String HEX = <span class="string">"0123456789ABCDEF"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">appendHex</span><span class="params">(StringBuffer sb, <span class="keyword">byte</span> b)</span> </span>&#123;</div><div class="line">        sb.append(HEX.charAt((b &gt;&gt; <span class="number">4</span>) &amp; <span class="number">0x0f</span>)).append(HEX.charAt(b &amp; <span class="number">0x0f</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上的工具类中<strong>InsecureSHA1PRNGKeyDerivator</strong>这个类，可以在<a href="https://android.googlesource.com/platform/development/+/master/samples/BrokenKeyDerivation" target="_blank" rel="external">示例代码</a>里找到</p>
+<p>通过再次调用以上的工具类中的加密解密的方法，就可以在Android 7.0上成功加密解密出数据:</p>
+<p><img src="/images/aes_7.0_success.png" alt="aes_7.0_success.png"></p>
+<blockquote>
+<p>以上是对Anroid 中使用AES及在7.0上使用相关问题，原创不易，如果不足，欢迎指正，谢谢。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shoewann0402.github.io/2016/11/03/AES-in-Android/" data-id="civ2c4zki00026wpbgqqxchxb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/11/03/support-ended-for-eclipse-android/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">终止Android开发工具对与Eclipse的支持</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/">Android Developer</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Security/">Security</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Vector-Drawable/">Vector Drawable</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/">Firebase</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/Google-cloud/">Google cloud</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/网络通信/">网络通信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Material-Design/">Material Design</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Wifi/">Wifi</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/">Android N</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/Notiification/">Notiification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/加密解密/">加密解密</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Studio/">Android Studio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Wear/">Android Wear</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-性能优化/">Android 性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义/">Android 自定义</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/">Dart</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/Flutter/">Flutter</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google-IO/">Google IO</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Android/">Android</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-0/">Android 7.0</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-1/">Android 7.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Customview/">Android Customview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-N/">Android N</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Performance/">Android Performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio-Tips/">Android Studio Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Support-Library/">Android Support Library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI-Test/">Android UI Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Wear/">Android Wear</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-性能优化/">Android 性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义/">Android 自定义</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Shortcuts/">App Shortcuts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bottom-Sheets/">Bottom Sheets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Featured/">Featured</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firebase/">Firebase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flat-Button/">Flat Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Floating-Action-Button/">Floating Action Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-Cloud/">Google Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-I-O/">Google I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nougat/">Nougat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/">Process</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raised-Button/">Raised Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seekbar/">Seekbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Traceview/">Traceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector-Drawable/">Vector Drawable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wifi/">Wifi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb-no-permissions/">adb no permissions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flexbox-layout/">flexbox-layout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google-io/">google io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/io/">io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel/">kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile-vision-APIs/">mobile vision APIs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nio/">nio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/notification/">notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stack/">stack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/task/">task</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任务/">任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密解密/">加密解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件读写/">文件读写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络通信/">网络通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/返回栈/">返回栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通知/">通知</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-7-0/" style="font-size: 13.33px;">Android 7.0</a> <a href="/tags/Android-7-1/" style="font-size: 16.67px;">Android 7.1</a> <a href="/tags/Android-Customview/" style="font-size: 10px;">Android Customview</a> <a href="/tags/Android-N/" style="font-size: 13.33px;">Android N</a> <a href="/tags/Android-Performance/" style="font-size: 13.33px;">Android Performance</a> <a href="/tags/Android-Studio/" style="font-size: 13.33px;">Android Studio</a> <a href="/tags/Android-Studio-Tips/" style="font-size: 13.33px;">Android Studio Tips</a> <a href="/tags/Android-Support-Library/" style="font-size: 10px;">Android Support Library</a> <a href="/tags/Android-UI-Test/" style="font-size: 10px;">Android UI Test</a> <a href="/tags/Android-Wear/" style="font-size: 10px;">Android Wear</a> <a href="/tags/Android-性能优化/" style="font-size: 13.33px;">Android 性能优化</a> <a href="/tags/Android-自定义/" style="font-size: 10px;">Android 自定义</a> <a href="/tags/App-Shortcuts/" style="font-size: 10px;">App Shortcuts</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/Bottom-Sheets/" style="font-size: 10px;">Bottom Sheets</a> <a href="/tags/Featured/" style="font-size: 10px;">Featured</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Flat-Button/" style="font-size: 10px;">Flat Button</a> <a href="/tags/Floating-Action-Button/" style="font-size: 10px;">Floating Action Button</a> <a href="/tags/Flutter/" style="font-size: 13.33px;">Flutter</a> <a href="/tags/Google-Cloud/" style="font-size: 10px;">Google Cloud</a> <a href="/tags/Google-I-O/" style="font-size: 10px;">Google I/O</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Nougat/" style="font-size: 13.33px;">Nougat</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/Raised-Button/" style="font-size: 10px;">Raised Button</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Seekbar/" style="font-size: 10px;">Seekbar</a> <a href="/tags/Snackbar/" style="font-size: 10px;">Snackbar</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Traceview/" style="font-size: 10px;">Traceview</a> <a href="/tags/Vector-Drawable/" style="font-size: 10px;">Vector Drawable</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/Wifi/" style="font-size: 10px;">Wifi</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/adb-no-permissions/" style="font-size: 10px;">adb no permissions</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/flexbox-layout/" style="font-size: 10px;">flexbox-layout</a> <a href="/tags/google-io/" style="font-size: 10px;">google io</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/library/" style="font-size: 10px;">library</a> <a href="/tags/mobile-vision-APIs/" style="font-size: 10px;">mobile vision APIs</a> <a href="/tags/nio/" style="font-size: 10px;">nio</a> <a href="/tags/notification/" style="font-size: 10px;">notification</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/stack/" style="font-size: 10px;">stack</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/任务/" style="font-size: 10px;">任务</a> <a href="/tags/加密解密/" style="font-size: 10px;">加密解密</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/网络通信/" style="font-size: 10px;">网络通信</a> <a href="/tags/返回栈/" style="font-size: 10px;">返回栈</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/03/AES-in-Android/">Android中的AES加密解密技术</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/03/support-ended-for-eclipse-android/">终止Android开发工具对与Eclipse的支持</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/21/android71-dev-preview-app-shortcuts/">Android 7.1 应用快捷键详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/20/android71-dev-preview-available/">现在可用：Android 7.1开发者预览版</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/12/android-71-developer-preview/">即将到来：Android 7.1 开发者预览版</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Shoewann<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

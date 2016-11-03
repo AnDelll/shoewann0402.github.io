@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android中使用兼容库创建Vector Drawable | Shoewann&#39;s Personal Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="随着Android应用程序兼容性支持库v23.2的新版本到来，它的一些特性也向后兼容并且增加了一些新功能。随着Android Lolipop（API 21）的发布，一个新的组件被包括进来，它被叫做矢量绘制对象。但是这个组件仅仅能在API21+上使用，现在的Androidy应用程序兼容性支持库v23.2矢量绘制对象的到来，可以为可绘制性提供强大的向后兼容性，可兼容API7+设备。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中使用兼容库创建Vector Drawable">
+<meta property="og:url" content="https://shoewann0402.github.io/2016/07/31/android-vector-drawable-example-using-appcompat-support-library/index.html">
+<meta property="og:site_name" content="Shoewann's Personal Blog">
+<meta property="og:description" content="随着Android应用程序兼容性支持库v23.2的新版本到来，它的一些特性也向后兼容并且增加了一些新功能。随着Android Lolipop（API 21）的发布，一个新的组件被包括进来，它被叫做矢量绘制对象。但是这个组件仅仅能在API21+上使用，现在的Androidy应用程序兼容性支持库v23.2矢量绘制对象的到来，可以为可绘制性提供强大的向后兼容性，可兼容API7+设备。">
+<meta property="og:image" content="https://shoewann0402.github.io/images/vector_drawable.png">
+<meta property="og:updated_time" content="2016-07-31T04:57:32.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android中使用兼容库创建Vector Drawable">
+<meta name="twitter:description" content="随着Android应用程序兼容性支持库v23.2的新版本到来，它的一些特性也向后兼容并且增加了一些新功能。随着Android Lolipop（API 21）的发布，一个新的组件被包括进来，它被叫做矢量绘制对象。但是这个组件仅仅能在API21+上使用，现在的Androidy应用程序兼容性支持库v23.2矢量绘制对象的到来，可以为可绘制性提供强大的向后兼容性，可兼容API7+设备。">
+<meta name="twitter:image" content="https://shoewann0402.github.io/images/vector_drawable.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shoewann&#39;s Personal Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shoewann&#39;s Personal Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Love Google Technology , Just Do It !</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://shoewann0402.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-android-vector-drawable-example-using-appcompat-support-library" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/31/android-vector-drawable-example-using-appcompat-support-library/" class="article-date">
+  <time datetime="2016-07-31T03:51:36.000Z" itemprop="datePublished">2016-07-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Android-Developer/">Android Developer</a>►<a class="article-category-link" href="/categories/Android/Android-Developer/Vector-Drawable/">Vector Drawable</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/images/vector_drawable.png" rel="gallery_civ2c4znd002e6wpbsnuf5o82">
+        <img src="/images/vector_drawable.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android中使用兼容库创建Vector Drawable
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>随着Android应用程序兼容性支持库v23.2的新版本到来，它的一些特性也向后兼容并且增加了一些新功能。随着Android Lolipop（API 21）的发布，一个新的组件被包括进来，它被叫做矢量绘制对象。但是这个组件仅仅能在API21+上使用，现在的Androidy应用程序兼容性支持库v23.2矢量绘制对象的到来，可以为可绘制性提供强大的向后兼容性，可兼容API7+设备。</p>
+<a id="more"></a>
+<h2 id="什么是-Vector-Drawable-？"><a href="#什么是-Vector-Drawable-？" class="headerlink" title="什么是 Vector Drawable ？"></a>什么是 Vector Drawable ？</h2><p>正如它的名字所暗示的那样，Vector Drawable基于矢量图像。相对于光栅图形，矢量图形是描述使用几何形状图形元素的一种方式，它类似于SVG文件。在Vector Drawable中它是利用XML文件被创建出来。在Vector Drawable添加到Android SDK之前，开发者对于不同的显示分辨率必须创建多个版本的图像，这需要花费时间创建额外的asstes，并且消耗更多的空间，以致于增大apk文件的大小。如今这里不需要为mdpi,hdpi,xhdpi等等设计不同大小的图像，利用Vector Drawable你只需要创建图像仅仅一次作为一个XML文件，你将能够对于所有显示分辨率和不同的设备进行缩放。</p>
+<h2 id="如何使用Vector-Drawable-？"><a href="#如何使用Vector-Drawable-？" class="headerlink" title="如何使用Vector Drawable ？"></a>如何使用Vector Drawable ？</h2><h3 id="升级builde-gradle-文件"><a href="#升级builde-gradle-文件" class="headerlink" title="升级builde.gradle 文件"></a>升级builde.gradle 文件</h3><p>在你项目中能够使用Vector Drawable之前，你需要添加兼容行代码到你的build.gradle文件下Gradle depencies模块中(<strong>以下版本必须满足v23.2+</strong>)然后重新编译一下项目</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    ...</div><div class="line">   <span class="keyword">compile</span> <span class="string">'com.android.support:appcompat-v7:23.2.1'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果你是使用的Gradle plugin插件版本在2.0或者及其以上，请添加以下代码：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Gradle Plugin 2.0+</span></div><div class="line"> android &#123;</div><div class="line">   defaultConfig &#123;</div><div class="line">     vectorDrawables.useSupportLibrary = <span class="keyword">true</span></div><div class="line">    &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>如果你是使用的Gradle plugin插件版本在1.5或者及其以下，请添加以下代码：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Gradle Plugin 1.5</span></div><div class="line"> android &#123;</div><div class="line">   defaultConfig &#123;</div><div class="line">     generatedDensities = []</div><div class="line">  &#125;</div><div class="line"> </div><div class="line">  <span class="comment">// This is handled for you by the 2.0+ Gradle Plugin</span></div><div class="line">  aaptOptions &#123;</div><div class="line">    additionalParameters <span class="string">"--no-version-vectors"</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>我当前的Android Studio是 2.2 priview 6:</p>
+<p><img src="/images/vector_gradle.png" alt="vector_gradle"></p>
+<h3 id="创建Vector-Drawable"><a href="#创建Vector-Drawable" class="headerlink" title="创建Vector Drawable"></a>创建Vector Drawable</h3><h4 id="创建Vector-Assets目录"><a href="#创建Vector-Assets目录" class="headerlink" title="创建Vector Assets目录"></a>创建Vector Assets目录</h4><p>在你的Android Studio中选中drawable文件夹&gt;右键点击&gt;new&gt;Vector Assets</p>
+<p><img src="/images/create_vector_one.png" alt="create_vector_one"></p>
+<h4 id="Vector-Asset-Studio-Tool"><a href="#Vector-Asset-Studio-Tool" class="headerlink" title="Vector Asset Studio Tool"></a>Vector Asset Studio Tool</h4><p>现在Vector Asset Studio 工具窗口会出现</p>
+<p><img src="/images/create_vector_two.png" alt="create_vector_two"></p>
+<h4 id="创建Vector-drawable-xml"><a href="#创建Vector-drawable-xml" class="headerlink" title="创建Vector drawable xml"></a>创建Vector drawable xml</h4><p>创建Vector drawable xml 文件有两种方式:默认的Material 图标、加载本地SVG文件</p>
+<h5 id="Material-图标"><a href="#Material-图标" class="headerlink" title="Material 图标"></a>Material 图标</h5><p>选择Material图标选项，然后点击icon,它将会出现一个选择icon的窗口，在这里你可以选择任意一个你期望的图标。我这里选择了一个定位的图标，点击OK</p>
+<p><img src="/images/create_vector_xml_way1_select_icon.png" alt="create_vector_xml_way1_select_icon"></p>
+<p>这个窗口显示了刚刚选择的图标进行预览，我默认设置它的size为<strong>24x24dp</strong>,现在点击下一步</p>
+<p><img src="/images/create_vector_xml_way1_select_icon_ok.png" alt="create_vector_xml_way1_select_icon_ok"></p>
+<p>这个窗口运行你设置目标Module和Res目录(可以选择debug或者release其中一种)，配置完成后点击Finish完成</p>
+<p><img src="/images/create_vector_xml_way1_confirm_icon_path.png" alt="create_vector_xml_way1_confirm_icon_path"></p>
+<p>以下就是上面过程的结果，将会在drawable文件夹中生成Vector drawable <strong>ic_location_on_black_24dp.xml</strong></p>
+<p><img src="/images/create_vector_xml_way1_finish.png" alt="create_vector_xml_way1_finish"></p>
+<h4 id="加载本地SVG文件"><a href="#加载本地SVG文件" class="headerlink" title="加载本地SVG文件"></a>加载本地SVG文件</h4><p>选择Local SVG File，然后点击下面的path，弹出一个新的窗口，选择本地svg 文件。</p>
+<p><img src="/images/create_vector_xml_way2_select_icon.png" alt="create_vector_xml_way2_select_icon"></p>
+<p>这个窗口显示了刚刚导入的SVG图标进行预览，我默认设置它的size为<strong>24x24dp</strong>,现在点击下一步</p>
+<p><img src="/images/create_vector_xml_way2_select_icon_ok.png" alt="create_vector_xml_way2_select_icon_ok"></p>
+<p>这个窗口运行你设置目标Module和Res目录(可以选择debug或者release其中一种)，配置完成后点击Finish完成</p>
+<p><img src="/images/create_vector_xml_way2_confirm_icon_path.png" alt="create_vector_xml_way2_confirm_icon_path"></p>
+<p>以下就是上面过程的结果，将会在drawable文件夹中生成Vector drawable <strong>ic_dollar.xml</strong></p>
+<p><img src="/images/create_vector_xml_way2_finish.png" alt="create_vector_xml_way2_finish"></p>
+<h3 id="修改strings-xml"><a href="#修改strings-xml" class="headerlink" title="修改strings.xml"></a>修改strings.xml</h3><p>添加以下string values到res =&gt; values =&gt; strings.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"material_icon"</span>&gt;</span>Material Icon<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"svg_file_icon"</span>&gt;</span>Local SVG File Icon<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"dynamic_icon"</span>&gt;</span>Vector Image Dynamic Icon<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="修改layout-xml"><a href="#修改layout-xml" class="headerlink" title="修改layout.xml"></a>修改layout.xml</h3><p><img src="/images/vector_drawable_layout.png" alt="vector_drawable_layout"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">android.support.constraint.ConstraintLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/activity_main"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">"com.example.shoewann.myapplication.MainActivity"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/tv_material_icon"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_marginTop</span>=<span class="string">"20dp"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center_vertical"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"@string/material_icon"</span></div><div class="line">        <span class="attr">android:textColor</span>=<span class="string">"@android:color/black"</span></div><div class="line">        <span class="attr">android:textSize</span>=<span class="string">"25sp"</span></div><div class="line">        <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"@+id/activity_main"</span></div><div class="line">        <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"@+id/activity_main"</span></div><div class="line">        <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"@+id/activity_main"</span></div><div class="line">        <span class="attr">tools:layout_constraintLeft_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintRight_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintTop_creator</span>=<span class="string">"1"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/ic_location"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_marginTop</span>=<span class="string">"20dp"</span></div><div class="line">        <span class="attr">android:contentDescription</span>=<span class="string">""</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center_vertical"</span></div><div class="line">        <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"@+id/tv_material_icon"</span></div><div class="line">        <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"@+id/tv_material_icon"</span></div><div class="line">        <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">"@+id/tv_material_icon"</span></div><div class="line">        <span class="attr">app:srcCompat</span>=<span class="string">"@drawable/ic_location_on_black_24dp"</span></div><div class="line">        <span class="attr">tools:ignore</span>=<span class="string">"ContentDescription"</span></div><div class="line">        <span class="attr">tools:layout_constraintLeft_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintRight_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintTop_creator</span>=<span class="string">"1"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/tv_svg_file_icon"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_marginTop</span>=<span class="string">"20dp"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center_vertical"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"@string/svg_file_icon"</span></div><div class="line">        <span class="attr">android:textColor</span>=<span class="string">"@android:color/black"</span></div><div class="line">        <span class="attr">android:textSize</span>=<span class="string">"25sp"</span></div><div class="line">        <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"@+id/activity_main"</span></div><div class="line">        <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"@+id/activity_main"</span></div><div class="line">        <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">"@+id/ic_location"</span></div><div class="line">        <span class="attr">tools:layout_constraintLeft_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintRight_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintTop_creator</span>=<span class="string">"1"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/ic_dollar"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_marginTop</span>=<span class="string">"20dp"</span></div><div class="line">        <span class="attr">android:contentDescription</span>=<span class="string">""</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center_vertical"</span></div><div class="line">        <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"@+id/ic_location"</span></div><div class="line">        <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"@+id/ic_location"</span></div><div class="line">        <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">"@+id/tv_svg_file_icon"</span></div><div class="line">        <span class="attr">app:srcCompat</span>=<span class="string">"@drawable/ic_dollar"</span></div><div class="line">        <span class="attr">tools:ignore</span>=<span class="string">"ContentDescription"</span></div><div class="line">        <span class="attr">tools:layout_constraintLeft_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintRight_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintTop_creator</span>=<span class="string">"1"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/tv_dynamic_icon"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_marginTop</span>=<span class="string">"20dp"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center_vertical"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"@string/dynamic_icon"</span></div><div class="line">        <span class="attr">android:textColor</span>=<span class="string">"@android:color/black"</span></div><div class="line">        <span class="attr">android:textSize</span>=<span class="string">"25sp"</span></div><div class="line">        <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"@+id/activity_main"</span></div><div class="line">        <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"@+id/activity_main"</span></div><div class="line">        <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">"@+id/ic_dollar"</span></div><div class="line">        <span class="attr">tools:layout_constraintLeft_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintRight_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintTop_creator</span>=<span class="string">"1"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/dynamic_icon"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_marginTop</span>=<span class="string">"20dp"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center_vertical"</span></div><div class="line">        <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"@+id/tv_dynamic_icon"</span></div><div class="line">        <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"@+id/tv_dynamic_icon"</span></div><div class="line">        <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">"@+id/tv_dynamic_icon"</span></div><div class="line">        <span class="attr">tools:layout_constraintLeft_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintRight_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:layout_constraintTop_creator</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">tools:ignore</span>=<span class="string">"ContentDescription"</span> /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">android.support.constraint.ConstraintLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="修改-MainActivity-java"><a href="#修改-MainActivity-java" class="headerlink" title="修改 MainActivity.java"></a>修改 MainActivity.java</h3><p><img src="/images/vector_drawable_src.png" alt="vector_drawable_src"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.example.shoewann.myapplication;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.os.Bundle;</div><div class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</div><div class="line"><span class="keyword">import</span> android.widget.ImageView;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> android.widget.ImageView dynamicicon;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        <span class="keyword">this</span>.dynamicicon = (ImageView) findViewById(R.id.dynamic_icon);</div><div class="line">        <span class="keyword">this</span>.dynamicicon.setImageResource(R.drawable.ic_dollar);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h3><p><img src="/images/vector_drawable_run_result.png" alt="vector_drawable_run_result"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shoewann0402.github.io/2016/07/31/android-vector-drawable-example-using-appcompat-support-library/" data-id="civ2c4znd002e6wpbsnuf5o82" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Support-Library/">Android Support Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vector-Drawable/">Vector Drawable</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/01/Material-Design-Components-Buttons/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Material Design组件之Buttons
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/30/Android-Performance-Part-Of-Traceview/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android性能优化之Traceview</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/">Android Developer</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Security/">Security</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Vector-Drawable/">Vector Drawable</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/">Firebase</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/Google-cloud/">Google cloud</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/网络通信/">网络通信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Material-Design/">Material Design</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Wifi/">Wifi</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/">Android N</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/Notiification/">Notiification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/加密解密/">加密解密</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Studio/">Android Studio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Wear/">Android Wear</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-性能优化/">Android 性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义/">Android 自定义</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/">Dart</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/Flutter/">Flutter</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google-IO/">Google IO</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Android/">Android</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-0/">Android 7.0</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-1/">Android 7.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Customview/">Android Customview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-N/">Android N</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Performance/">Android Performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio-Tips/">Android Studio Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Support-Library/">Android Support Library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI-Test/">Android UI Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Wear/">Android Wear</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-性能优化/">Android 性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义/">Android 自定义</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Shortcuts/">App Shortcuts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bottom-Sheets/">Bottom Sheets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Featured/">Featured</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firebase/">Firebase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flat-Button/">Flat Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Floating-Action-Button/">Floating Action Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-Cloud/">Google Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-I-O/">Google I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nougat/">Nougat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/">Process</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raised-Button/">Raised Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seekbar/">Seekbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Traceview/">Traceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector-Drawable/">Vector Drawable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wifi/">Wifi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb-no-permissions/">adb no permissions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flexbox-layout/">flexbox-layout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google-io/">google io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/io/">io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel/">kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile-vision-APIs/">mobile vision APIs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nio/">nio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/notification/">notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stack/">stack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/task/">task</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任务/">任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密解密/">加密解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件读写/">文件读写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络通信/">网络通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/返回栈/">返回栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通知/">通知</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-7-0/" style="font-size: 13.33px;">Android 7.0</a> <a href="/tags/Android-7-1/" style="font-size: 16.67px;">Android 7.1</a> <a href="/tags/Android-Customview/" style="font-size: 10px;">Android Customview</a> <a href="/tags/Android-N/" style="font-size: 13.33px;">Android N</a> <a href="/tags/Android-Performance/" style="font-size: 13.33px;">Android Performance</a> <a href="/tags/Android-Studio/" style="font-size: 13.33px;">Android Studio</a> <a href="/tags/Android-Studio-Tips/" style="font-size: 13.33px;">Android Studio Tips</a> <a href="/tags/Android-Support-Library/" style="font-size: 10px;">Android Support Library</a> <a href="/tags/Android-UI-Test/" style="font-size: 10px;">Android UI Test</a> <a href="/tags/Android-Wear/" style="font-size: 10px;">Android Wear</a> <a href="/tags/Android-性能优化/" style="font-size: 13.33px;">Android 性能优化</a> <a href="/tags/Android-自定义/" style="font-size: 10px;">Android 自定义</a> <a href="/tags/App-Shortcuts/" style="font-size: 10px;">App Shortcuts</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/Bottom-Sheets/" style="font-size: 10px;">Bottom Sheets</a> <a href="/tags/Featured/" style="font-size: 10px;">Featured</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Flat-Button/" style="font-size: 10px;">Flat Button</a> <a href="/tags/Floating-Action-Button/" style="font-size: 10px;">Floating Action Button</a> <a href="/tags/Flutter/" style="font-size: 13.33px;">Flutter</a> <a href="/tags/Google-Cloud/" style="font-size: 10px;">Google Cloud</a> <a href="/tags/Google-I-O/" style="font-size: 10px;">Google I/O</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Nougat/" style="font-size: 13.33px;">Nougat</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/Raised-Button/" style="font-size: 10px;">Raised Button</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Seekbar/" style="font-size: 10px;">Seekbar</a> <a href="/tags/Snackbar/" style="font-size: 10px;">Snackbar</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Traceview/" style="font-size: 10px;">Traceview</a> <a href="/tags/Vector-Drawable/" style="font-size: 10px;">Vector Drawable</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/Wifi/" style="font-size: 10px;">Wifi</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/adb-no-permissions/" style="font-size: 10px;">adb no permissions</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/flexbox-layout/" style="font-size: 10px;">flexbox-layout</a> <a href="/tags/google-io/" style="font-size: 10px;">google io</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/library/" style="font-size: 10px;">library</a> <a href="/tags/mobile-vision-APIs/" style="font-size: 10px;">mobile vision APIs</a> <a href="/tags/nio/" style="font-size: 10px;">nio</a> <a href="/tags/notification/" style="font-size: 10px;">notification</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/stack/" style="font-size: 10px;">stack</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/任务/" style="font-size: 10px;">任务</a> <a href="/tags/加密解密/" style="font-size: 10px;">加密解密</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/网络通信/" style="font-size: 10px;">网络通信</a> <a href="/tags/返回栈/" style="font-size: 10px;">返回栈</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/03/AES-in-Android/">Android中的AES加密解密技术</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/03/support-ended-for-eclipse-android/">终止Android开发工具对与Eclipse的支持</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/21/android71-dev-preview-app-shortcuts/">Android 7.1 应用快捷键详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/20/android71-dev-preview-available/">现在可用：Android 7.1开发者预览版</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/12/android-71-developer-preview/">即将到来：Android 7.1 开发者预览版</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Shoewann<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

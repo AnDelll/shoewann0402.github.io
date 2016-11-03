@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>利用更多的Linux内核防御保护Android | Shoewann&#39;s Personal Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文来自: Android Developers Blog —— Protecting Android with more Linux kernel defenses
+
+Android主要依赖于Linux内核的安全​​模式执行。为了更好的保护好内核，我们在Android内启用了一系列的机制，在较高的等级下这些保护在一个组中被划分为两类——内存保护和减少攻击面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用更多的Linux内核防御保护Android">
+<meta property="og:url" content="https://shoewann0402.github.io/2016/07/28/protecting-android-with-more-linux/index.html">
+<meta property="og:site_name" content="Shoewann's Personal Blog">
+<meta property="og:description" content="原文来自: Android Developers Blog —— Protecting Android with more Linux kernel defenses
+
+Android主要依赖于Linux内核的安全​​模式执行。为了更好的保护好内核，我们在Android内启用了一系列的机制，在较高的等级下这些保护在一个组中被划分为两类——内存保护和减少攻击面。">
+<meta property="og:image" content="https://shoewann0402.github.io/images/android-kernel.jpg">
+<meta property="og:updated_time" content="2016-07-28T05:37:27.631Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用更多的Linux内核防御保护Android">
+<meta name="twitter:description" content="原文来自: Android Developers Blog —— Protecting Android with more Linux kernel defenses
+
+Android主要依赖于Linux内核的安全​​模式执行。为了更好的保护好内核，我们在Android内启用了一系列的机制，在较高的等级下这些保护在一个组中被划分为两类——内存保护和减少攻击面。">
+<meta name="twitter:image" content="https://shoewann0402.github.io/images/android-kernel.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Shoewann&#39;s Personal Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shoewann&#39;s Personal Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Love Google Technology , Just Do It !</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://shoewann0402.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-protecting-android-with-more-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/28/protecting-android-with-more-linux/" class="article-date">
+  <time datetime="2016-07-28T05:18:13.000Z" itemprop="datePublished">2016-07-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Android-Developer/">Android Developer</a>►<a class="article-category-link" href="/categories/Android/Android-Developer/Security/">Security</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/images/android-kernel.jpg" rel="gallery_civ2c4zno002u6wpb9jyyd1rx">
+        <img src="/images/android-kernel.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用更多的Linux内核防御保护Android
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>原文来自: Android Developers Blog —— <a href="https://android-developers.blogspot.nl/2016/07/protecting-android-with-more-linux.html" target="_blank" rel="external">Protecting Android with more Linux kernel defenses</a></p>
+</blockquote>
+<p>Android主要依赖于Linux内核的安全​​模式执行。为了更好的保护好内核，我们在Android内启用了一系列的机制，在较高的等级下这些保护在一个组中被划分为两类——内存保护和减少攻击面。</p>
+<a id="more"></a>
+<h2 id="内存保护"><a href="#内存保护" class="headerlink" title="内存保护"></a>内存保护</h2><p>通过内核提供的主要安全功能之一，是对于用户空间进程在地址空间分离的形式进行内存保护。不像用户空间进程，内核的各种任务生活在一个地址空间，并且一个漏洞无论在内核的任意位置，可以潜在的影响到系统存储器的无关部分。内核内存保护是保持内核的完整性，不管漏洞而被设计。</p>
+<h3 id="标记内存为只读-不执行"><a href="#标记内存为只读-不执行" class="headerlink" title="标记内存为只读/不执行"></a>标记内存为只读/不执行</h3><p>这个功能细分内核内存到逻辑部分，并设置在每一个部分的限制页面访问权限。代码标记为只读+执行。数据片段被标记为不执行，并且进一步分段成只读和读写片段。这个功能特性利用配置选项CONFIG_DEBUG_RODATA进行启用。它是通过Kees Cook一起输入，是基于由Brad Spengler的<a href="https://grsecurity.net/" target="_blank" rel="external">Grsecurity</a>的KENRNEXE功能的一个子集和Larry Bassel和Laura Abbott的高通的CONFIG_STRICT_MEMORY_RWX feature功能。CONFIG_DEBUG_RODATA在内核上游登陆对于arm/arm64,并且已经回迁到Android的3.18+arm/<a href="https://android-review.googlesource.com/#/c/174947/" target="_blank" rel="external">arm64</a>常见的内核。</p>
+<h3 id="RESTRICT内核访问到用户空间"><a href="#RESTRICT内核访问到用户空间" class="headerlink" title="RESTRICT内核访问到用户空间"></a>RESTRICT内核访问到用户空间</h3><p>这个功能通过防止它直接访问用户空间内存来提高内核的保护。它能够使一系列的攻击变得更加困难，因为攻击者在内核内存有显著较少的控制可以去执行，尤其是利用CONFIG_DEBUG_RODATA启用。类似的功能已经存在，最早存在的是Grsecurity的UDEREF。这个功能可以利用配置选项CONFIG_CPU_SW_DOMAIN_PAN被启用，并且对于ARMv7是通过Russell King被实施，回迁到<a href="https://android-review.googlesource.com/#/q/topic:sw_PAN" target="_blank" rel="external">Android的4.1</a>内核通过Kees Cook.</p>
+<h3 id="加强保护防止堆栈缓冲区溢出"><a href="#加强保护防止堆栈缓冲区溢出" class="headerlink" title="加强保护防止堆栈缓冲区溢出"></a>加强保护防止堆栈缓冲区溢出</h3><p>就像它的前身,堆栈保护器.加强堆栈保护防止<a href="https://en.wikipedia.org/wiki/Stack_buffer_overflow" target="_blank" rel="external">堆栈缓冲区溢出</a>。但另外提供覆盖对于<a href="https://outflux.net/blog/archives/2014/01/27/fstack-protector-strong/" target="_blank" rel="external">更多数组类型</a>,因为原来只有保护的字符数组,加强堆栈保护是由Han Shan被实施，并<a href="https://gcc.gnu.org/ml/gcc-patches/2012-06/msg00974.html" target="_blank" rel="external">加入到GCC编译器4.9</a>。</p>
+<h2 id="减少攻击面"><a href="#减少攻击面" class="headerlink" title="减少攻击面"></a>减少攻击面</h2><p>减少攻击面，试图揭露较少的入口点到内核，而不会打破合法的功能。减少攻击面能够包括移除代码，移除访问入口点，或者选择性地曝光功能。</p>
+<h3 id="移除默认的调试访问功能"><a href="#移除默认的调试访问功能" class="headerlink" title="移除默认的调试访问功能"></a>移除默认的调试访问功能</h3><p>内核的perf系统对于性能测试提供基础设施，可用于分析内核和用户空间的应用程序。Perf是一个为开发人员提供了有价值的工具，但是对于绝大多数的Andr​​oid用户添加了不必要的攻击面。在Android牛轧糖，访问perf将会默认被阻止。开发者仍可以通过启用开发者选项和使用adb设置一个配置:”adb shell setprop security.perf_harden 0”进行启用访问。</p>
+<p>为阻止访问perf的补丁集可被分解成内核和用户空间部分。<a href="https://android-review.googlesource.com/#/c/234573/" target="_blank" rel="external">内核补丁</a>是通过<a href="https://lkml.org/lkml/2016/1/11/587" target="_blank" rel="external">Ben Hutchings</a>并且是从Grsecurity的CONFIG_GRKERNSEC_PERF_HARDEN通过Brad Spengler被派生。用户控件是<a href="https://android-review.googlesource.com/#/q/topic:perf_harden" target="_blank" rel="external">由Daniel Micay作出了贡献</a>。感谢<a href="https://conference.hitb.org/hitbsecconf2016ams/sessions/perf-from-profiling-to-kernel-exploiting/" target="_blank" rel="external">Wish Wu</a>和其他对于在perf里负责任披露安全漏洞的其他人。</p>
+<h3 id="限制应用程序访问ioctl命令"><a href="#限制应用程序访问ioctl命令" class="headerlink" title="限制应用程序访问ioctl命令"></a>限制应用程序访问ioctl命令</h3><p>很多Android安全模型是由SELinux进行描述和强制执行的。ioctl()系统调用代表了一大空白在强制粒度来源于SELinux。<a href="http://kernsec.org/files/lss2015/vanderstoep.pdf" target="_blank" rel="external">ioctl命令白名单和SELinux</a>被添加作为一种手段来通过SELinux提供在ioctl系统命令控制.</p>
+<p>在Android上，大多数内核漏洞报告发生在驱动程序和ioctl系统调用使用均达到。例如<a href="https://source.android.com/security/bulletin/2016-03-01.html#elevation_of_privilege_vulnerability_in_mediatek_wi-fi_kernel_driver" target="_blank" rel="external">CVE-2016-0820</a>.一些ioctl命令是需要通过第三方应用，但大多数都没有和访问能够不破坏合法的功能会受到限制。在Android牛轧糖，仅仅一小白名单套接字ioctl命令对于应用是可用的。对于选择的设备，应用的访问到GPU(图形处理器)的ioctl访问已经被受到类似的限制。</p>
+<h3 id="需要SECCOMP-BPF"><a href="#需要SECCOMP-BPF" class="headerlink" title="需要SECCOMP-BPF"></a>需要SECCOMP-BPF</h3><p>Seccomp提供了一个额外的沙箱机制，允许一个进程使用可配在的过滤器来限制可用的系统调用和系统调用参数。限制系统调用的可用性可以显著的降低内核的攻击暴露的表面。自从Seccomp首次在棒棒糖的Nexus设备上被介绍，其整个Android生态系统的可用性稳步提高。Android牛轧糖，seccomp支持所有设备的请求。在Android牛轧糖上，我们正在使用seccomp在mediaextractor和mediacodec过程作为<a href="http://android-developers.blogspot.com/2016/05/hardening-media-stack.html" target="_blank" rel="external">媒体硬化努力</a>的一部分。</p>
+<h2 id="不断努力"><a href="#不断努力" class="headerlink" title="不断努力"></a>不断努力</h2><p>这儿有其他一些针对于保护内核正在进行的项目：</p>
+<blockquote>
+<ul>
+<li><a href="http://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project" target="_blank" rel="external">内核自身的保护项目</a>是开发运行时和编译防御的上游内核。</li>
+<li>正在AOSP中进行对SELinux进一步的沙箱收紧和减少攻击面的操作。</li>
+<li><a href="https://www.chromium.org/chromium-os/developer-guide/chromium-os-sandboxing#h.l7ou90opzirq" target="_blank" rel="external">Minijail</a>提供了一个方便的机制，将内核提供的众多遏制和沙箱功能，包括过滤器的seccomp和命名空间。</li>
+<li>像<a href="https://www.kernel.org/doc/Documentation/kasan.txt" target="_blank" rel="external">kasan</a>和<a href="https://www.kernel.org/doc/Documentation/kcov.txt" target="_blank" rel="external">kcov</a>帮助模糊器发现崩溃的根本原因，并智能地构建测试用例增加代码覆盖率，最终导致更有效的缺陷跟踪过程。</li>
+</ul>
+</blockquote>
+<p>由于这些努力和其他人，我们预计内核的安全​​性继续改善。在我们的工作上我们赞赏反馈，对于我们如何提高Android欢迎提出建议，在<a href="security@android.com">security@android.com</a>和我们联系。</p>
+<blockquote>
+<p>以上是对Anroid 官网博客文章的翻译，如果不足，欢迎指正，谢谢。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shoewann0402.github.io/2016/07/28/protecting-android-with-more-linux/" data-id="civ2c4zno002u6wpb9jyyd1rx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kernel/">kernel</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/30/Android-Performance-Part-Of-Traceview/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android性能优化之Traceview
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/21/connecting-your-app-to-wifi-device/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">连接你的应用程序到一个Wi-Fi设备</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/">Android Developer</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Security/">Security</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Vector-Drawable/">Vector Drawable</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/">Firebase</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/Google-cloud/">Google cloud</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/网络通信/">网络通信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Material-Design/">Material Design</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Wifi/">Wifi</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/">Android N</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/Notiification/">Notiification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/加密解密/">加密解密</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Studio/">Android Studio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Wear/">Android Wear</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-性能优化/">Android 性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义/">Android 自定义</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/">Dart</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/Flutter/">Flutter</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google-IO/">Google IO</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Android/">Android</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-0/">Android 7.0</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-1/">Android 7.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Customview/">Android Customview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-N/">Android N</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Performance/">Android Performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio-Tips/">Android Studio Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Support-Library/">Android Support Library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI-Test/">Android UI Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Wear/">Android Wear</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-性能优化/">Android 性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义/">Android 自定义</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Shortcuts/">App Shortcuts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bottom-Sheets/">Bottom Sheets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Featured/">Featured</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firebase/">Firebase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flat-Button/">Flat Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Floating-Action-Button/">Floating Action Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-Cloud/">Google Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-I-O/">Google I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nougat/">Nougat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/">Process</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raised-Button/">Raised Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seekbar/">Seekbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Traceview/">Traceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector-Drawable/">Vector Drawable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wifi/">Wifi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb-no-permissions/">adb no permissions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flexbox-layout/">flexbox-layout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google-io/">google io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/io/">io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel/">kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile-vision-APIs/">mobile vision APIs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nio/">nio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/notification/">notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stack/">stack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/task/">task</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任务/">任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密解密/">加密解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件读写/">文件读写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络通信/">网络通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/返回栈/">返回栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通知/">通知</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-7-0/" style="font-size: 13.33px;">Android 7.0</a> <a href="/tags/Android-7-1/" style="font-size: 16.67px;">Android 7.1</a> <a href="/tags/Android-Customview/" style="font-size: 10px;">Android Customview</a> <a href="/tags/Android-N/" style="font-size: 13.33px;">Android N</a> <a href="/tags/Android-Performance/" style="font-size: 13.33px;">Android Performance</a> <a href="/tags/Android-Studio/" style="font-size: 13.33px;">Android Studio</a> <a href="/tags/Android-Studio-Tips/" style="font-size: 13.33px;">Android Studio Tips</a> <a href="/tags/Android-Support-Library/" style="font-size: 10px;">Android Support Library</a> <a href="/tags/Android-UI-Test/" style="font-size: 10px;">Android UI Test</a> <a href="/tags/Android-Wear/" style="font-size: 10px;">Android Wear</a> <a href="/tags/Android-性能优化/" style="font-size: 13.33px;">Android 性能优化</a> <a href="/tags/Android-自定义/" style="font-size: 10px;">Android 自定义</a> <a href="/tags/App-Shortcuts/" style="font-size: 10px;">App Shortcuts</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/Bottom-Sheets/" style="font-size: 10px;">Bottom Sheets</a> <a href="/tags/Featured/" style="font-size: 10px;">Featured</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Flat-Button/" style="font-size: 10px;">Flat Button</a> <a href="/tags/Floating-Action-Button/" style="font-size: 10px;">Floating Action Button</a> <a href="/tags/Flutter/" style="font-size: 13.33px;">Flutter</a> <a href="/tags/Google-Cloud/" style="font-size: 10px;">Google Cloud</a> <a href="/tags/Google-I-O/" style="font-size: 10px;">Google I/O</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Nougat/" style="font-size: 13.33px;">Nougat</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/Raised-Button/" style="font-size: 10px;">Raised Button</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Seekbar/" style="font-size: 10px;">Seekbar</a> <a href="/tags/Snackbar/" style="font-size: 10px;">Snackbar</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Traceview/" style="font-size: 10px;">Traceview</a> <a href="/tags/Vector-Drawable/" style="font-size: 10px;">Vector Drawable</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/Wifi/" style="font-size: 10px;">Wifi</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/adb-no-permissions/" style="font-size: 10px;">adb no permissions</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/flexbox-layout/" style="font-size: 10px;">flexbox-layout</a> <a href="/tags/google-io/" style="font-size: 10px;">google io</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/library/" style="font-size: 10px;">library</a> <a href="/tags/mobile-vision-APIs/" style="font-size: 10px;">mobile vision APIs</a> <a href="/tags/nio/" style="font-size: 10px;">nio</a> <a href="/tags/notification/" style="font-size: 10px;">notification</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/stack/" style="font-size: 10px;">stack</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/任务/" style="font-size: 10px;">任务</a> <a href="/tags/加密解密/" style="font-size: 10px;">加密解密</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/网络通信/" style="font-size: 10px;">网络通信</a> <a href="/tags/返回栈/" style="font-size: 10px;">返回栈</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/03/AES-in-Android/">Android中的AES加密解密技术</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/03/support-ended-for-eclipse-android/">终止Android开发工具对与Eclipse的支持</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/21/android71-dev-preview-app-shortcuts/">Android 7.1 应用快捷键详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/20/android71-dev-preview-available/">现在可用：Android 7.1开发者预览版</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/12/android-71-developer-preview/">即将到来：Android 7.1 开发者预览版</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Shoewann<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

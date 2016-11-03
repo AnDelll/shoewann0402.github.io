@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 7.1 应用快捷键详解 | Shoewann&#39;s Personal Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上一篇讲到了Android 7.1的预览版发布，今天这篇来说说其中的App Shortcut的使用。
+
+Android 7.1允许在你的应用中定义具体动作的快捷键，这些快捷键能够被支持显示到launcher桌面上。比如说Nexus 和Pixel设备上已经提供了这个了。快捷键能让你的用户快速在你的应用中开始一个通用的或者建议的任务。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 7.1 应用快捷键详解">
+<meta property="og:url" content="https://shoewann0402.github.io/2016/10/21/android71-dev-preview-app-shortcuts/index.html">
+<meta property="og:site_name" content="Shoewann's Personal Blog">
+<meta property="og:description" content="上一篇讲到了Android 7.1的预览版发布，今天这篇来说说其中的App Shortcut的使用。
+
+Android 7.1允许在你的应用中定义具体动作的快捷键，这些快捷键能够被支持显示到launcher桌面上。比如说Nexus 和Pixel设备上已经提供了这个了。快捷键能让你的用户快速在你的应用中开始一个通用的或者建议的任务。">
+<meta property="og:image" content="https://shoewann0402.github.io/images/set-shortcuts-logo.png">
+<meta property="og:updated_time" content="2016-10-24T02:12:19.267Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 7.1 应用快捷键详解">
+<meta name="twitter:description" content="上一篇讲到了Android 7.1的预览版发布，今天这篇来说说其中的App Shortcut的使用。
+
+Android 7.1允许在你的应用中定义具体动作的快捷键，这些快捷键能够被支持显示到launcher桌面上。比如说Nexus 和Pixel设备上已经提供了这个了。快捷键能让你的用户快速在你的应用中开始一个通用的或者建议的任务。">
+<meta name="twitter:image" content="https://shoewann0402.github.io/images/set-shortcuts-logo.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shoewann&#39;s Personal Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shoewann&#39;s Personal Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Love Google Technology , Just Do It !</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://shoewann0402.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-android71-dev-preview-app-shortcuts" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/21/android71-dev-preview-app-shortcuts/" class="article-date">
+  <time datetime="2016-10-21T13:48:41.000Z" itemprop="datePublished">2016-10-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/images/set-shortcuts-logo.png" rel="gallery_civ2c4znf002h6wpbqy947ew0">
+        <img src="/images/set-shortcuts-logo.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 7.1 应用快捷键详解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>上一篇讲到了Android 7.1的预览版发布，今天这篇来说说其中的App Shortcut的使用。</p>
+</blockquote>
+<p>Android 7.1允许在你的应用中定义具体动作的快捷键，这些快捷键能够被支持显示到launcher桌面上。比如说Nexus 和Pixel设备上已经提供了这个了。快捷键能让你的用户快速在你的应用中开始一个通用的或者建议的任务。</p>
+<a id="more"></a>
+<p>每一个快捷键引用了一个或者更多的<a href="https://developer.android.com/guide/components/intents-filters.html" target="_blank" rel="external">intent</a>,当用户在你的应用中选择了快捷键，每一个都会启动一个具体的动作。你能够表现出来的动作示例包括如下这些：</p>
+<blockquote>
+<ul>
+<li><p>在一款地图类应用中导航用户去一个特定的位置</p>
+</li>
+<li><p>在一款社交类应用中发送消息给一个朋友</p>
+</li>
+<li><p>在一款媒体类应用中播放下一集电视剧</p>
+</li>
+<li><p>在一款游戏类应用中加载最后一次保存的游戏进度</p>
+</li>
+</ul>
+</blockquote>
+<p>你能够在你的应用中发布两种不同类型的快捷键：</p>
+<blockquote>
+<ul>
+<li><p>静态快捷键定义在一个资源文件中，打包到一个APK中，因此，你必须等到你的应用直到更新升级整个应用，才能去改变这些静态快捷键的详细内容。</p>
+</li>
+<li><p>动态快捷键在运行时使用<a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html" target="_blank" rel="external">ShortcutManager API</a>发布，在运行的过程中，你可以去发布、更新、移除它的快捷键。</p>
+</li>
+</ul>
+</blockquote>
+<p>你能够在你的应用中一个时间里发布5个快捷键（静态快捷键和动态快捷键结合在一起）。用户，然而，能够复制应用的快捷键到launcher桌面上，创建一个<em>固定的快捷键</em>。用户能够在你的应用中创建和访问一个没有限制数量大小的固定快捷键和触发动作。你的应用不能够移除这些快捷键，但是能够禁用它们。</p>
+<blockquote>
+<p>注意： 虽然其他的应用不能够访问在你快捷键中的元数据，launcher桌面它自己能访问这个数据，因此，这些元数据应该隐藏敏感的用户信息。</p>
+</blockquote>
+<h2 id="静态快捷键"><a href="#静态快捷键" class="headerlink" title="静态快捷键"></a>静态快捷键</h2><p>静态快捷键应该在你的应用内部提供一个链接去生成动作，这些动作应该和你应用的当前版本的生活时间保持一致。对于静态快捷键较好的候选包括查看已发送的信息、设置一个闹钟和显示一个用户一天的锻炼活动。<br>对于创建一个静态的快捷键，完成如下的顺序步骤:</p>
+<p>1、在你应用的manifest文件(AndroidManifest.xml)中找到一个activity的intent filtes，action是设置的<a href="https://developer.android.com/reference/android/content/Intent.html#ACTION_MAIN" target="_blank" rel="external">andorid.intent.action.MAIN</a>并且category是设置的<a href="https://developer.android.com/reference/android/content/Intent.html#CATEGORY_LAUNCHER" target="_blank" rel="external">android.intent.category.LAUNCHER</a></p>
+<p>2、添加一个<a href="https://developer.android.com/guide/topics/manifest/meta-data-element.html" target="_blank" rel="external"><meta-data></meta-data></a>节点到这个activity，引用在应用中定义的快捷键资源文件:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">application</span></span></div><div class="line">        <span class="attr">android:allowBackup</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:icon</span>=<span class="string">"@mipmap/ic_launcher"</span></div><div class="line">        <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span></div><div class="line">        <span class="attr">android:supportsRtl</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme"</span>&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".MainActivity"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></div><div class="line"></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- 添加如下代码 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">                <span class="attr">android:name</span>=<span class="string">"android.app.shortcuts"</span></div><div class="line">                <span class="attr">android:resource</span>=<span class="string">"@xml/shortcuts"</span> /&gt;</div><div class="line">            <span class="comment">&lt;!--添加如上代码--&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>3、创建一个新的资源文件（res/xml/shortcuts.xml）,这个文件就是定义在应用的manifest的快捷键</p>
+<p>4、在这个新的资源文件中，添加一个<strong><shortcuts></shortcuts></strong>根节点，包含了一个<strong><shortcut></shortcut></strong>的list集合节点。每一个<strong><shortcut></shortcut></strong>节点中包含了关于一个静态快捷键的信息，包括它的图标、它的描述、和它在应用内部启动的intent意图:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">shortcuts</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">shortcut</span></span></div><div class="line">        <span class="attr">android:shortcutId</span>=<span class="string">"id0"</span></div><div class="line">        <span class="attr">android:enabled</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:icon</span>=<span class="string">"@mipmap/ic_launcher"</span></div><div class="line">        <span class="attr">android:shortcutShortLabel</span>=<span class="string">"@string/shortcutShortLabel"</span></div><div class="line">        <span class="attr">android:shortcutLongLabel</span>=<span class="string">"@string/shortcutLongLabel"</span></div><div class="line">        <span class="attr">android:shortcutDisabledMessage</span>=<span class="string">"@string/shortcutDisabledMessage"</span>&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">intent</span></span></div><div class="line">            <span class="attr">android:action</span>=<span class="string">"android.intent.action.VIEW"</span></div><div class="line">            <span class="attr">android:targetPackage</span>=<span class="string">"com.xw.appshortcuts"</span></div><div class="line">            <span class="attr">android:targetClass</span>=<span class="string">"com.xw.appshortcuts.MainActivity"</span> /&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">categories</span> <span class="attr">android:name</span>=<span class="string">"android.shortcut.conversation"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">shortcut</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 这里指定更多的快捷键 --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">shortcuts</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>以下是对上面的shortcut标签相关属性的解释：</p>
+<blockquote>
+<ul>
+<li>shortcutId, 表示唯一的id</li>
+<li>enabled, 表示这个shortcut是否可用</li>
+<li>shortcutShortLabel, 这里是配置的短名称, 下面还会有长名称, 如果长名称显示不下, 就显示短名称</li>
+<li>shortcutLongLabel, 这里是配置的长名称, launcher会优先选择长名称显示</li>
+<li>shortcutDisabledMessage, 这个配置是在我们选择一个不可用的shortcut时给用户的一个提示</li>
+</ul>
+</blockquote>
+<h2 id="动态快捷键"><a href="#动态快捷键" class="headerlink" title="动态快捷键"></a>动态快捷键</h2><p>动态的快捷应该在你的应用内部提供一个具体的链接，上下文敏感动作。这些动作能够在用户使用你的应用中进行改变，并且他们甚至能够在当你的应用运行的时候进行改变。对于动态快捷键较好的候选包括打电话给某一个人、导航到一个固定的位置、和查看一款固定游戏当前的分数。</p>
+<p>这个<a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html" target="_blank" rel="external">ShortcutManager</a> API允许你完成如下的动态快捷键操作:</p>
+<blockquote>
+<ul>
+<li><p>发布：使用<a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html#setDynamicShortcuts(java.util.List&lt;android.content.pm.ShortcutInfo" target="_blank" rel="external">setDynamicShortcuts(List)</a>)去重新定义动态快捷键实体类集合，或者使用<a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html#addDynamicShortcuts(java.util.List&lt;android.content.pm.ShortcutInfo" target="_blank" rel="external">addDynamicShortcuts(List)</a>)去增加一个已经存在的动态快捷键集合。</p>
+</li>
+<li><p>更新：使用<a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html#updateShortcuts(java.util.List&lt;android.content.pm.ShortcutInfo" target="_blank" rel="external">updateShortcuts(List)</a>)方法。</p>
+</li>
+<li><p>移除：移除一个设置的动态快捷键使用<a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html#removeDynamicShortcuts(java.util.List&lt;java.lang.String" target="_blank" rel="external">removeDynamicShortcuts(List)</a>)，或者使用<a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html#removeAllDynamicShortcuts(" target="_blank" rel="external">removeAllDynamicShortcuts()</a>)方法去移除所有的动态快捷键。</p>
+</li>
+</ul>
+</blockquote>
+<p>具体示例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.xw.appshortcuts;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.content.Intent;</div><div class="line"><span class="keyword">import</span> android.content.pm.ShortcutInfo;</div><div class="line"><span class="keyword">import</span> android.content.pm.ShortcutManager;</div><div class="line"><span class="keyword">import</span> android.graphics.drawable.Icon;</div><div class="line"><span class="keyword">import</span> android.net.Uri;</div><div class="line"><span class="keyword">import</span> android.os.Bundle;</div><div class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.widget.Button;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Collections;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"MainActivity"</span>;</div><div class="line">    <span class="keyword">private</span> List&lt;ShortcutInfo&gt; shortcutInfos;<span class="comment">//快捷键集合</span></div><div class="line">    <span class="keyword">private</span> String[] shortLabel = <span class="keyword">null</span>;<span class="comment">//每个快捷键的短名称</span></div><div class="line">    <span class="keyword">private</span> String[] longLabel = <span class="keyword">null</span>;<span class="comment">//每个快捷键的长名称</span></div><div class="line">    <span class="keyword">private</span> String[] url = <span class="keyword">null</span>;<span class="comment">//每个快捷键的意图跳转域名</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] icon = <span class="keyword">null</span>;<span class="comment">//每个快捷键的图标</span></div><div class="line">    <span class="comment">//============================================</span></div><div class="line">    <span class="keyword">private</span> ShortcutManager shortcutManager = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">private</span> Button setDynamicShortcuts = <span class="keyword">null</span>;<span class="comment">//加载动态快捷键的按钮</span></div><div class="line">    <span class="keyword">private</span> Button disableShortcuts = <span class="keyword">null</span>;<span class="comment">//禁用移除快捷键的按钮</span></div><div class="line">    <span class="keyword">private</span> Button updateShortcuts = <span class="keyword">null</span>;<span class="comment">//更新快捷键的按钮</span></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        initView();</div><div class="line">        initData();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *  初始化视图</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initView</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.updateShortcuts = (Button) findViewById(R.id.updateShortcuts);</div><div class="line">        <span class="keyword">this</span>.disableShortcuts = (Button) findViewById(R.id.disableShortcuts);</div><div class="line">        <span class="keyword">this</span>.setDynamicShortcuts = (Button) findViewById(R.id.setDynamicShortcuts);</div><div class="line">        <span class="keyword">this</span>.updateShortcuts.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        <span class="keyword">this</span>.disableShortcuts.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        <span class="keyword">this</span>.setDynamicShortcuts.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 初始化数据</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span> </span>&#123;</div><div class="line">        shortcutManager = getSystemService(ShortcutManager.class);</div><div class="line">        shortLabel = <span class="keyword">new</span> String[]&#123;<span class="string">"Google"</span>, <span class="string">"Youtube"</span>, <span class="string">"Facebook"</span>, <span class="string">"Twitter"</span>&#125;;</div><div class="line">        longLabel = <span class="keyword">new</span> String[]&#123;<span class="string">"Open Google"</span>, <span class="string">"Open Youtube"</span>, <span class="string">"Open Facebook"</span>, <span class="string">"Open Twitter"</span>&#125;;</div><div class="line">        url = <span class="keyword">new</span> String[]&#123;<span class="string">"https://www.google.com/"</span>, <span class="string">"https://www.youtube.com/"</span>, <span class="string">"https://www.facebook.com/"</span>, <span class="string">"https://www.twitter.com/"</span>&#125;;</div><div class="line">        icon = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;R.mipmap.ic_google,R.mipmap.ic_youtube,R.mipmap.ic_facebook,R.mipmap.ic_twitter&#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置动态快捷键</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setDynamicShortcuts</span><span class="params">()</span> </span>&#123;</div><div class="line">        shortcutInfos = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; shortLabel.length; i++) &#123;</div><div class="line">            ShortcutInfo shortcut = <span class="keyword">new</span> ShortcutInfo.Builder(<span class="keyword">this</span>, String.valueOf(i))</div><div class="line">                    .setShortLabel(shortLabel[i])</div><div class="line">                    .setLongLabel(longLabel[i])</div><div class="line">                    .setIcon(Icon.createWithResource(<span class="keyword">this</span>, icon[i]))</div><div class="line">                    .setIntent(<span class="keyword">new</span> Intent(Intent.ACTION_VIEW,</div><div class="line">                            Uri.parse(url[i])))</div><div class="line">                    .build();</div><div class="line">            shortcutInfos.add(shortcut);</div><div class="line">        &#125;</div><div class="line">        shortcutManager.setDynamicShortcuts(shortcutInfos);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 禁用并移除快捷键</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">disableShortcuts</span><span class="params">()</span> </span>&#123;</div><div class="line">        List&lt;ShortcutInfo&gt; list = shortcutManager.getPinnedShortcuts();</div><div class="line">        <span class="keyword">if</span> (list != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (ShortcutInfo info : list) &#123;</div><div class="line"> 	       <span class="comment">//移除下标为0的快捷键</span></div><div class="line">                <span class="keyword">if</span> (info.getId().equals(<span class="string">"0"</span>)) &#123;</div><div class="line">                    shortcutManager.disableShortcuts(Collections.singletonList(info.getId()), <span class="string">"快捷方式已无效,请手动删除"</span>);</div><div class="line">                    shortcutManager.removeDynamicShortcuts(Collections.singletonList(info.getId()));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 更新快捷键</div><div class="line">     * <span class="doctag">@param</span> index</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">updateShortcuts</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line"></div><div class="line">        ShortcutInfo info = <span class="keyword">new</span> ShortcutInfo.Builder(<span class="keyword">this</span>, String.valueOf(index))</div><div class="line">                .setShortLabel(<span class="string">"GitHub"</span>)</div><div class="line">                .setLongLabel(<span class="string">"Open GitHub"</span>)</div><div class="line">                .setIcon(Icon.createWithResource(<span class="keyword">this</span>, R.mipmap.ic_github))</div><div class="line">                .setIntent(<span class="keyword">new</span> Intent(Intent.ACTION_VIEW,</div><div class="line">                        Uri.parse(<span class="string">"https://www.github.com"</span>)))</div><div class="line">                .build();</div><div class="line">        shortcutManager.updateShortcuts(Collections.singletonList(info));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 点击事件</div><div class="line">     * <span class="doctag">@param</span> view</div><div class="line">     */</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">switch</span> (view.getId()) &#123;</div><div class="line">            <span class="keyword">case</span> R.id.setDynamicShortcuts:</div><div class="line">                setDynamicShortcuts();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.disableShortcuts:</div><div class="line">                disableShortcuts();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.updateShortcuts:</div><div class="line">                updateShortcuts(<span class="number">0</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p>动态增加快捷键:</p>
+<p>(长按图标弹出)</p>
+<p><img src="/images/set-shortcuts-1.png" alt="set-shortcuts-1.png"></p>
+<p>(将每一个快捷键拖出来固定到桌面)</p>
+<p><img src="/images/set-shortcuts-2.png" alt="set-shortcuts-2.png"></p>
+<p>(固定到桌面的和快捷键集合弹出)</p>
+<p><img src="/images/set-shortcuts-3.png" alt="set-shortcuts-3.png"></p>
+<p>动态更新快捷键:</p>
+<p>(更新Google为==&gt;GitHub)</p>
+<p><img src="/images/update-shortcuts.png" alt="update-shortcuts.png"></p>
+<p>动态禁用移除快捷键:</p>
+<p>(禁用GitHub)</p>
+<p><img src="/images/disabled-shortcut.png" alt="disabled-shortcut.png"></p>
+<h2 id="系统代码结构"><a href="#系统代码结构" class="headerlink" title="系统代码结构"></a>系统代码结构</h2><p><img src="/images/shortcutshierarchyviewer1.png" alt="shortcutshierarchyviewer1.png"></p>
+<p>通过sdk下的hierarchyviewer工具，可以看到长按桌面图标弹出的部分是一个<strong>DeepShortcutsContainer</strong>,其中包括了一个白色箭头的<strong>View</strong>和显示每一个快捷键的条目<strong>DeepShortcutsView</strong>组成。每一个<strong>DeepShortcutsView</strong>快捷键item又是由一个显示图标的<strong>View</strong>和一个<strong>DeepshortcutsTextView</strong>组成。</p>
+<p><img src="/images/shortcutshierarchyviewer2.png" alt="shortcutshierarchyviewer2.png"></p>
+<blockquote>
+<p>以上就是简单的对Android 7.1上面App Shortcut方面的概括总结，部分内容源于官方文档，如有不足，欢迎指正，谢谢。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shoewann0402.github.io/2016/10/21/android71-dev-preview-app-shortcuts/" data-id="civ2c4znf002h6wpbqy947ew0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-7-1/">Android 7.1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/App-Shortcuts/">App Shortcuts</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/03/support-ended-for-eclipse-android/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          终止Android开发工具对与Eclipse的支持
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/20/android71-dev-preview-available/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">现在可用：Android 7.1开发者预览版</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/">Android Developer</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Security/">Security</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Vector-Drawable/">Vector Drawable</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/">Firebase</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/Google-cloud/">Google cloud</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/网络通信/">网络通信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Material-Design/">Material Design</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Wifi/">Wifi</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/">Android N</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/Notiification/">Notiification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/加密解密/">加密解密</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Studio/">Android Studio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Wear/">Android Wear</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-性能优化/">Android 性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义/">Android 自定义</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/">Dart</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/Flutter/">Flutter</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google-IO/">Google IO</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Android/">Android</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-0/">Android 7.0</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-1/">Android 7.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Customview/">Android Customview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-N/">Android N</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Performance/">Android Performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio-Tips/">Android Studio Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Support-Library/">Android Support Library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI-Test/">Android UI Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Wear/">Android Wear</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-性能优化/">Android 性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义/">Android 自定义</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Shortcuts/">App Shortcuts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bottom-Sheets/">Bottom Sheets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Featured/">Featured</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firebase/">Firebase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flat-Button/">Flat Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Floating-Action-Button/">Floating Action Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-Cloud/">Google Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-I-O/">Google I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nougat/">Nougat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/">Process</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raised-Button/">Raised Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seekbar/">Seekbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Traceview/">Traceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector-Drawable/">Vector Drawable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wifi/">Wifi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb-no-permissions/">adb no permissions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flexbox-layout/">flexbox-layout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google-io/">google io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/io/">io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel/">kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile-vision-APIs/">mobile vision APIs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nio/">nio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/notification/">notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stack/">stack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/task/">task</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任务/">任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密解密/">加密解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件读写/">文件读写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络通信/">网络通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/返回栈/">返回栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通知/">通知</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-7-0/" style="font-size: 13.33px;">Android 7.0</a> <a href="/tags/Android-7-1/" style="font-size: 16.67px;">Android 7.1</a> <a href="/tags/Android-Customview/" style="font-size: 10px;">Android Customview</a> <a href="/tags/Android-N/" style="font-size: 13.33px;">Android N</a> <a href="/tags/Android-Performance/" style="font-size: 13.33px;">Android Performance</a> <a href="/tags/Android-Studio/" style="font-size: 13.33px;">Android Studio</a> <a href="/tags/Android-Studio-Tips/" style="font-size: 13.33px;">Android Studio Tips</a> <a href="/tags/Android-Support-Library/" style="font-size: 10px;">Android Support Library</a> <a href="/tags/Android-UI-Test/" style="font-size: 10px;">Android UI Test</a> <a href="/tags/Android-Wear/" style="font-size: 10px;">Android Wear</a> <a href="/tags/Android-性能优化/" style="font-size: 13.33px;">Android 性能优化</a> <a href="/tags/Android-自定义/" style="font-size: 10px;">Android 自定义</a> <a href="/tags/App-Shortcuts/" style="font-size: 10px;">App Shortcuts</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/Bottom-Sheets/" style="font-size: 10px;">Bottom Sheets</a> <a href="/tags/Featured/" style="font-size: 10px;">Featured</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Flat-Button/" style="font-size: 10px;">Flat Button</a> <a href="/tags/Floating-Action-Button/" style="font-size: 10px;">Floating Action Button</a> <a href="/tags/Flutter/" style="font-size: 13.33px;">Flutter</a> <a href="/tags/Google-Cloud/" style="font-size: 10px;">Google Cloud</a> <a href="/tags/Google-I-O/" style="font-size: 10px;">Google I/O</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Nougat/" style="font-size: 13.33px;">Nougat</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/Raised-Button/" style="font-size: 10px;">Raised Button</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Seekbar/" style="font-size: 10px;">Seekbar</a> <a href="/tags/Snackbar/" style="font-size: 10px;">Snackbar</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Traceview/" style="font-size: 10px;">Traceview</a> <a href="/tags/Vector-Drawable/" style="font-size: 10px;">Vector Drawable</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/Wifi/" style="font-size: 10px;">Wifi</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/adb-no-permissions/" style="font-size: 10px;">adb no permissions</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/flexbox-layout/" style="font-size: 10px;">flexbox-layout</a> <a href="/tags/google-io/" style="font-size: 10px;">google io</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/library/" style="font-size: 10px;">library</a> <a href="/tags/mobile-vision-APIs/" style="font-size: 10px;">mobile vision APIs</a> <a href="/tags/nio/" style="font-size: 10px;">nio</a> <a href="/tags/notification/" style="font-size: 10px;">notification</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/stack/" style="font-size: 10px;">stack</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/任务/" style="font-size: 10px;">任务</a> <a href="/tags/加密解密/" style="font-size: 10px;">加密解密</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/网络通信/" style="font-size: 10px;">网络通信</a> <a href="/tags/返回栈/" style="font-size: 10px;">返回栈</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/03/AES-in-Android/">Android中的AES加密解密技术</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/03/support-ended-for-eclipse-android/">终止Android开发工具对与Eclipse的支持</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/21/android71-dev-preview-app-shortcuts/">Android 7.1 应用快捷键详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/20/android71-dev-preview-available/">现在可用：Android 7.1开发者预览版</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/12/android-71-developer-preview/">即将到来：Android 7.1 开发者预览版</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Shoewann<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Google官方Android开源库--FlexboxLayout | Shoewann&#39;s Personal Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文来自：  Flexbox-layout 
+
+什么是Flexbox？Flexbox 布局模型宗旨是对于在一个flex容器平铺出flex项提供更多高效的方法，即使flex项的大小未知.因此，它提供了更有效的方法,利用已存在的布局去实现响应式用户界面.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google官方Android开源库--FlexboxLayout">
+<meta property="og:url" content="https://shoewann0402.github.io/2016/05/16/Google官方Android开源库-FlexboxLayout/index.html">
+<meta property="og:site_name" content="Shoewann's Personal Blog">
+<meta property="og:description" content="原文来自：  Flexbox-layout 
+
+什么是Flexbox？Flexbox 布局模型宗旨是对于在一个flex容器平铺出flex项提供更多高效的方法，即使flex项的大小未知.因此，它提供了更有效的方法,利用已存在的布局去实现响应式用户界面.">
+<meta property="og:image" content="https://shoewann0402.github.io/images/flexbox-visual.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/flexdirction_row.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/fiexdirection_row_reverse.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/flexdirection_column.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/flexdirection_column_reverse.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/flexwrap_nowrap.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/flexwrap_wrap.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/flexwrap_wrap_reverse.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/justifycontent_flex_start.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/justifycontent_flex_end.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/justifycontent_center.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/justifycontent_space_between.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/justifycontent_space_around.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignlitems_stretch.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignlitems_flex_start.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignlitems_flex_end.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignlitems_center.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignlitems_baseline.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignContent_stretch.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignContent_flex_start.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignContent_flex_end.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignContent_center.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignContent_space_between.png">
+<meta property="og:image" content="https://shoewann0402.github.io/images/alignContent_space_around.png">
+<meta property="og:updated_time" content="2016-05-16T09:50:05.655Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google官方Android开源库--FlexboxLayout">
+<meta name="twitter:description" content="原文来自：  Flexbox-layout 
+
+什么是Flexbox？Flexbox 布局模型宗旨是对于在一个flex容器平铺出flex项提供更多高效的方法，即使flex项的大小未知.因此，它提供了更有效的方法,利用已存在的布局去实现响应式用户界面.">
+<meta name="twitter:image" content="https://shoewann0402.github.io/images/flexbox-visual.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shoewann&#39;s Personal Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shoewann&#39;s Personal Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Love Google Technology , Just Do It !</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://shoewann0402.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Google官方Android开源库-FlexboxLayout" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/16/Google官方Android开源库-FlexboxLayout/" class="article-date">
+  <time datetime="2016-05-16T07:46:54.000Z" itemprop="datePublished">2016-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Google官方Android开源库--FlexboxLayout
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>原文来自： <a href="https://github.com/google/flexbox-layout" target="_blank" rel="external"> Flexbox-layout </a></p>
+</blockquote>
+<h2 id="什么是Flexbox？"><a href="#什么是Flexbox？" class="headerlink" title="什么是Flexbox？"></a>什么是Flexbox？</h2><p><strong>Flexbox</strong> 布局模型宗旨是对于在一个<strong>flex</strong>容器平铺出<strong>flex</strong>项提供更多高效的方法，即使<strong>flex</strong>项的大小未知.因此，它提供了更有效的方法,利用已存在的布局去实现响应式用户界面.</p>
+<a id="more"></a>
+<h2 id="布局模型"><a href="#布局模型" class="headerlink" title="布局模型"></a>布局模型</h2><p><img src="/images/flexbox-visual.png" alt="flexbox_visual"></p>
+<h2 id="安装Gradle依赖"><a href="#安装Gradle依赖" class="headerlink" title="安装Gradle依赖"></a>安装Gradle依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line"></div><div class="line">    compile <span class="string">'com.google.android:flexbox:0.1.2'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p><strong>FlexboxLayout</strong>像LinearLayout和RelativeLayout一样继承了<strong>ViewGroup</strong>，你可以在一个<strong>XML</strong>中像这样指定属性:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;com.google.android.flexbox.FlexboxLayout</div><div class="line">    xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">    xmlns:app=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">    android:layout_width=<span class="string">"match_parent"</span></div><div class="line">    android:layout_height=<span class="string">"match_parent"</span></div><div class="line">    app:flexWrap=<span class="string">"wrap"</span></div><div class="line">    app:alignItems=<span class="string">"stretch"</span></div><div class="line">    app:alignContent=<span class="string">"stretch"</span> &gt;</div><div class="line"></div><div class="line">    &lt;TextView</div><div class="line">        android:id=<span class="string">"@+id/textview1"</span></div><div class="line">        android:layout_width=<span class="string">"120dp"</span></div><div class="line">        android:layout_height=<span class="string">"80dp"</span></div><div class="line">        app:layout_flexBasisPercent=<span class="string">"50%"</span></div><div class="line">    /&gt;</div><div class="line"></div><div class="line">    &lt;TextView</div><div class="line">        android:id=<span class="string">"@+id/textview2"</span></div><div class="line">        android:layout_width=<span class="string">"80dp"</span></div><div class="line">        android:layout_height=<span class="string">"80dp"</span></div><div class="line">        app:layout_alignSelf=<span class="string">"center"</span></div><div class="line">    /&gt;</div><div class="line"></div><div class="line">    &lt;TextView</div><div class="line">        android:id=<span class="string">"@+id/textview3"</span></div><div class="line">        android:layout_width=<span class="string">"160dp"</span></div><div class="line">        android:layout_height=<span class="string">"80dp"</span></div><div class="line">        app:layout_alignSelf=<span class="string">"flex_end"</span></div><div class="line">    /&gt;</div><div class="line">&lt;/com.google.android.flexbox.FlexboxLayout&gt;</div></pre></td></tr></table></figure>
+<p>或者在<strong>代码</strong>中，像这样：</p>
+<pre><code class="bash">FlexboxLayout flexboxLayout = (FlexboxLayout) findViewById(R.id.flexbox_layout);
+
+flexboxLayout.setFlexDirection(FlexboxLayout.FLEX_DIRECTION_COLUMN);
+
+View view = flexboxLayout.getChildAt(0);
+
+FlexboxLayout.LayoutParams lp = (FlexboxLayout.LayoutParams) view.getLayoutParams();
+
+lp.order = -1;
+
+lp.flexGrow = 2;
+
+view.setLayoutParams(lp);
+</code></pre>
+<h2 id="支持的属性"><a href="#支持的属性" class="headerlink" title="支持的属性"></a>支持的属性</h2><p>对于一个<strong>FlexboxLayout</strong>，你能指定以下的属性：</p>
+<p>1.flexDirection</p>
+<p>子项的方向是摆放在<strong>Flexbox</strong>布局里面的，它决定里主轴线的方向（和十字交叉轴，垂直于主轴线），可能的值是：</p>
+<blockquote>
+<ul>
+<li>row (default) 主轴为水平方向，起点在左端<br><img src="/images/flexdirction_row.png" alt="flexdirction_row"></li>
+<li>row_reverse 主轴为水平方向，起点在右端<br><img src="/images/fiexdirection_row_reverse.png" alt="fiexdirection_row_reverse"></li>
+<li>column 主轴为垂直方向，起点在上沿<br><img src="/images/flexdirection_column.png" alt="flexdirection_column"></li>
+<li>column_reverse 主轴为垂直方向，起点在下沿。<br><img src="/images/flexdirection_column_reverse.png" alt="flexdirection_column_reverse"></li>
+</ul>
+</blockquote>
+<p>2.flexWrap</p>
+<p>这个属性控制着flex容器是单行还是多行，方向是十字交叉轴可能的值是：</p>
+<blockquote>
+<ul>
+<li>nowrap (default) 不换行<br><img src="/images/flexwrap_nowrap.png" alt="flexwrap_nowrap"></li>
+<li>wrap 按正常方向换行<br><img src="/images/flexwrap_wrap.png" alt="flexwrap_wrap"></li>
+<li>wrap_reverse 按反方向换行<br><img src="/images/flexwrap_wrap_reverse.png" alt="flexwrap_wrap_reverse"></li>
+</ul>
+</blockquote>
+<p>3.justifyContent</p>
+<p>这个属性控制着主轴线的边缘对齐方式，可能的值是：</p>
+<blockquote>
+<ul>
+<li>flex_start (default) 左对齐<br><img src="/images/justifycontent_flex_start.png" alt="justifycontent_flex_start"></li>
+<li>flex_end 右对齐<br><img src="/images/justifycontent_flex_end.png" alt="justifycontent_flex_end"></li>
+<li>center 居中<br><img src="/images/justifycontent_center.png" alt="justifycontent_center"></li>
+<li>space_between 两端对齐<br><img src="/images/justifycontent_space_between.png" alt="justifycontent_space_between"></li>
+<li>space_around 每个子项两侧间的间距离相等<br><img src="/images/justifycontent_space_around.png" alt="justifycontent_space_around"></li>
+</ul>
+</blockquote>
+<p>4.alignItems</p>
+<p>这个属性控制着十字轴的边缘对齐方式，可能的值是：</p>
+<blockquote>
+<ul>
+<li>stretch (default) 如果子项没有设置高度或者设为<strong>auto</strong>，将占满整个容器的高度<br><img src="/images/alignlitems_stretch.png" alt="alignlitems_stretch"></li>
+<li>flex_start 交叉轴的起点中对齐<br><img src="/images/alignlitems_flex_start.png" alt="alignlitems_flex_start"></li>
+<li>flex_end 交叉轴的终点对齐<br><img src="/images/alignlitems_flex_end.png" alt="alignlitems_flex_end"></li>
+<li>center 交叉轴的中点对齐<br><img src="/images/alignlitems_center.png" alt="alignlitems_center"></li>
+<li>baseline 项目的第一行文字的基线对其<br><img src="/images/alignlitems_baseline.png" alt="alignlitems_baseline"></li>
+</ul>
+</blockquote>
+<p>5.alignContent</p>
+<p>这个属性控制着<strong>flex</strong>行和<strong>flex</strong>容器的边缘对齐方式，可能的值是：</p>
+<blockquote>
+<ul>
+<li>stretch (default) 轴线占满整个交叉轴<br><img src="/images/alignContent_stretch.png" alt="alignContent_stretch"></li>
+<li>flex_start 与交叉轴的起点对齐<br><img src="/images/alignContent_flex_start.png" alt="alignContent_flex_start"></li>
+<li>flex_end 与交叉轴的终点对齐<br><img src="/images/alignContent_flex_end.png" alt="alignContent_flex_end"></li>
+<li>center 与交叉轴的终点对齐<br><img src="/images/alignContent_center.png" alt="alignContent_center"></li>
+<li>space_between 与交叉轴两端对齐，轴线之间的间隔平均分配<br><img src="/images/alignContent_space_between.png" alt="alignContent_space_between"></li>
+<li>space_around 每根轴线两侧的间隔相等<br><img src="/images/alignContent_space_around.png" alt="alignContent_space_around"></li>
+</ul>
+</blockquote>
+<p>你也可以在FlexboxLayout中指定以下的属性：</p>
+<p>1.layout_order</p>
+<p>这个属性是能够改变子视图如何平铺的顺序. 默认你情况下，子视图显示和平铺顺序在布局<strong>XML</strong>文件中呈现的是相同的，如果不是指定情况下，<strong>1</strong>是它默认设置的值</p>
+<p>2.layout_flexGrow</p>
+<p>这个属性定义项目的放大比例，即如果存在剩余空间，也不放大，<strong>0</strong>是它默认设置的值</p>
+<p>3.layout_flexShrink</p>
+<p>这个属性定义了项目的缩小比例，即如果空间不足，该项目将缩小，<strong>0</strong>是它默认设置的值<br>负值对该属性无效。</p>
+<p>4.layout_alignSelf</p>
+<p>这个属性确定（垂直于主轴线）沿着横轴的对齐。在同一方向上的对准可由父视图的<strong>alignItems</strong>确定，但是如果这是设置为<strong>auto</strong>以外的值，对于这个子视图来说十字轴对准是要被重写。可能的值有：</p>
+<blockquote>
+<ul>
+<li>auto (default) (自动)</li>
+<li>flex_start （与交叉轴的起点对齐）</li>
+<li>flex_end（与交叉轴的终点对齐）</li>
+<li>center（与交叉轴的中点对齐）</li>
+<li>baseline（与第一行文字的基线对齐）</li>
+<li>stretch （如果子项没有设置高度或者设为<strong>auto</strong>，将占满整个容器的高度）</li>
+</ul>
+</blockquote>
+<p>5.layout_flexBasisPercent</p>
+<p>在一个分数格式中初始化flex项的长度，相对于父视图.该子视图的初始大小主要是试图扩大作为对父视图主要尺寸为指定的分数.如果这个值设置了，通过<strong>layout_width</strong> (或者 <strong>layout_height</strong>)这个属性计算值重写来指定长度.这个属性仅仅当它的父视图长度定义了(<strong>MeasureSpec</strong> 模式是<strong>MeasureSpec.EXACTLY</strong>）时才有效.默认值是<strong>-1</strong>，意味着没有设置</p>
+<h2 id="跟传统已知的CSS的区别"><a href="#跟传统已知的CSS的区别" class="headerlink" title="跟传统已知的CSS的区别"></a>跟传统已知的CSS的区别</h2><blockquote>
+<ul>
+<li>没有flex-flow属性</li>
+<li>没有flex属性</li>
+<li>layout_flexBasisPercent代替 <a href="https://www.w3.org/TR/css-flexbox-1/#flex-basis-property" target="_blank" rel="external">flexBasis</a></li>
+<li>最小宽度和最小高度不能被指定</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shoewann0402.github.io/2016/05/16/Google官方Android开源库-FlexboxLayout/" data-id="civ2c4zmf001g6wpbuo3a3rjd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flexbox-layout/">flexbox-layout</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/library/">library</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/17/Android浅谈任务和返回栈/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android浅谈任务和返回栈
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/15/Android中的进程与线程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android中的进程与线程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/">Android Developer</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Security/">Security</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Vector-Drawable/">Vector Drawable</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/">Firebase</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/Google-cloud/">Google cloud</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/网络通信/">网络通信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Material-Design/">Material Design</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Wifi/">Wifi</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/">Android N</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/Notiification/">Notiification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/加密解密/">加密解密</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Studio/">Android Studio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Wear/">Android Wear</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-性能优化/">Android 性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义/">Android 自定义</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/">Dart</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/Flutter/">Flutter</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google-IO/">Google IO</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Android/">Android</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-0/">Android 7.0</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-1/">Android 7.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Customview/">Android Customview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-N/">Android N</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Performance/">Android Performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio-Tips/">Android Studio Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Support-Library/">Android Support Library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI-Test/">Android UI Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Wear/">Android Wear</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-性能优化/">Android 性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义/">Android 自定义</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Shortcuts/">App Shortcuts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bottom-Sheets/">Bottom Sheets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Featured/">Featured</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firebase/">Firebase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flat-Button/">Flat Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Floating-Action-Button/">Floating Action Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-Cloud/">Google Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-I-O/">Google I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nougat/">Nougat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/">Process</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raised-Button/">Raised Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seekbar/">Seekbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Traceview/">Traceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector-Drawable/">Vector Drawable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wifi/">Wifi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb-no-permissions/">adb no permissions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flexbox-layout/">flexbox-layout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google-io/">google io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/io/">io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel/">kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile-vision-APIs/">mobile vision APIs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nio/">nio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/notification/">notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stack/">stack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/task/">task</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任务/">任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密解密/">加密解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件读写/">文件读写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络通信/">网络通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/返回栈/">返回栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通知/">通知</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-7-0/" style="font-size: 13.33px;">Android 7.0</a> <a href="/tags/Android-7-1/" style="font-size: 16.67px;">Android 7.1</a> <a href="/tags/Android-Customview/" style="font-size: 10px;">Android Customview</a> <a href="/tags/Android-N/" style="font-size: 13.33px;">Android N</a> <a href="/tags/Android-Performance/" style="font-size: 13.33px;">Android Performance</a> <a href="/tags/Android-Studio/" style="font-size: 13.33px;">Android Studio</a> <a href="/tags/Android-Studio-Tips/" style="font-size: 13.33px;">Android Studio Tips</a> <a href="/tags/Android-Support-Library/" style="font-size: 10px;">Android Support Library</a> <a href="/tags/Android-UI-Test/" style="font-size: 10px;">Android UI Test</a> <a href="/tags/Android-Wear/" style="font-size: 10px;">Android Wear</a> <a href="/tags/Android-性能优化/" style="font-size: 13.33px;">Android 性能优化</a> <a href="/tags/Android-自定义/" style="font-size: 10px;">Android 自定义</a> <a href="/tags/App-Shortcuts/" style="font-size: 10px;">App Shortcuts</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/Bottom-Sheets/" style="font-size: 10px;">Bottom Sheets</a> <a href="/tags/Featured/" style="font-size: 10px;">Featured</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Flat-Button/" style="font-size: 10px;">Flat Button</a> <a href="/tags/Floating-Action-Button/" style="font-size: 10px;">Floating Action Button</a> <a href="/tags/Flutter/" style="font-size: 13.33px;">Flutter</a> <a href="/tags/Google-Cloud/" style="font-size: 10px;">Google Cloud</a> <a href="/tags/Google-I-O/" style="font-size: 10px;">Google I/O</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Nougat/" style="font-size: 13.33px;">Nougat</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/Raised-Button/" style="font-size: 10px;">Raised Button</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Seekbar/" style="font-size: 10px;">Seekbar</a> <a href="/tags/Snackbar/" style="font-size: 10px;">Snackbar</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Traceview/" style="font-size: 10px;">Traceview</a> <a href="/tags/Vector-Drawable/" style="font-size: 10px;">Vector Drawable</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/Wifi/" style="font-size: 10px;">Wifi</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/adb-no-permissions/" style="font-size: 10px;">adb no permissions</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/flexbox-layout/" style="font-size: 10px;">flexbox-layout</a> <a href="/tags/google-io/" style="font-size: 10px;">google io</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/library/" style="font-size: 10px;">library</a> <a href="/tags/mobile-vision-APIs/" style="font-size: 10px;">mobile vision APIs</a> <a href="/tags/nio/" style="font-size: 10px;">nio</a> <a href="/tags/notification/" style="font-size: 10px;">notification</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/stack/" style="font-size: 10px;">stack</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/任务/" style="font-size: 10px;">任务</a> <a href="/tags/加密解密/" style="font-size: 10px;">加密解密</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/网络通信/" style="font-size: 10px;">网络通信</a> <a href="/tags/返回栈/" style="font-size: 10px;">返回栈</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/03/AES-in-Android/">Android中的AES加密解密技术</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/03/support-ended-for-eclipse-android/">终止Android开发工具对与Eclipse的支持</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/21/android71-dev-preview-app-shortcuts/">Android 7.1 应用快捷键详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/20/android71-dev-preview-available/">现在可用：Android 7.1开发者预览版</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/12/android-71-developer-preview/">即将到来：Android 7.1 开发者预览版</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Shoewann<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

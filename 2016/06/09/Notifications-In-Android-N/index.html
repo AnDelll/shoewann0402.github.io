@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android N 中的 Notification 通知 | Shoewann&#39;s Personal Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文来自: Android Developers Blog —— Notifications in Android N
+
+Android 通知往往是在你的Android应用和用户之间制造或打破而相互作用。为了提供更好的用户体验，Android N上的通知已经接收到视觉的更新，对于自定义视图更好的支持，以及直接回复形式的扩展功能，一个全新的消息风格，和捆绑通知">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android N 中的 Notification 通知">
+<meta property="og:url" content="https://shoewann0402.github.io/2016/06/09/Notifications-In-Android-N/index.html">
+<meta property="og:site_name" content="Shoewann's Personal Blog">
+<meta property="og:description" content="原文来自: Android Developers Blog —— Notifications in Android N
+
+Android 通知往往是在你的Android应用和用户之间制造或打破而相互作用。为了提供更好的用户体验，Android N上的通知已经接收到视觉的更新，对于自定义视图更好的支持，以及直接回复形式的扩展功能，一个全新的消息风格，和捆绑通知">
+<meta property="og:image" content="https://shoewann0402.github.io/images/notifications-in-android-n_pic1.png">
+<meta property="og:updated_time" content="2016-06-09T02:05:00.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android N 中的 Notification 通知">
+<meta name="twitter:description" content="原文来自: Android Developers Blog —— Notifications in Android N
+
+Android 通知往往是在你的Android应用和用户之间制造或打破而相互作用。为了提供更好的用户体验，Android N上的通知已经接收到视觉的更新，对于自定义视图更好的支持，以及直接回复形式的扩展功能，一个全新的消息风格，和捆绑通知">
+<meta name="twitter:image" content="https://shoewann0402.github.io/images/notifications-in-android-n_pic1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shoewann&#39;s Personal Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shoewann&#39;s Personal Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Love Google Technology , Just Do It !</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://shoewann0402.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Notifications-In-Android-N" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/09/Notifications-In-Android-N/" class="article-date">
+  <time datetime="2016-06-09T01:50:03.000Z" itemprop="datePublished">2016-06-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android-N/">Android N</a>►<a class="article-category-link" href="/categories/Android-N/Notiification/">Notiification</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/images/notifications-in-android-n_pic1.png" rel="gallery_civ2c4zmx00226wpboy45n8an">
+        <img src="/images/notifications-in-android-n_pic1.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android N 中的 Notification 通知
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>原文来自: Android Developers Blog —— <a href="http://goo.gl/xwvMtZ" target="_blank" rel="external">Notifications in Android N</a></p>
+</blockquote>
+<p>Android 通知往往是在你的Android应用和用户之间制造或打破而相互作用。为了提供更好的用户体验，Android N上的通知已经接收到视觉的更新，对于自定义视图更好的支持，以及直接回复形式的扩展功能，一个全新的消息风格，和捆绑通知</p>
+<a id="more"></a>
+<h2 id="相同的通知，新的面貌"><a href="#相同的通知，新的面貌" class="headerlink" title="相同的通知，新的面貌"></a>相同的通知，新的面貌</h2><p>首先最明显的变化就是通知的默认外观已经显著变化，许多被周围的通知扩散区域已经折叠到了一个新的标题里面，和你的应用的应用图标以及名字固定通知。这个变化确保了标题、文本和大图标被给予最大量的空间的可能性，并且其结果就是，现在的通知通常稍大了，更容易阅读。</p>
+<p><img src="/images/notifications-in-android-n_pic1.png" alt="notifications-in-android-n_pic1"></p>
+<p>鉴于单行标题，这是比以往的信息的有用性更重要，<strong>当你的目标是Android N 的时候，默认的情况下时间会被隐藏，不会显示出来</strong>—— 如果你有一个时间危机的通知，比如说是一个消息应用程序，你能够使用<strong>setShowWhen(true)</strong>重新开启它。此外，内容下面一小行的文字将会优先于你设置的任何内容信息:只有当你指定Android N 之前的早期版本才会同时出现。在所有的情况下，确保内容下面一小行的文字是符合标题且有用的——比如说，如果用户仅仅只有一个账户，不要添加一个账户邮箱地址作为你的内容下面一小行的文字。</p>
+<p>通知操作也得到了重新的设计，现在以下的通知条条目在视觉上是不同的。</p>
+<p><img src="/images/notifications-in-android-n_pic2.png" alt="notifications-in-android-n_pic2"></p>
+<p>你会注意到，图标都没有出现在新的通知;而是提供了标签本身在通知栏有限的空间里更多的空间。然而，通知操作图标仍然需要请求并继续在Android旧版本设备上使用，比如说Android Wear.</p>
+<p>如果你将利用<a href="https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank" rel="external">NotificationCompat.Builder</a>构建一个你的通知，你可以在那儿使用标准样式风格，你将会得到全新面貌和感觉，默认的情况下，不需要进行更改代码的请求。</p>
+<h2 id="对于自定义视图提供更好的支持"><a href="#对于自定义视图提供更好的支持" class="headerlink" title="对于自定义视图提供更好的支持"></a>对于自定义视图提供更好的支持</h2><p>如果你不是从自定义<strong>RemoteViews</strong>来代替构建你的通知，适配任何全新风格就已经成为挑战了。从一个通知正文+标题，利用全新的标题、伸缩特性、动作、和大图标定位作为一个独立元素，我们将介绍一个全新的<strong>DecoratedCustomViewStyle</strong>和<strong>DecoratedMediaCustomViewStyle</strong>去提供所有的这些元素，允许你用新的<strong>setCustomContentView()</strong>方法只关注内容。</p>
+<p><img src="/images/notifications-in-android-n_pic3.png" alt="notifications-in-android-n_pic3"></p>
+<p>这也确保了未来的外观和感觉应该被显著简单的适配，在应用那边不需要修改任何代码这些样式将平台一起进行更新。</p>
+<h2 id="直接回复"><a href="#直接回复" class="headerlink" title="直接回复"></a>直接回复</h2><p>当通知已经有了可以启动一个Activity或者在使用一个Sevice或者BroadcastReciver在后台工作的操作，<strong>直接回复（Direct Reply）</strong>允许你构建一个动作，利用通知操作直接接受通知单行文本输入。</p>
+<p><img src="/images/notifications-in-android-n_pic4.png" alt="notifications-in-android-n_pic4"></p>
+<p>直接回复使用了相同的<a href="https://developer.android.com/reference/android/support/v4/app/RemoteInput.html" target="_blank" rel="external">RemoteInput</a>API——最初是在Android Wear里引人的——对于标记一个能够接受让用户直接输入。标记一个<a href="https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Action.html" target="_blank" rel="external">动作(Action)</a>作为能够直接接收来自用户的输入。</p>
+<p>该RemoteInput本身包含像将被用于以后检索的输入，和用户开始输入之前所显示的提示文本的关键信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Where should direct replies be put in the intent bundle (can be any string)</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_TEXT_REPLY = <span class="string">"key_text_reply"</span>;</div><div class="line"></div><div class="line"><span class="comment">// Create the RemoteInput specifying this key</span></div><div class="line">String replyLabel = getString(R.string.reply_label);</div><div class="line">RemoteInput remoteInput = <span class="keyword">new</span> RemoteInput.Builder(KEY_TEXT_REPLY)</div><div class="line">        .setLabel(replyLabel)</div><div class="line">        .build();</div></pre></td></tr></table></figure>
+<p>一旦你已经构建了RemoteInput,它可以通过适当命名的<a href="https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Action.Builder.html" target="_blank" rel="external">addRemoteInput()</a>方法连接到你的Action操作。你可能会考虑调用<strong>setAllowGeneratedReplies(true)</strong>方法去开启<a href="https://developer.android.com/wear/preview/index.html" target="_blank" rel="external">Android Wear 2.0</a>产生<a href="https://developer.android.com/wear/preview/api-overview.html" target="_blank" rel="external">Smart Reply(智能回复)</a>的选择，当它可用的时候,能使用户更容易迅速作出反应。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Add to your action, enabling Direct Reply for it</span></div><div class="line">NotificationCompat.Action action =</div><div class="line">    <span class="keyword">new</span> NotificationCompat.Action.Builder(R.drawable.reply, replyLabel, pendingIntent)</div><div class="line">        .addRemoteInput(remoteInput)</div><div class="line">        .setAllowGeneratedReplies(<span class="keyword">true</span>)</div><div class="line">        .build();</div></pre></td></tr></table></figure>
+<p>请记住，<strong>pendingIntent</strong>被传递到你的Action动作应该是一个Activity，在Marshmallow以及更低版本的设备上是不支持直接回复功能(你将希望锁屏,开启一个<strong>Activity</strong>,有一个焦点输入框让用户可以直接在里面输入回复)，应该是一个<strong>Service</strong>（如果你需要这样做需要在一个另外的线程）或者是<strong>BroadcastReceiver</strong>（它运行在UI主线程）在Android N 设备上，因此，甚至从锁屏背景下的文本输入这么一个流程（这儿是一个另外的用户从系统设置中去控制一个被锁的设备直接回复启用/禁用）</p>
+<p>在你的Service或者BroadcastReceiver里提取文本输入，可以使用到的帮助:<br><a href="https://developer.android.com/reference/android/support/v4/app/RemoteInput.html" target="_blank" rel="external">RemoteInput.getResultsFromIntent() </a>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> CharSequence <span class="title">getMessageText</span><span class="params">(Intent intent)</span> </span>&#123;</div><div class="line">    Bundle remoteInput = RemoteInput.getResultsFromIntent(intent);</div><div class="line">    <span class="keyword">if</span> (remoteInput != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">return</span> remoteInput.getCharSequence(KEY_TEXT_REPLY);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>之后你将处理文本，<strong>你必须更新通知</strong>，这个是隐藏UI直接回复，应该作为一种技术来确认用户他们答复接收和正确处理的触发。</p>
+<p>对于多数模板，这都应该涉及使用追加答复到通知的底部新的<strong>setRemoteInputHistory()</strong>方法，直到主要内容被更新的其他答复被追加到历史(比如说其他人回复)</p>
+<p><img src="/images/notifications-in-android-n_pic5.png" alt="notifications-in-android-n_pic5"></p>
+<p>然而，如果你将构建一个消息类型的应用程序，预计来回交流对话，你应该使用<strong>MessagingStyle</strong>并使附加消息追加到它上面。</p>
+<blockquote>
+<p>MessagingStyle</p>
+</blockquote>
+<p>我们已经对正在进行对话进行了优化，并使用了新的<strong>MessagingStyle</strong>进行直接回复的体验</p>
+<p><img src="/images/notifications-in-android-n_pic6.png" alt="notifications-in-android-n_pic6"></p>
+<p>这个样式风格提供了内置的通过<strong>addMessage()</strong>返回添加多个消息格式的方法。每一个条消息支持传入文本本身，时间戳和消息的发送者（因此很容易支持群组对话）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">builder.setStyle(<span class="keyword">new</span> NotificationCompat.MessagingStyle(<span class="string">"Me"</span>)</div><div class="line">    .setConversationTitle(<span class="string">"Team lunch"</span>)</div><div class="line">    .addMessage(<span class="string">"Hi"</span>, timestampMillis1, <span class="keyword">null</span>) <span class="comment">// Pass in null for user.</span></div><div class="line">    .addMessage(<span class="string">"What's up?"</span>, timestampMillis2, <span class="string">"Coworker"</span>)</div><div class="line">    .addMessage(<span class="string">"Not much"</span>, timestampMillis3, <span class="keyword">null</span>)</div><div class="line">    .addMessage(<span class="string">"How about lunch?"</span>, timestampMillis4, <span class="string">"Coworker"</span>));</div></pre></td></tr></table></figure>
+<p>你将会注意到，这种风格对于具体的消息表示一流的支持从用户和他们填写的名字(使用”我”这种情况)，并设置一个可选的对话标题。当这个可以手动的使用一个<strong>BigTextStyle</strong>，通过Android Wear 2.0 使用这种风格的用户，将会获得直接内嵌的行来响应，抛弃了踢出来扩展通知来看，制造了一个无缝体验，而无须构建一个完整的可穿戴的应用程序。</p>
+<h2 id="捆绑通知"><a href="#捆绑通知" class="headerlink" title="捆绑通知"></a>捆绑通知</h2><p>一旦你使用了一个全新的视觉设计去构建一个伟大的通知，直接回复、信息风格、和<a href="https://www.youtube.com/watch?v=-iog_fmm6mE" target="_blank" rel="external">我们以前所有的最佳实践</a>,考虑整体的通知体验是非常重要的,特别是如果你发布多个通知(说，每个正在进行会话或者每个新的电子邮件线程之间)</p>
+<p><img src="/images/notifications-in-android-n_pic7.png" alt="notifications-in-android-n_pic7"></p>
+<p><strong>捆绑通知(Bundled notificaiton)</strong>提供了两全其美：当用户正在寻找其他通知一个单条的摘要通知或者希望在所有的通知上同时操作展开组操作个体通知（包括使用操作和直接回复）</p>
+<p>如果你将要构建<a href="https://developer.android.com/training/wearables/notifications/stacks.html" target="_blank" rel="external">Android Wear通知栈</a>，和这里的API使用方法完全相同，只需要添加<a href="https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank" rel="external">setGroup()</a>)到每一个通知就能将这些通知捆绑在一起了。你不局限于一组，所以捆绑通知恰如其分。对于电子邮件应用程序，你可以考虑每个帐户一个捆绑的实例。</p>
+<p>创建一个<strong>摘要通知(summary notification)</strong>也是重要的，这个摘要通知，通过<a href="https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank" rel="external"> setGroupSummary(true)</a>，它仅仅是通知出现在Mashmallow及其低版本设备上，应该(你猜对了)总结所有个人通知。这是一个使用<a href="https://developer.android.com/reference/android/support/v4/app/NotificationCompat.InboxStyle.html" target="_blank" rel="external">InboxStyle</a>最合适的时候。虽然使用它不是一个要求。在Android N及其更高版本的设备上，一些信息(比如说subText，subtext, content intent, and delete intent)是从摘要的通知中提取生产倒塌通知捆绑的通知，所以你应该继续产生的所有API级别的摘要通知。</p>
+<p>为了提高在Android N个器件的整体用户体验，<strong>发布4个或者更多通知没有组的通知，这些通知将会被自动捆绑在一起</strong></p>
+<h2 id="N是为了通知"><a href="#N是为了通知" class="headerlink" title="N是为了通知"></a>N是为了通知</h2><p>通知在Android上已经渐进增强的稳定区了。从<strong>Gingerbread</strong>时代的一个敲击目标到可以展开的通知、操作动作、媒体风格，以及现在的特性，比如直接回复和捆绑通知,通知在Android上所有用户体验中扮演了一个重要的部分。</p>
+<p>利用现在许多新的工具去使用（<a href="https://developer.android.com/reference/android/support/v4/app/NotificationCompat.html" target="_blank" rel="external">NotificationCompat</a>帮助向后兼容）,我很高兴地看到你如何来使用它们去#构建更好的应用程序</p>
+<p><img src="/images/1-S6K7IYkWhCzkS6YAgxLfXw.png" alt="1-S6K7IYkWhCzkS6YAgxLfXw"></p>
+<blockquote>
+<p>以上是对Anroid 官网博客文章的翻译，如果不足，欢迎指正，谢谢。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shoewann0402.github.io/2016/06/09/Notifications-In-Android-N/" data-id="civ2c4zmx00226wpboy45n8an" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-N/">Android N</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Notification/">Notification</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通知/">通知</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/10/security-crypto-provider-deprecated-in-android-n/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android N对安全加密提供者已弃用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/08/Android-Wear-create-first-demo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android Wear 真机调试&amp;创建第一个应用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/">Android Developer</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Security/">Security</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Android-Developer/Vector-Drawable/">Vector Drawable</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/">Firebase</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Firebase/Google-cloud/">Google cloud</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/网络通信/">网络通信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Material-Design/">Material Design</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Wifi/">Wifi</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/">Android N</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/Notiification/">Notiification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-N/加密解密/">加密解密</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Studio/">Android Studio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Wear/">Android Wear</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-性能优化/">Android 性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义/">Android 自定义</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/">Dart</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dart/Flutter/">Flutter</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google-IO/">Google IO</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Android/">Android</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-0/">Android 7.0</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-7-1/">Android 7.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Customview/">Android Customview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-N/">Android N</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Performance/">Android Performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio-Tips/">Android Studio Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Support-Library/">Android Support Library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI-Test/">Android UI Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Wear/">Android Wear</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-性能优化/">Android 性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义/">Android 自定义</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Shortcuts/">App Shortcuts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bottom-Sheets/">Bottom Sheets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Featured/">Featured</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firebase/">Firebase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flat-Button/">Flat Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Floating-Action-Button/">Floating Action Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-Cloud/">Google Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-I-O/">Google I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nougat/">Nougat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/">Process</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raised-Button/">Raised Button</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seekbar/">Seekbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Traceview/">Traceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector-Drawable/">Vector Drawable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wifi/">Wifi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb-no-permissions/">adb no permissions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flexbox-layout/">flexbox-layout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google-io/">google io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/io/">io</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel/">kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile-vision-APIs/">mobile vision APIs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nio/">nio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/notification/">notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stack/">stack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/task/">task</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任务/">任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密解密/">加密解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件读写/">文件读写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络通信/">网络通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/返回栈/">返回栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通知/">通知</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-7-0/" style="font-size: 13.33px;">Android 7.0</a> <a href="/tags/Android-7-1/" style="font-size: 16.67px;">Android 7.1</a> <a href="/tags/Android-Customview/" style="font-size: 10px;">Android Customview</a> <a href="/tags/Android-N/" style="font-size: 13.33px;">Android N</a> <a href="/tags/Android-Performance/" style="font-size: 13.33px;">Android Performance</a> <a href="/tags/Android-Studio/" style="font-size: 13.33px;">Android Studio</a> <a href="/tags/Android-Studio-Tips/" style="font-size: 13.33px;">Android Studio Tips</a> <a href="/tags/Android-Support-Library/" style="font-size: 10px;">Android Support Library</a> <a href="/tags/Android-UI-Test/" style="font-size: 10px;">Android UI Test</a> <a href="/tags/Android-Wear/" style="font-size: 10px;">Android Wear</a> <a href="/tags/Android-性能优化/" style="font-size: 13.33px;">Android 性能优化</a> <a href="/tags/Android-自定义/" style="font-size: 10px;">Android 自定义</a> <a href="/tags/App-Shortcuts/" style="font-size: 10px;">App Shortcuts</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/Bottom-Sheets/" style="font-size: 10px;">Bottom Sheets</a> <a href="/tags/Featured/" style="font-size: 10px;">Featured</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Flat-Button/" style="font-size: 10px;">Flat Button</a> <a href="/tags/Floating-Action-Button/" style="font-size: 10px;">Floating Action Button</a> <a href="/tags/Flutter/" style="font-size: 13.33px;">Flutter</a> <a href="/tags/Google-Cloud/" style="font-size: 10px;">Google Cloud</a> <a href="/tags/Google-I-O/" style="font-size: 10px;">Google I/O</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Nougat/" style="font-size: 13.33px;">Nougat</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/Raised-Button/" style="font-size: 10px;">Raised Button</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Seekbar/" style="font-size: 10px;">Seekbar</a> <a href="/tags/Snackbar/" style="font-size: 10px;">Snackbar</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Traceview/" style="font-size: 10px;">Traceview</a> <a href="/tags/Vector-Drawable/" style="font-size: 10px;">Vector Drawable</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/Wifi/" style="font-size: 10px;">Wifi</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/adb-no-permissions/" style="font-size: 10px;">adb no permissions</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/flexbox-layout/" style="font-size: 10px;">flexbox-layout</a> <a href="/tags/google-io/" style="font-size: 10px;">google io</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/library/" style="font-size: 10px;">library</a> <a href="/tags/mobile-vision-APIs/" style="font-size: 10px;">mobile vision APIs</a> <a href="/tags/nio/" style="font-size: 10px;">nio</a> <a href="/tags/notification/" style="font-size: 10px;">notification</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/stack/" style="font-size: 10px;">stack</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/任务/" style="font-size: 10px;">任务</a> <a href="/tags/加密解密/" style="font-size: 10px;">加密解密</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/网络通信/" style="font-size: 10px;">网络通信</a> <a href="/tags/返回栈/" style="font-size: 10px;">返回栈</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/03/AES-in-Android/">Android中的AES加密解密技术</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/03/support-ended-for-eclipse-android/">终止Android开发工具对与Eclipse的支持</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/21/android71-dev-preview-app-shortcuts/">Android 7.1 应用快捷键详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/20/android71-dev-preview-available/">现在可用：Android 7.1开发者预览版</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/12/android-71-developer-preview/">即将到来：Android 7.1 开发者预览版</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Shoewann<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
