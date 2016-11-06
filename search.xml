@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[Firebase特性之Robo测试实验室]]></title>
+      <url>%2F2016%2F11%2F06%2Fandroid-in-firebase-test-lab%2F</url>
+      <content type="text"><![CDATA[上一篇我们讲到了《Firebase特性之崩溃报告》，在这篇文章中，我们来共同学习一下如何在Androids上使用Firebase的测试实验室。 测试前的准备要在Androids上使用Firebase的测试实验室，如果你之前在Firebase上创建过项目可以跳过继续直接进行后面下一步步骤；或者也可以在本地用Android Studio创建一个新的项目。 选择测试项目 点击左侧的Test Lab 在Androids上使用Firebase的测试实验室,然后点击RUN YOUR FIRST TEST按钮 选择测试类型当前页面会提示让你选择测试类型,有两种类型: Robo测试 Robo测试在各种设备上自动探索您的应用程序，以查找缺陷并报告发生的任何崩溃。 Robo测试不需要你编写应用测试。 仪器测试 运行您编写的Espresso，Robotium或UIAutomator 2.0测试，以在各种设备上测试您的应用程序。 Robo测试与使用Android UI框架中的元素的应用兼容：如果您的应用程序使用其他UI框架（如Unity），测试可能只会探索您的应用程序的第一个屏幕。你可以点击查看更多 本节我们来总结类型之一的Robo测试的相关使用 Robo测试配置测试我们选择默认的Robo测试，然后点击CONTINUE继续 这里需要上传应用的APK文件，然后选取您要测试的尺寸。 等待上传成功…… 上传成功后，点击CONTINUE继续 这里选择你想测试的设备、API等级、方向、和地区，每一个尺寸你必须至少要选择一个，然后点击当前页面右下角的START XX TESTS按钮。（示例：我这里选择了虚拟设备Nexus 5、API Level 23(Android 6.0.x)、方向横屏和竖屏、地区美国（en_us） ） 开始测试下面开始进入Robo测试界面，开始测试上面我配置的示例，然后等待测试结果: 等待几分钟，然后测试完成了，２个pass,都通过了： 分析测试然后我们点开测试配置的,其中一个设备进去，可以看到一些测试的详细的信息(测试结果、测试时间、测试用时、地区、方向),重点是下面的LOGS、SCREENSHOTS、ACTIVITY MAP、VIDEO LOGS 测试时打印的日志 SCREENSHOTS 测试时屏幕截图 ACTIVITY MAP Activity 地图 VIDEO 视频记录的测试过程 下面是视频对应的gif动态图效果（ps:图片是720x1280的，有点大，可以点击下面的图片，查看效果）: 最后我们点击详细页面右上角的VIEW SOURCE FILES，可以查看源文件，是放在Google云平台的 以上简单的介绍了如何使用Firebase实验室Robo测试类型的相关内容，有关Firebase的其他特性，后续总结。如果不足，欢迎指正，谢谢。]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[Firebase测试实验室里的Android开发者预览版]]></title>
       <url>%2F2016%2F11%2F05%2Fandroid-dev-preview-in-firebase-test-lab%2F</url>
       <content type="text"><![CDATA[原文来自: Android Developers Blog —— Test on Android 7.1 Developer Preview in Firebase Test Lab 为了提供最好的用户体验的大门，对于Android的Firebas测试实验室允许您测试您的应用以确保它们在多个设备配置兼容。跨越系统版本、屏幕方向和地区，点击一次，您就能够在Google云的上百台设备配置上运行您的测试，并且您能给很快的收到结果。 今天，我们非常激动的宣布Android 7.1 开发者预览版在Firebase测试实验室虚拟设备可以用了。除了使用Android Beta方案在您的物理设备上测试Android 7.1开发者预览版本，或者是在您本地Android模拟器上，您还可以使用Firebase测试实验室将应用测试扩展到上百个Android虚拟设备。 您也能够使用Firebase测试实验室来执行自己的测试。如何您还没有一个任意的测试脚本，Robo测试是在新平台上进行基本兼容性测试的理想选择。它会抓取您的应用程序，以尝试找到崩溃。您也可以在Android Studio中利用Espresso 测试记录器去记录自己的仪器测试，而无需编写任何代码。 从现在起至12月底（2016年12月31日），Firebase测试实验室将会在Firebase Blaze计划上，对所以虚拟设备免费提供，以此帮助您确保您的应用程序和Android 7.1开发者预览版兼容，以及与其他Android版本。 为您的应用API 等级25做准备，然后去Firebase测试实验室控制台运行您的第一个测试。 测试愉快！ (Robo测试揭开Flood-It！应用在Android 7.1开发者预览中的崩溃) 以上是对Anroid 官网博客文章的翻译，如果不足，欢迎指正，谢谢]]></content>
