@@ -87,11 +87,11 @@
 <meta name="description" content="上一篇我们讲到了《Firebase特性之崩溃报告》，在这篇文章中，我们来共同学习一下如何在Androids上使用Firebase的测试实验室。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Firebase特性之Robo测试实验室">
-<meta property="og:url" content="https://shoewann0402.github.io/2016/11/06/android-in-firebase-test-lab/index.html">
+<meta property="og:url" content="https://shoewann0402.github.io/2016/11/06/android-in-firebase-robo-test-lab/index.html">
 <meta property="og:site_name" content="Shoewann's Personal Blog">
 <meta property="og:description" content="上一篇我们讲到了《Firebase特性之崩溃报告》，在这篇文章中，我们来共同学习一下如何在Androids上使用Firebase的测试实验室。">
 <meta property="og:image" content="https://shoewann0402.github.io/images/firebase_title.png">
-<meta property="og:updated_time" content="2016-11-06T04:51:49.877Z">
+<meta property="og:updated_time" content="2016-11-06T05:54:37.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Firebase特性之Robo测试实验室">
 <meta name="twitter:description" content="上一篇我们讲到了《Firebase特性之崩溃报告》，在这篇文章中，我们来共同学习一下如何在Androids上使用Firebase的测试实验室。">
@@ -116,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="https://shoewann0402.github.io/2016/11/06/android-in-firebase-test-lab/"/>
+  <link rel="canonical" href="https://shoewann0402.github.io/2016/11/06/android-in-firebase-robo-test-lab/"/>
 
 
   <title> Firebase特性之Robo测试实验室 | Shoewann's Personal Blog </title>
@@ -354,8 +354,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/06/android-in-firebase-test-lab/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/06/android-in-firebase-test-lab/" itemprop="commentsCount"></span>
+                <a href="/2016/11/06/android-in-firebase-robo-test-lab/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/06/android-in-firebase-robo-test-lab/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -365,7 +365,7 @@
 
           
           
-             <span id="/2016/11/06/android-in-firebase-test-lab/" class="leancloud_visitors" data-flag-title="Firebase特性之Robo测试实验室">
+             <span id="/2016/11/06/android-in-firebase-robo-test-lab/" class="leancloud_visitors" data-flag-title="Firebase特性之Robo测试实验室">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -390,7 +390,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/firebase_title.png" rel="gallery_civ65wmu2002cfepbfi46cevt"
+                 href="/images/firebase_title.png" rel="gallery_civ68673l002kchpb6qezg2i0"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/firebase_title.png" itemprop="contentUrl"/>
               </a>
@@ -405,7 +405,7 @@
       
         <script src="/assets/js/APlayer.min.js"> </script><p>上一篇我们讲到了<a href="https://shoewann0402.github.io/2016/06/06/Crash-reporting-in-Firebase/">《Firebase特性之崩溃报告》</a>，在这篇文章中，我们来共同学习一下如何在Androids上使用Firebase的测试实验室。</p>
 <a id="more"></a>
-<h2 id="测试前的准备"><a href="#测试前的准备" class="headerlink" title="测试前的准备"></a>测试前的准备</h2><p>要在Androids上使用Firebase的测试实验室，如果你之前在Firebase上创建过项目可以跳过继续直接进行后面下一步步骤；或者也可以在本地用Android Studio创建一个新的项目。</p>
+<h2 id="测试前的准备"><a href="#测试前的准备" class="headerlink" title="测试前的准备"></a>测试前的准备</h2><p>要在Androids上使用Firebase的测试实验室，首先要做的就是参照上一篇的内容，如果你之前在Firebase上创建过项目可以跳过继续直接进行后面下一步步骤；或者也可以在本地用Android Studio创建一个新的项目，参照上一篇的配置配置好本地和Firebase云端环境，当你本地Android　Studio环境和Firebase云端空间项目都创建成功后，确保本地项目已经添加了google-service.json文件和相关依赖，就可以开始下一步操作。</p>
 <h3 id="选择测试项目"><a href="#选择测试项目" class="headerlink" title="选择测试项目"></a>选择测试项目</h3><p><img src="/images/firebase-test-lab-1.png" alt="firebase-test-lab-1.png"></p>
 <p>点击左侧的<strong>Test Lab</strong></p>
 <p><img src="/images/firebase-test-lab-2.png" alt="firebase-test-lab-２.png"></p>
@@ -472,7 +472,7 @@
 <p>最后我们点击详细页面右上角的<strong>VIEW SOURCE FILES</strong>，可以查看源文件，是放在Google云平台的</p>
 <p><img src="/images/firebase-test-lab-robo-12.png" alt="firebase-test-lab-robo-12.png"></p>
 <blockquote>
-<p>以上简单的介绍了如何使用<strong>Firebase</strong>实验室Robo测试类型的相关内容，有关<strong>Firebase</strong>的其他特性，后续总结。如果不足，欢迎指正，谢谢。</p>
+<p>以上简单的介绍了如何使用Firebase实验室Robo测试类型的相关内容，有关Firebase的其他特性，后续总结。如果不足，欢迎指正，谢谢。</p>
 </blockquote>
 
       
@@ -537,10 +537,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/11/06/android-in-firebase-test-lab/"
+        <div class="ds-share flat" data-thread-key="2016/11/06/android-in-firebase-robo-test-lab/"
      data-title="Firebase特性之Robo测试实验室"
      data-content=""
-     data-url="https://shoewann0402.github.io/2016/11/06/android-in-firebase-test-lab/">
+     data-url="https://shoewann0402.github.io/2016/11/06/android-in-firebase-robo-test-lab/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -571,8 +571,8 @@
   <div class="comments" id="comments">
     
       <!-- 多说评论框 start -->
-      <div class="ds-thread" data-thread-key="2016/11/06/android-in-firebase-test-lab/"
-           data-title="Firebase特性之Robo测试实验室" data-url="https://shoewann0402.github.io/2016/11/06/android-in-firebase-test-lab/">
+      <div class="ds-thread" data-thread-key="2016/11/06/android-in-firebase-robo-test-lab/"
+           data-title="Firebase特性之Robo测试实验室" data-url="https://shoewann0402.github.io/2016/11/06/android-in-firebase-robo-test-lab/">
       </div>
       <!-- 多说评论框 end -->
       <!-- 多说热评文章 start -->
