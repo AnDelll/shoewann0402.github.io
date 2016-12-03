@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Shoewann's Personal Blog">
 <meta property="og:description" content="Google 为虚拟现实(VR)提供了两个虚拟现实（VR）平台：Cardboard，世界上最受欢迎和可访问的移动VR平台，以及Daydream,一个用于低延迟，沉浸式和交互式移动VR的新平台。Google VR SDK包括您为这些平台开发所需的一切内容，包括库，API文档，开发人员示例和设计指南。">
 <meta property="og:image" content="https://shoewann0402.github.io/images/googleDaydreamLogo.png">
-<meta property="og:updated_time" content="2016-12-03T13:15:09.154Z">
+<meta property="og:updated_time" content="2016-12-03T15:31:35.457Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gvr Unity SDK (一) —— 项目引入">
 <meta name="twitter:description" content="Google 为虚拟现实(VR)提供了两个虚拟现实（VR）平台：Cardboard，世界上最受欢迎和可访问的移动VR平台，以及Daydream,一个用于低延迟，沉浸式和交互式移动VR的新平台。Google VR SDK包括您为这些平台开发所需的一切内容，包括库，API文档，开发人员示例和设计指南。">
@@ -366,7 +366,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/googleDaydreamLogo.png" rel="gallery_ciw98rvu0001n59pb29h7qsor"
+                 href="/images/googleDaydreamLogo.png" rel="gallery_ciw9dxp5h001t28pbqw0szrwy"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/googleDaydreamLogo.png" itemprop="contentUrl"/>
               </a>
@@ -427,7 +427,7 @@
 <p>Windows :<a href="http://beta.unity3d.com/download/779bc43ad063/UnityDaydreamDownloadAssistant-5.4.2f2-GVR12.exe" target="_blank" rel="external">下载</a></p>
 <p>OS X :<a href="http://beta.unity3d.com/download/779bc43ad063/UnityDaydreamDownloadAssistant-5.4.2f2-GVR12.dmg" target="_blank" rel="external">下载</a></p>
 <p>gvr-unity-sdk: <a href="https://github.com/googlevr/gvr-unity-sdk" target="_blank" rel="external">下载</a></p>
-<p>(在此就不细说具体安装过程了，如果安装过程遇到了问题可以在本文底部留言）</p>
+<p>(在此就不细说具体安装过程了，如果安装过程遇到了问题可以在本文底部留言。作为Android开发者，Unity我也是才入门，如果你是小白，那我们一起学习。以下内容就是我这段时间学习<strong>gvr-unity</strong>的相关内容，仅供参考，可能有不足的地方，欢迎指正）</p>
 <h2 id="项目引入"><a href="#项目引入" class="headerlink" title="项目引入"></a>项目引入</h2><p>首先我们解压我们下载的<strong>gvr-unity-sdk</strong>，然后打开Unity工具，点击右上角的<strong>NEW</strong>创建一个新的项目，填入项目名和保存路径</p>
 <p><img src="/images/gvr1-1.png" alt="gvr1-1.png"></p>
 <p>点击Create project后，该窗体关闭，稍等片刻将会打开主窗体,如果过程没有什么问题，将会是下面这样</p>
@@ -440,8 +440,18 @@
 <p><img src="/images/gvr1-4.png" alt="gvr1-4.png"></p>
 <p>再次点击下一个对话框的<strong>Import</strong></p>
 <p><img src="/images/gvr1-5.png" alt="gvr1-5.png"></p>
-<p>至此，完成了<strong>gvr-unity-sdk</strong>的项目导入，将会在<strong>Project</strong>窗口下看到<strong>Asstes</strong>下的两个根文件:Google VR 和 Plugin 及其它们的子文件</p>
+<p><strong>gvr-unity-sdk</strong>的项目导入到工作空间之后，将在<strong>Project</strong>窗口下，<strong>Asstes</strong>下的两个根文件:<strong>Google VR</strong> 和 <strong>Plugin</strong></p>
 <p><img src="/images/gvr1-6.png" alt="gvr1-6.png"></p>
+<p>展开<strong>Google VR</strong>，找到<strong>Prefabs</strong>,将<strong>GvrViewerMain</strong>长按拖到<strong>Hierarchy</strong>下面</p>
+<p><img src="/images/gvr1-7.png" alt="gvr1-7.png"></p>
+<p>然后再找到<strong>Prefabs</strong>下面的<strong>UI</strong>,将里面的<strong>GvrReticle</strong>长按，拖到拖到<strong>Hierarchy</strong>下面的<strong>Main Camera</strong>里</p>
+<p><img src="/images/gvr1-8.png" alt="gvr1-8.png"></p>
+<p>看到工具顶部中间的三个按钮，一个是三角形的<em>播放</em>按钮，一个是双竖线的<em>暂停</em>按钮，还有一个是三角形和双竖线的<em>下一个</em>按钮，点击<strong>播放</strong>按钮，查看效果</p>
+<p><img src="/images/gvr1-9.png" alt="gvr1-9.png"></p>
+<p>按住Alt并滑动鼠标可以环视周围的场景，再次点击点击<strong>播放</strong>，退出播放模式，取消查看</p>
+<p>如果你发现下面有报错的地方，不管它，因为当前没有绑定任何对象，所以会有错误的log输出，直接点击旁边的<strong>clear</strong>清除掉log</p>
+<p><img src="/images/gvr1-10.png" alt="gvr1-10.png"></p>
+<p>至此，完成了<strong>gvr-unity-sdk</strong>的项目导入</p>
 <blockquote>
 <p>本节gvr-unity-sdk项目导入相关内容到此结束，下一节继续《Gvr Unity SDK (二) —— 创建GameObject》</p>
 </blockquote>
@@ -492,6 +502,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/03/gvr-unity-sdk-create-gameobject/" rel="prev" title="Gvr Unity SDK (二) —— 创建GameObject">
+                Gvr Unity SDK (二) —— 创建GameObject <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -604,7 +618,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
