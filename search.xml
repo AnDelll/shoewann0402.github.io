@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[Gvr Unity SDK (三) —— 创建视觉焦点]]></title>
+      <url>%2F2016%2F12%2F04%2Fgvr-unity-sdk-create-event-trigger%2F</url>
+      <content type="text"><![CDATA[上一篇讲了《Gvr Unity SDK (二) —— 创建GameObject》，在Unity的工作空间中如何创建GameObject对象，本节学习如何为GameObject对象添加视觉焦点 其实在第一节，细心点会发现，运行效果的时候可以看到屏幕中心有个瞄准的白点，那就是用来瞄准焦点的。那是我们在那个时候拖动GvrReticle到Main Camera下面，早已经完成了本节创建视觉焦点的第一步。 然后我们选中Main Camera，在右侧Inspetor属性栏的底部，点击Add Component，在搜索栏里输入Physics Raycaster,然后选中添加 添加过后是这样的，Physics Raycaster组件被添加到了Inspetor属性栏的底部 接下来我们首先在场景中添加Event System系统事件，在Unity工作空间上半部分左侧的Hierarchy空白的地方，单击右键==&gt; UI==&gt;Event System(或者选择菜单栏==&gt;Game Object==&gt;UI==&gt;Event System),在Event System右侧Inspetor属性栏的底部，点击Add Component，在搜索栏里输入GazeInputModule（凝视输入）,然后选中添加 添加过后是这样的，GazeInputModule组件被添加到了Inspetor属性栏的底部，然后点击GazeInputModule后面的小齿轮，选择Move Up将GazeInputModule移到Standalone Input Module上面 选中Cube,为它添加视觉焦点，同样在Cube右侧Inspetor属性栏的底部，点击Add Component，在搜索栏里输入Event Trigger,然后选中添加 之前的准星默认是白色的一个点，下面来自定义一下准星的颜色。选择Main Camera下面的GvrReticle，在GvrReticle右侧Inspetor属性栏的底部GvrReticleMaterial下面可以看到默认的颜色是白色，点击后面的拾色器，自定义颜色 此文中以红色为例 再次点击播放按钮，查看效果，按住Alt，滚动鼠标，当准星在Cube对象上，准星由圆点变成了圆环，表示了选中了该对象；当准星不在Cube对象上，准星由圆环变成了圆点，表示了取消选中了该对象。 本节gvr-unity-sdk创建视觉焦点相关内容到此结束，下一节继续《Gvr Unity SDK (四) —— 焦点事件触发》]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[Gvr Unity SDK (二) —— 创建GameObject]]></title>
       <url>%2F2016%2F12%2F03%2Fgvr-unity-sdk-create-gameobject%2F</url>
       <content type="text"><![CDATA[上一篇讲了《Gvr Unity SDK (一) —— 项目引入》，成功的将Gvr Unity SDK导入到了Unity的工作空间中，本节以创建GameObject来讲Gvr Unity SDK 的使用 接下来我们首先在场景中添加一块Plane(平面)，在Unity工作空间上半部分左侧的Hierarchy空白的地方，单击右键==&gt; 3D Object==&gt;Plane(或者选择菜单栏==&gt;Game Object==&gt;3D Object==&gt;Plane),然后在右边的属性栏里面将它的X，Y，Z三个方向都放大3倍 这里要重点说明一下图中的X、Y、Z轴，看到图中的Main Camera，以它为中心，红色的是X轴(控制左右)、绿色的是Y轴(控制高低)、蓝色的是Z轴(控制远近) 然后我们点击播放按钮，查看效果 之后，我们来给Plane平面换一个颜色。在Assets窗口下，新建一个文件夹来保存自己的东西，我这里新建了Sample为例，在Sample下面新建一个Material文件夹来保存Material资源。在Material文件夹下，单击右键==&gt;Create==&gt;Material,命名为Plane 选中刚刚创建的Plane，在右侧的属性栏中，点击Albedo后面的拾色器，选择颜色 我这里以绿色为例 然后，将绿色的Plane，长按拖拽进场景中的Plane上面，然后点击播放按钮，查看效果 以创建Plane对象同样的方式，在Unity工作空间上半部分左侧的Hierarchy空白的地方，创建一个Cube和在Material文件夹下创建一个Cube的Material，同样用拾色器，选择颜色，我这里以黄色为例 再次点击播放按钮，查看效果 最后按以下Ctrl+S保存一下(通常有这个习惯的人，早已经完成了这步了)，这便是一个Scene场景，下次可以通过双击这个打开一个场景 本节gvr-unity-sdk创建GameObject相关内容到此结束，下一节继续《Gvr Unity SDK (三) —— 创建视觉焦点》]]></content>
