@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="SMS," />
+  <meta name="keywords" content="SMS,createAppSpecificSmsToken," />
 
 
 
@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Shoewann's Personal Blog">
 <meta property="og:description" content="Android O 针对SMS（短信）认证的方式进行了改进，引入了专门的API。应用程序可以使用它们来检索应用程序通过SMS（短信）发出去的验证码，因此，Android O中的应用程序请求SMS将不再需要权限">
 <meta property="og:image" content="https://shoewann0402.github.io/images/android-O.jpg">
-<meta property="og:updated_time" content="2017-05-14T18:08:33.090Z">
+<meta property="og:updated_time" content="2017-05-14T23:50:32.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android O中对于短信验证无需请求权限">
 <meta name="twitter:description" content="Android O 针对SMS（短信）认证的方式进行了改进，引入了专门的API。应用程序可以使用它们来检索应用程序通过SMS（短信）发出去的验证码，因此，Android O中的应用程序请求SMS将不再需要权限">
@@ -378,7 +378,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/android-O.jpg" rel="gallery_cj2p0l6in002birpbc2zal8mx"
+                 href="/images/android-O.jpg" rel="gallery_cj2pcsxm200281ipbhxzz7n5z"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/android-O.jpg" itemprop="contentUrl"/>
               </a>
@@ -400,21 +400,22 @@
 <h1 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h1><p>客户端接收到服务器下发的短信，主要有两种可能的解决方案来管理短信</p>
 <blockquote>
 <ul>
-<li><strong>方式1</strong>: 用户收到了服务器下发到客户端的验证码短信，收到后复制粘贴到正确的位置。</li>
-<li><strong>方式2</strong>: 开发者通过代码让程序读取用户最近收到的短信，并找到该应用程序的相应消息。</li>
+<li><strong>方式1</strong>: 用户收到了服务器下发到客户端的验证码短信，收到后手动输入或复制粘贴到正确的位置</li>
+<li><strong>方式2</strong>: 开发者通过代码让程序读取用户最近收到的短信，并找到该应用程序的相应消息，自动填充到正确的位置</li>
 </ul>
 </blockquote>
 <h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><blockquote>
 <ul>
 <li>从Android M开始需要额外的添加android.permission.READ_SMS权限请求</li>
 <li>应用程序必须搜索相应的短信</li>
-<li>一旦授予了读取短信的权限，应用程序就能控制整个短信的阅读，追踪用户的敏感性短信内容</li>
+<li>一旦授予了读取短信的权限，应用程序就能控制整个短信的阅读权限，有可能追踪到用户的敏感性短信内容</li>
 <li>其他应用程序也能够获取到开发者自己应用的短信内容</li>
 <li>用户或许不是真实的</li>
 </ul>
 </blockquote>
 <h1 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h1><p>Android O 在<a href="https://developer.android.google.cn/reference/android/telephony/SmsManager.html" target="_blank" rel="external">SmsManager</a>中引入了新的API——<strong>createAppSpecificSmsToken()</strong></p>
 <p><img src="/images/createAppSpecificSmsToken.png" alt="createAppSpecificSmsToken"></p>
+<p><strong>参数：</strong> intent (PendingIntent)<br><strong>返回值：</strong> String类型 (令牌包含在短信中。 令牌将是11个字符长)</p>
 <blockquote>
 <ul>
 <li><strong>1、后台服务器生成一个token(令牌),并将其发送给Android客户端</strong></li>
@@ -422,10 +423,11 @@
 <li><strong>3、一旦收到信息，在没有任何权限的情况下，获得一个回调到PendingIntent</strong></li>
 </ul>
 </blockquote>
-<p>这意味着不需要手动输入验证码或token值进入，甚至没有必要通过阅读短信来自动检测代码这个过程。有了这个新的API，我们可以直接得到我们的应用程序的回调。</p>
+<p>这意味着不需要手动输入验证码或token令牌值进入，甚至没有必要有通过读取短信来自动检测代码这个过程。有了这个新的API，我们可以直接得到我们的应用程序的回调。</p>
 <p><em>“”Create a single use app specific incoming SMS request for the the calling package. This method returns a token that if included in a subsequent incoming SMS message will cause intent to be sent with the SMS data. The token is only good for one use, after an SMS has been received containing the token all subsequent SMS messages with the token will be routed as normal. An app can only have one request at a time, if the app already has a request pending it will be replaced with a new request. “”</em></p>
 <p><strong>为呼叫包创建一个单一的应用程序特定的传入请求短信。这个方法返回一个token，如果包含在后续传入的短信中，将会导致短信数据意图被发送。这个token仅适合一次使用，在收到一条包含了token的短信后，token的所有后续SMS短信消息将正常路由。一个应用程序一次只能有一个请求，如果这个应用程序已经有了一个请求等待，它将被替换为一个新的请求。</strong></p>
 <h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><p>使用此API最大的好处是不需要任何READ_SMS权限。此外，消息的内容也将直接发送到我们应用程序的意图中。该方法的另一个积极点是短信将不再显示在消息历史中，这特别提高了用户数据的安全性，因为没有其他应用程序将能够读取内容。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>应用程序请求SMS将不再需要权限,这实际上是Android O中一个很不错的功能，很高兴看到Google继续添加这样的功能。大家觉得如何呢？</p>
 
       
     </div>
@@ -454,6 +456,8 @@
         <div class="post-tags">
           
             <a href="/tags/SMS/" rel="tag">#SMS</a>
+          
+            <a href="/tags/createAppSpecificSmsToken/" rel="tag">#createAppSpecificSmsToken</a>
           
         </div>
       
@@ -598,7 +602,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -700,7 +704,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#现状"><span class="nav-number">3.</span> <span class="nav-text">现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缺点"><span class="nav-number">4.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进"><span class="nav-number">5.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优点"><span class="nav-number">6.</span> <span class="nav-text">优点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#现状"><span class="nav-number">3.</span> <span class="nav-text">现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缺点"><span class="nav-number">4.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进"><span class="nav-number">5.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优点"><span class="nav-number">6.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">7.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
           </div>
         </section>
