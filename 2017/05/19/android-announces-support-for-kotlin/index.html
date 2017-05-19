@@ -1,0 +1,1178 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android Studio 3.0,Develop,Featured,Kotlin," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="原文来自: Android Announces Support for Kotlin
+
+  今天，Android团队很高兴地宣布，我们正式增加对Kotlin编程语言的支持。Kotlin是一种精湛的设计，成熟的语言，我们相信会使Android开发更快更有趣。它已被几个主要开发商采用 —— Expedia，Flipboard，Pinterest，Square等 —— 为他们的生产应用程序。Kotli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 宣布支持Kotlin">
+<meta property="og:url" content="https://shoewann0402.github.io/2017/05/19/android-announces-support-for-kotlin/index.html">
+<meta property="og:site_name" content="Shoewann's Personal Blog">
+<meta property="og:description" content="原文来自: Android Announces Support for Kotlin
+
+  今天，Android团队很高兴地宣布，我们正式增加对Kotlin编程语言的支持。Kotlin是一种精湛的设计，成熟的语言，我们相信会使Android开发更快更有趣。它已被几个主要开发商采用 —— Expedia，Flipboard，Pinterest，Square等 —— 为他们的生产应用程序。Kotli">
+<meta property="og:image" content="https://shoewann0402.github.io/images/android_kotlin.png">
+<meta property="og:updated_time" content="2017-05-19T07:31:35.676Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 宣布支持Kotlin">
+<meta name="twitter:description" content="原文来自: Android Announces Support for Kotlin
+
+  今天，Android团队很高兴地宣布，我们正式增加对Kotlin编程语言的支持。Kotlin是一种精湛的设计，成熟的语言，我们相信会使Android开发更快更有趣。它已被几个主要开发商采用 —— Expedia，Flipboard，Pinterest，Square等 —— 为他们的生产应用程序。Kotli">
+<meta name="twitter:image" content="https://shoewann0402.github.io/images/android_kotlin.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6278521006495630000',
+      author: 'Shoewann'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://shoewann0402.github.io/2017/05/19/android-announces-support-for-kotlin/"/>
+
+
+  <title> Android 宣布支持Kotlin | Shoewann's Personal Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259071960&web_id=1259071960" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shoewann's Personal Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Love Google Technology , Just Do It !</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 宣布支持Kotlin
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-19T13:40:56+08:00" content="2017-05-19">
+              2017-05-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/Android-O/" itemprop="url" rel="index">
+                    <span itemprop="name">Android O</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/Android-O/Android-Studio/" itemprop="url" rel="index">
+                    <span itemprop="name">Android Studio</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/Android-O/Android-Studio/Google-I-O-2017/" itemprop="url" rel="index">
+                    <span itemprop="name">Google I/O 2017</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/19/android-announces-support-for-kotlin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/19/android-announces-support-for-kotlin/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/05/19/android-announces-support-for-kotlin/" class="leancloud_visitors" data-flag-title="Android 宣布支持Kotlin">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="//schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 href="/images/android_kotlin.png" rel="gallery_cj2vj1f32002e4mpb391xf73u"
+                 itemscope itemtype="//schema.org/ImageObject" itemprop="url">
+                <img src="/images/android_kotlin.png" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>原文来自: <a href="https://android-developers.googleblog.com/2017/05/android-announces-support-for-kotlin.html" target="_blank" rel="external">Android Announces Support for Kotlin</a></p>
+</blockquote>
+<p>  今天，Android团队很高兴地宣布，我们正式增加对<a href="https://kotlinlang.org/" target="_blank" rel="external">Kotlin</a>编程语言的支持。Kotlin是一种精湛的设计，成熟的语言，我们相信会使Android开发更快更有趣。它已被几个主要开发商采用 —— Expedia，Flipboard，Pinterest，Square等 —— 为他们的生产应用程序。Kotlin也用Java编程语言表现出色;两种语言之间的毫不费力的互操作是在Kotlin的呼吁中占很大一部分。</p>
+<a id="more"></a>
+<p>Kotlin插件现在与Android Studio 3.0捆绑在一起，可立即下载。Kotlin是由JetBrains开发的,和创造IntelliJ是同一些人。所以对于IDE支持科Kotlin来说，并不奇怪。</p>
+<p>除了IDE支持之外，我们还宣布与JetBrains进行合作，将Kotlin推向非盈利基础。 （Kotlin已经在Apache2下开源了）</p>
+<h1 id="对Kotlin说”你好”"><a href="#对Kotlin说”你好”" class="headerlink" title="对Kotlin说”你好”"></a>对Kotlin说”你好”</h1><p>任何使用Java编程语言的人都很熟悉Kotlin。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> helloWorld</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>)</span></span> &#123;</div><div class="line">   println(<span class="string">"Hello World!"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>乍一看，你会看到舒适的元素，如大括号，类，包，功能和方法。你会发现，虽然Kotlin是基于熟悉的概念，在这些模型上，它是独一无二的现代化，优雅和务实的。特别地是，Kotlin具有极高的表现力，最小的句法摩擦你的想法和你必须输入什么才能表达这些想法之间。如果在编写代码的时候，你问自己的问题，那就是为什么我必须…？你会很高兴地得知，在Kotlin，许多这些问题的答案是“你不要！”</p>
+<p>例如，也许你已经问为什么要在实现一个简单的类时，要输入一堆getter和setter的样板，以及重写equals（）、hashCode（）和toString（）。以下是Java编程语言的典型示例（为了简洁起见，用微小的字体）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</div><div class="line">   <span class="keyword">private</span> String name;</div><div class="line">   <span class="keyword">private</span> String email;</div><div class="line">   <span class="keyword">private</span> String company;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">       <span class="keyword">this</span>(name, <span class="string">""</span>, <span class="string">""</span>);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">(String name, String email)</span> </span>&#123;</div><div class="line">       <span class="keyword">this</span>(name, email, <span class="string">""</span>);</div><div class="line"></div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">(String name, String email, String company)</span> </span>&#123;</div><div class="line">       <span class="keyword">this</span>.name = name;</div><div class="line">       <span class="keyword">this</span>.email = email;</div><div class="line">       <span class="keyword">this</span>.company = company;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> name;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">       <span class="keyword">this</span>.name = name;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getEmail</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> email;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEmail</span><span class="params">(String email)</span> </span>&#123;</div><div class="line">       <span class="keyword">this</span>.email = email;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getCompany</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> company;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCompany</span><span class="params">(String company)</span> </span>&#123;</div><div class="line">       <span class="keyword">this</span>.company = company;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (<span class="keyword">this</span> == o) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">       <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line"></div><div class="line">       Customer customer = (Customer) o;</div><div class="line"></div><div class="line">       <span class="keyword">if</span> (name != <span class="keyword">null</span> ? !name.equals(customer.name) : customer.name != <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">       <span class="keyword">if</span> (email != <span class="keyword">null</span> ? !email.equals(customer.email) : customer.email != <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">       <span class="keyword">return</span> company != <span class="keyword">null</span> ? company.equals(customer.company) : customer.company == <span class="keyword">null</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">int</span> result = name != <span class="keyword">null</span> ? name.hashCode() : <span class="number">0</span>;</div><div class="line">       result = <span class="number">31</span> * result + (email != <span class="keyword">null</span> ? email.hashCode() : <span class="number">0</span>);</div><div class="line">       result = <span class="number">31</span> * result + (company != <span class="keyword">null</span> ? company.hashCode() : <span class="number">0</span>);</div><div class="line">       <span class="keyword">return</span> result;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> <span class="string">"Customer&#123;"</span> +</div><div class="line">               <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</div><div class="line">               <span class="string">", email='"</span> + email + <span class="string">'\''</span> +</div><div class="line">               <span class="string">", company='"</span> + company + <span class="string">'\''</span> +</div><div class="line">               <span class="string">'&#125;'</span>;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在Kotlin中，你没必要键入任何一个，这一行相当于上面的整个类。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span></span>(<span class="keyword">var</span> name: String, <span class="keyword">var</span> email: String = <span class="string">""</span>,</div><div class="line">                    <span class="keyword">var</span> company: String = <span class="string">""</span>)</div></pre></td></tr></table></figure>
+<h1 id="历史与参考"><a href="#历史与参考" class="headerlink" title="历史与参考"></a>历史与参考</h1><p>Kotlin已经有了一段时间了，它在2011年被公布，第一个预览于2012年发布。Kotlin 1.0于2016年发布，从1.0开始前进，JetBrains致力于保持向前兼容性稳定的功能。</p>
+<p>你可以在<a href="https://kotlinlang.org/" target="_blank" rel="external">https://kotlinlang.org/</a>找到优秀的培训材料和参考资料,Android团队发现Kotlin Koans教程作为开始编写Kotlin片段的一种快速方式是特别有用的。这些教程的范围从简单到崇高，因为材料从基础到更复杂的Kotlin成语。</p>
+<h1 id="为什么选择Kotlin？"><a href="#为什么选择Kotlin？" class="headerlink" title="为什么选择Kotlin？"></a>为什么选择Kotlin？</h1><p>为什么Android团队决定支持Kotlin？最重要的是，因为我们认为Kotlin是一种伟大的语言，将使Android应用程序更轻松，更愉快。<br>Kotlin也是现有Android生态系统的绝佳搭档，它与Java编程语言100％兼容。您可以根据需要将Kotlin添加到现有的代码库中，并在同一个项目中自由混合两种语言。从使用Java编程语言Just Works™编写的代码调用Kotlin代码。通过一些应用自动翻译的惯例，通过其他方向通常也不需要开发人员的努力(例如，为您创建的属性getter和setter等)。在几个Kotlin注释的帮助下，您还可以自定义如何执行翻译。</p>
+<p>最后，许多开发人员告诉我们，他们喜欢Kotlin语言。 （我们许多Android团队的开发人员也一直在说类似的东西。）已经有一个热衷于Android的Kotlin<a href="https://kotlin.link/articles/Christina-Lee-Kotlin-in-Production.html" target="_blank" rel="external">开发人员</a><a href="https://m.signalvnoise.com/how-i-fell-in-love-with-a-programming-language-8933d5e749ed" target="_blank" rel="external">社区</a>，Android团队在公开活动中常常对Kotlin提出疑问。Android社区已经发言了，我们听了。</p>
+<h1 id="一次快速旅程"><a href="#一次快速旅程" class="headerlink" title="一次快速旅程"></a>一次快速旅程</h1><p>为了帮助您了解Kotlin周围的所有兴奋之处，这里是一次快速的、非常不完整的、特别吸引人的方面的Kotlin旅程：</p>
+<h2 id="可空"><a href="#可空" class="headerlink" title="可空"></a>可空</h2><p>Kotlin编译器强制可以显式声明可以保存空值的变量 —— 因此在运行时<strong>不再有NullPointerExceptions！</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> neverNull: String = <span class="string">"something"</span></div><div class="line"><span class="keyword">var</span> mightBeNull: String? = <span class="literal">null</span> <span class="comment">// "?" indicates this can be null</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> (neverNull.length &gt; <span class="number">0</span>) &#123;   <span class="comment">// This is OK</span></div><div class="line">    …</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (mightBeNull.length &gt; <span class="number">0</span>) &#123; <span class="comment">// Compiler catches this error for you</span></div><div class="line">    …</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="命名参数和默认参数"><a href="#命名参数和默认参数" class="headerlink" title="命名参数和默认参数"></a>命名参数和默认参数</h2><p>我们都看到有太多参数的方法来跟踪。例如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">orderPizza</span><span class="params">(size: <span class="type">Size</span>, pepperoni: <span class="type">Boolean</span>, mushrooms: <span class="type">Boolean</span>,</span></span></div><div class="line">               ham: <span class="type">Boolean</span>, pineapple: <span class="type">Boolean</span>, pickles: <span class="type">Boolean</span>,</div><div class="line">               sausage: <span class="type">Boolean</span>, peppers: <span class="type">Boolean</span>, onion: <span class="type">Boolean</span>)</div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Wait… did I just order pickles on my pizza?</span></div><div class="line"><span class="comment">// Why do we even have that option?</span></div><div class="line">orderPizza(Size.LARGE, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">true</span>,</div><div class="line">           <span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<p>将其与使用命名参数和默认参数的类似方案进行比较:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">orderPizza</span><span class="params">(size: <span class="type">Size</span>,</span></span></div><div class="line">               pepperoni: <span class="type">Boolean</span> = <span class="literal">false</span>,</div><div class="line">               mushrooms: <span class="type">Boolean</span> = <span class="literal">false</span>,</div><div class="line">               ham: <span class="type">Boolean</span> = <span class="literal">false</span>,</div><div class="line">               pineapple: <span class="type">Boolean</span> = <span class="literal">false</span>,</div><div class="line">               pickles: <span class="type">Boolean</span> = <span class="literal">false</span>,</div><div class="line">               sausage: <span class="type">Boolean</span> = <span class="literal">false</span>,</div><div class="line">               peppers: <span class="type">Boolean</span> = <span class="literal">false</span>,</div><div class="line">               onion: <span class="type">Boolean</span> = <span class="literal">false</span>)</div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">orderPizza(Size.LARGE, ham = <span class="literal">true</span>, mushrooms = <span class="literal">true</span>)</div></pre></td></tr></table></figure></p>
+<p>除了帮助避免不幸的比萨结果之外，这更容易阅读。它还减少了您需要编写的重载功能的变体数量。</p>
+<h2 id="当声明"><a href="#当声明" class="headerlink" title="当声明"></a>当声明</h2><p>Kotlin具有允许匹配任意表达式的switch语句的变体。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Please don't put this in your app!</span></div><div class="line"><span class="keyword">when</span> &#123;</div><div class="line">    password.equals(<span class="string">"password"</span>) -&gt; println(<span class="string">"Insecure password!"</span>)</div><div class="line">    password.length &lt; <span class="number">4</span> -&gt; println(<span class="string">"Too short!"</span>)</div><div class="line">    <span class="keyword">else</span> -&gt; &#123;</div><div class="line">        println(<span class="string">"Secure password!"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="智能铸造"><a href="#智能铸造" class="headerlink" title="智能铸造"></a>智能铸造</h2><p>在你刚刚测试它是该类的一个实例之后，为什么你必须在一个类上投下一些东西？在kotlin，你不必这样做了。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (obj <span class="keyword">is</span> String) &#123;</div><div class="line">    <span class="comment">// Compiler casts obj to a String for you.</span></div><div class="line">    <span class="comment">// (Would work with &amp;&amp; instead of nested ifs too.)</span></div><div class="line">    <span class="keyword">if</span> (obj.length &gt; <span class="number">0</span>) &#123;</div><div class="line">        …</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这也概括为when语句：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Assume reasonable implementations of Cat and Dog</span></div><div class="line"><span class="keyword">when</span> (obj) &#123;</div><div class="line">   <span class="keyword">is</span> Cat -&gt; obj.meow(...)</div><div class="line">   <span class="keyword">is</span> Dog -&gt; obj.woof(...)</div><div class="line">   <span class="keyword">else</span> -&gt; &#123;</div><div class="line">        …</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="扩展功能"><a href="#扩展功能" class="headerlink" title="扩展功能"></a>扩展功能</h2><p>Kotlin让您基本上将新方法重新定位到现有的类型上,如果像许多人一样，希望String类有一个toPigLatin方法。您现在可以自行添加它，而无需创建一个新的帮助器类来包装String或者在语言委员会中服务的麻烦：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// The "String." prefix indicates that this method should</span></div><div class="line"><span class="comment">// extend the existing String class</span></div><div class="line"><span class="function"><span class="keyword">fun</span> String.<span class="title">toPigLatin</span><span class="params">()</span></span> : String &#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">val</span> plainOldString : String = <span class="string">"some text"</span></div><div class="line"></div><div class="line"><span class="comment">// Can now call toPigLatin as if were a method on String</span></div><div class="line">println(plainOldString.toPigLatin())</div><div class="line"></div><div class="line"><span class="comment">// Or:</span></div><div class="line">println(<span class="string">"some text"</span>.toPigLatin())</div></pre></td></tr></table></figure></p>
+<h2 id="解构定义"><a href="#解构定义" class="headerlink" title="解构定义"></a>解构定义</h2><p>我们已经看到定义一个简单的数据类是多么容易：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Order</span></span>(<span class="keyword">val</span> itemCode: String, <span class="keyword">val</span> quantity: <span class="built_in">Int</span>,</div><div class="line">                 <span class="keyword">val</span> price: <span class="built_in">Float</span>)</div></pre></td></tr></table></figure>
+<p>使用这些类之一作为返回类型的函数非常接近于支持多个返回值：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getOrder</span><span class="params">(...)</span></span>: Order &#123;</div><div class="line">    ...</div><div class="line">    <span class="keyword">return</span> Order(itemCode, quantity, price);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>要得到所有的方法，您可以使用解构声明语法。以下语句接受Order对象，提取其三个属性，然后将它们分配给三个变量:what, howMany 和 howMuch 。<br> —— 所有礼貌的Kotlin编译器，这也为您推荐正确的类型。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> (what, howMany, howMuch) = getOrder(...)</div></pre></td></tr></table></figure>
+<h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><p>Kotin对于lambdas具有非常简洁的语法，可以很容易地表达强大的功能编程范例。这是一个简单的例子，它使用lambda来测试集合中的所有内容都是String：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">allStrings</span><span class="params">(collection: <span class="type">Collection</span>)</span></span>=</div><div class="line">    collection.all &#123; it <span class="keyword">is</span> String &#125;</div></pre></td></tr></table></figure></p>
+<p>创建使用类似JSON的语法的构建器的能力也恰好是语法上有效的Kotlin。这个例子在<a href="">这里</a>进行了扩展的讨论：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">generatePage</span><span class="params">(withEmphasis : <span class="type">Boolean</span>)</span></span> &#123;</div><div class="line">    <span class="keyword">val</span> result =</div><div class="line">        html &#123;</div><div class="line">            head &#123;</div><div class="line">                title &#123; +<span class="string">"Kotlin Builders"</span> &#125;</div><div class="line">            &#125;</div><div class="line">            body &#123;</div><div class="line">                h1 &#123; +<span class="string">"Kotlin Builders"</span> &#125;</div><div class="line">                p &#123;</div><div class="line">                    +<span class="string">"This is "</span></div><div class="line">                    <span class="keyword">if</span> (withEmphasis) b &#123; +<span class="string">"really "</span> &#125;</div><div class="line">                    +<span class="string">"interesting"</span></div><div class="line">                    a(href = <span class="string">"https://goo.gl/rHwJio"</span>) &#123; +<span class="string">"More here"</span> &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    println(result)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里有几件有趣的事情。 首先，这显示了Kotlin的功能语法如何表达：在这个例子中，“html”，“head”，“body”等都只是用Kotlin编写的函数，而后面是大括号的东西是功能参数（这个 片段使用具有与HTML标签匹配的名称的函数来构建网页的表示，但当然，您可以使用此模式构建任何所需的任何名称的复杂数据结构。）第二个有趣的是“withEmphasis”条件。 这可能看起来像我们正在混合代码（if（withEmphasis）…）与数据（所有的HTML-esque标签），但是这里的“数据”实际上只是更多的代码，因为它只是真正的代码，这可以让你建立 复杂的数据结构使用声明式语法，同时还具有对Kotlin语言的全部功能的内联访问。</p>
+<h1 id="开始获取"><a href="#开始获取" class="headerlink" title="开始获取"></a>开始获取</h1><p>如果您想开始使用Kotlin，您可以<a href="https://try.kotlinlang.org/" target="_blank" rel="external">立即在线</a>开始使用代码。只需打绿色三角形即可编译并运行。</p>
+<p>要在您的应用程序中尝试Kotlin，请按照下列步骤操作：</p>
+<blockquote>
+<ul>
+<li>1、<a href="https://developer.android.com/studio/preview/index.html" target="_blank" rel="external">下载Android Studio 3.0</a></li>
+<li>2、打开一个已存在的”.java”文件</li>
+<li>3、调用”Code &gt; Convert Java File to Kotlin File”</li>
+</ul>
+</blockquote>
+<p>然后，IDE将引导您将Kotlin依赖项添加到项目中，然后将代码转换为功能相当的Kotlin代码。（如果适用于更为惯用的Kotlin，IDE将会将所有的调用站点提供给转换的类，例如当静态方法被移动到配对对象时）。</p>
+<p>您还可以在developer.android.com上找到更多有关<a href="https://developer.android.com/kotlin/get-started.html" target="_blank" rel="external">如何开始使用Kotlin</a>的信息。</p>
+<blockquote>
+<p>以上内容根据原文使用Google Translate工具翻译而成</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/path/to/wechat-reward-image/wechat-reward-image.png" alt="Shoewann wechat" style="width: 200px; max-width: 100%;"/>
+    <div>如果觉得本文对您有用，请随意 ¥打赏支持，将激励第一时间创作分享更多技术干货！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Android-Studio-3-0/" rel="tag">#Android Studio 3.0</a>
+          
+            <a href="/tags/Develop/" rel="tag">#Develop</a>
+          
+            <a href="/tags/Featured/" rel="tag">#Featured</a>
+          
+            <a href="/tags/Kotlin/" rel="tag">#Kotlin</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/19/android-studio-3-0-canary1/" rel="next" title="Android Studio 3.0 Canary 1">
+                <i class="fa fa-chevron-left"></i> Android Studio 3.0 Canary 1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/05/19/android-announces-support-for-kotlin/"
+     data-title="Android 宣布支持Kotlin"
+     data-content=""
+     data-url="https://shoewann0402.github.io/2017/05/19/android-announces-support-for-kotlin/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <!-- 多说评论框 start -->
+      <div class="ds-thread" data-thread-key="2017/05/19/android-announces-support-for-kotlin/"
+           data-title="Android 宣布支持Kotlin" data-url="https://shoewann0402.github.io/2017/05/19/android-announces-support-for-kotlin/">
+      </div>
+      <!-- 多说评论框 end -->
+      <!-- 多说热评文章 start -->
+	<div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+       <!-- 多说热评文章 end -->
+　　　　<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+　　　　<script type="text/javascript">
+　　　　　　var duoshuoQuery = {short_name:"shoewann0402"};
+	　(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';
+                ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'https:') + '//static.duoshuo.com/　　　　embed.unstable.js';
+		ds.charset = 'UTF-8';
+	　　　　　(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+　　　　　<!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva3.sinaimg.cn/crop.0.0.1006.1006.180/c0be968ejw8fc6p7uuw2aj20ry0ry7bk.jpg"
+               alt="Shoewann" />
+          <p class="site-author-name" itemprop="name">Shoewann</p>
+          <p class="site-description motion-element" itemprop="description">Android Developer & Google Fans</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">81</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shoewann0402" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>	
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/105335827263542549191" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                  Google
+                </a>
+              </span>	
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/f556edce86df418" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>	
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100007875337753" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>	
+            
+          
+        </div>
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://developers.google.cn" title="Google Developers" target="_blank">Google Developers</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://chinagdg.org/" title="China GDG" target="_blank">China GDG</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://alphayang.github.io/" title="Geek Dev" target="_blank">Geek Dev</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weibo.com/287008" title="Google谷歌爱好者" target="_blank">Google谷歌爱好者</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.pixcn.cn/" title="Pixel 中文网" target="_blank">Pixel 中文网</a>
+                </li>
+              
+            </ul>
+          </div>	
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对Kotlin说”你好”"><span class="nav-number">1.</span> <span class="nav-text">对Kotlin说”你好”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#历史与参考"><span class="nav-number">2.</span> <span class="nav-text">历史与参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么选择Kotlin？"><span class="nav-number">3.</span> <span class="nav-text">为什么选择Kotlin？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一次快速旅程"><span class="nav-number">4.</span> <span class="nav-text">一次快速旅程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可空"><span class="nav-number">4.1.</span> <span class="nav-text">可空</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名参数和默认参数"><span class="nav-number">4.2.</span> <span class="nav-text">命名参数和默认参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#当声明"><span class="nav-number">4.3.</span> <span class="nav-text">当声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#智能铸造"><span class="nav-number">4.4.</span> <span class="nav-text">智能铸造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展功能"><span class="nav-number">4.5.</span> <span class="nav-text">扩展功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解构定义"><span class="nav-number">4.6.</span> <span class="nav-text">解构定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambdas"><span class="nav-number">4.7.</span> <span class="nav-text">Lambdas</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始获取"><span class="nav-number">5.</span> <span class="nav-text">开始获取</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=53d134f8b341e142187766151e2617bebba89a98906bd4e1b2affe576aab199a"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="Google技术分享交流" title="Google技术分享交流"></a>
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shoewann</span>
+　<script>
+　　　var cnzz_s_tag = document.createElement('script');
+　　　cnzz_s_tag.type = 'text/javascript';
+　　　cnzz_s_tag.async = true;
+　　　cnzz_s_tag.charset = "utf-8";
+　　　cnzz_s_tag.src = "https://s95.cnzz.com/z_stat.php?id=1259071960&web_id=1259071960&async=1";
+　　　var root_s = document.getElementsByTagName('script')[0];
+　　　root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+　</script>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"shoewann0402"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ACMTtyiajBtyriIPCjgyQbkW-gzGzoHsz", "6DCk5HyLXFUQI3gFXrBR7b1z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
