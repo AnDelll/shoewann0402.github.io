@@ -342,10 +342,22 @@ Android 通知往往是在你的Android应用和用户之间制造或打破而�
 
           
             
+           <!--noindex-->
+             <span class="post-comments-count">
+              &nbsp;|&nbsp;
+                 <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                   <a href="/2016/06/09/Notifications-In-Android-N/#comments" itemprop="discussionUrl">
+                     <span class="post-comments-count hc-comment-count" data-xid="2016/06/09/Notifications-In-Android-N/" itemprop="commentsCount"></span>
+                  </a>
+                </span>
+             </span>
+             <!--/noindex-->
+            
           
 
           
-
+         
           
           
              <span id="/2016/06/09/Notifications-In-Android-N/" class="leancloud_visitors" data-flag-title="Android N 中的 Notification 通知">
@@ -373,7 +385,7 @@ Android 通知往往是在你的Android应用和用户之间制造或打破而�
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/notifications-in-android-n_pic1.png" rel="gallery_cj3idee9w0024nzpbehacbpn3"
+                 href="/images/notifications-in-android-n_pic1.png" rel="gallery_cj3ihl9yg0024a5pb2f9v5htl"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/notifications-in-android-n_pic1.png" itemprop="contentUrl"/>
               </a>
@@ -455,7 +467,7 @@ Android 通知往往是在你的Android应用和用户之间制造或打破而�
       
         
   <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>如果觉得本文对您有用，请随意 ¥打赏支持，将激励第一时间创作分享更多技术干货！</div>
+    <div>如果觉得本文对您有用，请随意 ¥打赏支持 ！</div>
     <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
       <span>赏</span>
     </button>
@@ -466,6 +478,11 @@ Android 通知往往是在你的Android应用和用户之间制造或打破而�
           <p>微信打赏</p>
         </div>
       
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image/alipay-reward-image.jpg" alt="Shoewann Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
       
     </div>
   </div>
@@ -524,7 +541,7 @@ Android 通知往往是在你的Android应用和用户之间制造或打破而�
           
   <div class="comments" id="comments">
     
-            <div id="uyan_frame"></div>
+     <div id="hypercomments_widget"></div>
     
   </div>
 
@@ -818,16 +835,31 @@ Android 通知往往是在你的Android应用和用户之间制造或打破而�
 
 
 
-    
-      
-    
+	
 
-   
-        <!-- UY BEGIN -->
-	<div id="uyan_frame"></div>
-		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2133336"></script>
-	<!-- UY END -->
-    
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 91777, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 91777, xid: "2016/06/09/Notifications-In-Android-N/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/91777/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
 
 
 
