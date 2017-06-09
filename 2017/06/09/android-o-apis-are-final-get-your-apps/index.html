@@ -1,0 +1,1160 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Develop,Featured,Android O,android o apis,AndroidO,API,Developer Preview,Project Treble," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="原文来自: Android O APIs are final, get your apps ready!
+
+在三周以前的Google I/O大会上，我们宣布了Android O开发者预览版2，以及关键的主题Fluid Experiences和Vitals，并强调了我们通过Project Treble实现模块化基础的工作。它也是我们发布第一个优质候选人的重要里程碑。我们在主题演讲和分组会议期间，谈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android O API是最终的，让您的应用程序准备好！">
+<meta property="og:url" content="https://shoewann0402.github.io/2017/06/09/android-o-apis-are-final-get-your-apps/index.html">
+<meta property="og:site_name" content="Shoewann's Personal Blog">
+<meta property="og:description" content="原文来自: Android O APIs are final, get your apps ready!
+
+在三周以前的Google I/O大会上，我们宣布了Android O开发者预览版2，以及关键的主题Fluid Experiences和Vitals，并强调了我们通过Project Treble实现模块化基础的工作。它也是我们发布第一个优质候选人的重要里程碑。我们在主题演讲和分组会议期间，谈">
+<meta property="og:image" content="https://shoewann0402.github.io/images/android-o-logo.png">
+<meta property="og:updated_time" content="2017-06-09T06:28:13.447Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android O API是最终的，让您的应用程序准备好！">
+<meta name="twitter:description" content="原文来自: Android O APIs are final, get your apps ready!
+
+在三周以前的Google I/O大会上，我们宣布了Android O开发者预览版2，以及关键的主题Fluid Experiences和Vitals，并强调了我们通过Project Treble实现模块化基础的工作。它也是我们发布第一个优质候选人的重要里程碑。我们在主题演讲和分组会议期间，谈">
+<meta name="twitter:image" content="https://shoewann0402.github.io/images/android-o-logo.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://shoewann0402.github.io/2017/06/09/android-o-apis-are-final-get-your-apps/"/>
+
+
+  <title> Android O API是最终的，让您的应用程序准备好！ | Shoewann's Personal Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259071960&web_id=1259071960" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shoewann's Personal Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Love Google Technology , Just Do It !</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android O API是最终的，让您的应用程序准备好！
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-09T12:13:39+08:00" content="2017-06-09">
+              2017-06-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/Android-O/" itemprop="url" rel="index">
+                    <span itemprop="name">Android O</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/Android-O/Android-Studio/" itemprop="url" rel="index">
+                    <span itemprop="name">Android Studio</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/Android-O/Android-Studio/Google-I-O-2017/" itemprop="url" rel="index">
+                    <span itemprop="name">Google I/O 2017</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+           <!--noindex-->
+             <span class="post-comments-count">
+              &nbsp;|&nbsp;
+                 <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                   <a href="/2017/06/09/android-o-apis-are-final-get-your-apps/#comments" itemprop="discussionUrl">
+                     <span class="post-comments-count hc-comment-count" data-xid="2017/06/09/android-o-apis-are-final-get-your-apps/" itemprop="commentsCount"></span>
+                  </a>
+                </span>
+             </span>
+             <!--/noindex-->
+            
+          
+
+          
+         
+          
+          
+             <span id="/2017/06/09/android-o-apis-are-final-get-your-apps/" class="leancloud_visitors" data-flag-title="Android O API是最终的，让您的应用程序准备好！">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="//schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 href="/images/android-o-logo.png" rel="gallery_cj3ph0n0p002ql3pbpx8sffye"
+                 itemscope itemtype="//schema.org/ImageObject" itemprop="url">
+                <img src="/images/android-o-logo.png" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>原文来自: <a href="https://android-developers.googleblog.com/2017/06/android-o-apis-are-final-get-your-apps.html" target="_blank" rel="external">Android O APIs are final, get your apps ready!</a></p>
+</blockquote>
+<p>在三周以前的Google I/O大会上，我们<a href="https://android-developers.googleblog.com/2017/05/whats-new-in-android-o-developer.html" target="_blank" rel="external">宣布</a>了Android O开发者预览版2，以及关键的主题<strong>Fluid Experiences和Vitals</strong>，并强调了我们通过<a href="https://android-developers.googleblog.com/2017/05/here-comes-treble-modular-base-for.html" target="_blank" rel="external">Project Treble</a>实现模块化基础的工作。它也是我们发布第一个优质候选人的重要里程碑。我们在主题演讲和分组会议期间，谈论了大量关于Android有什么新的东西——如果你错过了直播流，<a href="https://www.youtube.com/user/androiddevelopers/playlists?sort=dd&amp;view=50&amp;shelf_id=14" target="_blank" rel="external">这里</a>请务查看完整的会议档案。</p>
+<a id="more"></a>
+<p>今天我们将在最终Android O中推出开发者预览版3，最终的系统镜像，以及Android Studio的更新，以帮助你为今年夏季晚点推出消费者获取准备。观看即将在7月另一个预览更新，将带给你最接近最终版系统的镜像。</p>
+<p>如果你已经在<a href="http://android.com/beta" target="_blank" rel="external">Android Beta Program</a>上面注册了你的设备，你将会在段时间内接收到一个开发者预览版3的更新。</p>
+<h1 id="确保你的应用兼容到Android-O"><a href="#确保你的应用兼容到Android-O" class="headerlink" title="确保你的应用兼容到Android O"></a>确保你的应用兼容到Android O</h1><p>随着消费者<a href="https://developer.android.com/preview/migration.html" target="_blank" rel="external">在接下来的几个月</a>即将启动，关键的第一步就是确保你当前的应用兼容到了Android O,当Android O到达用户他们的设备是，可以然他们无缝的过渡到一个新的平台。</p>
+<p>如果你还没有测试你的应用兼容性，开始使用很简单——仅仅是在Android Beta上面注册一个受支持的设备，通过云端OTA升级到最新版本，然后从Google Play 安装你当前的应用并测试它。 这个应用应该运行，并且看起来很棒，它应该适当的处理Android O的<a href="https://developer.android.com/preview/behavior-changes.html" target="_blank" rel="external">行为变化</a> —— 特别要注意<a href="https://developer.android.com/preview/behavior-changes.html#abll" target="_blank" rel="external">后台限制</a>、<a href="https://developer.android.com/preview/behavior-changes.html#networking-all" target="_blank" rel="external">网络</a>、<a href="https://developer.android.com/preview/behavior-changes.html#security-all" target="_blank" rel="external">安全</a>和<a href="https://developer.android.com/preview/behavior-changes.html#privacy-all" target="_blank" rel="external">标示符</a>的变化</p>
+<p>你将会完成任何必要的更新之后，我们建议您立即将兼容版本的应用发布到Google Play —— 而无需更改应用的平台目标</p>
+<h1 id="使用Android-O功能和API来增强您的应用程序"><a href="#使用Android-O功能和API来增强您的应用程序" class="headerlink" title="使用Android O功能和API来增强您的应用程序"></a>使用Android O功能和API来增强您的应用程序</h1><p>通过Android O的功能扩展你的应用，能帮助你驱动更多的参与，提供新的互动，给你的用户更多控制和安全，甚至提高你的应用的性能。</p>
+<p><a href="https://developer.android.com/preview/features/notification-channels.html" target="_blank" rel="external">通知渠道</a>和<a href="https://developer.android.com/preview/features/notification-badges.html" target="_blank" rel="external">点</a>给你更多的方式去为你的用户表达新的内容，带领它们返回到你的应用里面去。当用户是多个任务的时候，画中画能够让你的应用保持在屏幕上，<a href="https://developer.android.com/preview/features/autofill.html#optimizing_your_app_for_autofill" target="_blank" rel="external">自动填充</a>使他们简单的输入表单数据，并帮助保持他们的数据安全。还可以检出<a href="https://developer.android.com/preview/features/adaptive-icons.html" target="_blank" rel="external">自适应图标</a>、<a href="https://developer.android.com/preview/features/fonts-in-xml.html" target="_blank" rel="external">XML字体资源</a>、<a href="https://developer.android.com/preview/features/downloadable-fonts.html" target="_blank" rel="external">可下载字体</a>、<a href="https://developer.android.com/preview/features/emoji-compat.html" target="_blank" rel="external">emoji表情</a>、<a href="https://developer.android.com/preview/features/autosizing-textview.html" target="_blank" rel="external">自动大小TextView</a>、<a href="https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html" target="_blank" rel="external">AAudio API</a>和<a href="https://developer.android.com/preview/api-overview.html" target="_blank" rel="external">很多其他的</a>.您还需要计划支持<a href="https://developer.android.com/preview/features/background.html" target="_blank" rel="external">后台执行限制</a>以及<a href="https://developer.android.com/preview/behavior-changes.html#o-apps" target="_blank" rel="external">对于O应用程序重要系统行为的其他重要更改</a>。</p>
+<p>访问<a href="https://developer.android.com/preview/index.html" target="_blank" rel="external">O 开发者预览版站点</a>去学习有关所有的新功能和APIs，以及如何编译它们到你的应用</p>
+<p><img src="/images/Duo_PiP_500px.gif" alt="Duo_PiP_500px"></p>
+<center> (Android O: Picture-in-picture)</center>
+
+<p><img src="/images/instagram_dot_500px_bestcolors .gif" alt="instagram_dot_500px_bestcolors"></p>
+<center>(Android O: Notification dots)</center>
+
+<h1 id="开始获取开发者预览版3"><a href="#开始获取开发者预览版3" class="headerlink" title="开始获取开发者预览版3"></a>开始获取开发者预览版3</h1><p>今天的预览版升级包括最终版本的android O平台，最终的API Level 26和上百个bug的修复、优化。你能够从<a href="https://developer.android.com/studio/index.html" target="_blank" rel="external">Android Studio</a>里面的SDK管理器下载最终的API26 SDK和从<a href="https://developer.android.com/studio/build/dependencies.html#google-maven" target="_blank" rel="external">Google的Maven库</a>下载<a href="https://developer.android.com/topic/libraries/support-library/revisions.html" target="_blank" rel="external">Android支持库</a>26.0.0beta2。</p>
+<p>通过这些官方Android O API，您可以一起为您开发和测试应用程序所需的一切。一旦你安装了最终版的SDK，你能够升级你的项目的<em>compileSdkVersion</em>到API 26去针对官方Android O API进行编译。我们也建议你升级你的应用的<em>targetSdkVersion</em>到API26去选择和测试您的应用程序与Android O具体<a href="https://developer.android.com/preview/behavior-changes.html" target="_blank" rel="external">行为更改</a>。有关如何设置使用Android O构建环境的详细信息，请参阅<a href="https://developer.android.com/preview/migration.html#bfa" target="_blank" rel="external">迁移指南</a>。</p>
+<p>APIs自从第二个开发者预览版就有改变的，所以如果你有存在的代码使用了Android O预览版的API，看看<a href="https://developer.android.com/sdk/api_diff/26-incr/changes.html" target="_blank" rel="external">diff报告</a>，看看你的代码哪儿可能会受到影响。</p>
+<p>如果你将使用Android O进行开发，我们建议你升级到最终版本的<a href="https://android-developers.googleblog.com/2017/05/android-studio-3-0-canary1.html" target="_blank" rel="external">Android Studio 3.0</a>，现在canary(金丝雀)通道可以使用，除了像提高应用性能的profilling工具、对<a href="http://android-developers.googleblog.com/2017/05/android-announces-support-for-kotlin.html" target="_blank" rel="external">Kotlin程序语言</a>的支持和Gradle构建优化等伟大的新功能，Android Studio 3.0包括了对<a href="https://android-developers.googleblog.com/2017/05/android-instant-apps-is-open-to-all.html" target="_blank" rel="external">即时应用</a>、<a href="https://developer.android.com/preview/features/adaptive-icons.html" target="_blank" rel="external">自适应图标向导</a>，以及对<a href="https://developer.android.com/preview/features/working-with-fonts.html" target="_blank" rel="external">XML字体</a>和<a href="https://developer.android.com/preview/features/downloadable-fonts.html" target="_blank" rel="external">可下载字体</a>的支持。</p>
+<p><img src="/images/ScreenShot2017-05-16at6.00.17PM.png" alt="Screen Shot 2017-05-16 at 6.00.17 PM.png"></p>
+<center>XML Fonts Preview</center>
+
+<p>如果你不计划使用这些新功能，您现在可以选择使用稳定通道的<a href="https://developer.android.com/studio/index.html" target="_blank" rel="external">Android Studio 2.3.3</a>开发Android O。请注意，使用自适应图标和可下载字体的工具以及XML字体在Android Studio 2.3.3中不可用。</p>
+<h1 id="将您的应用发布到Google-Play中的Alpha，Beta或制作频道"><a href="#将您的应用发布到Google-Play中的Alpha，Beta或制作频道" class="headerlink" title="将您的应用发布到Google Play中的Alpha，Beta或制作频道"></a>将您的应用发布到Google Play中的Alpha，Beta或制作频道</h1><p>现在API是最终的，您可以发布APK更新编译，并可选择定位，API 26适用于您在Google Play中的alpha，beta或甚至制作频道。在预览过程中发布O目标应用程序可让您测试现有设备的兼容性，并将更新推送到运行API 26的设备，例如注册Android测试版的用户。</p>
+<p>为了确保您更新的应用程序在Android O以及旧版本上运行良好，一个常见的策略是使用Google Play的beta测试功能，从一小群用户（包括开发者预览用户）获取早期反馈，然后在向所有用户发布更新的应用程序时进行分阶段推出。</p>
+<h1 id="如何获得预览更新"><a href="#如何获得预览更新" class="headerlink" title="如何获得预览更新"></a>如何获得预览更新</h1><p>通过<a href="https://developer.android.com/distribute/engage/beta.html" target="_blank" rel="external">Android Beta Program</a>，开发人员和早期采用者将很快在其设备上获得开发者预览版3。如果您尚未注册，只需访问<a href="https://android.com/beta" target="_blank" rel="external">android.com/beta</a>并选择符合条件的Android手机或平板电脑。一如以往，您也可以手动下载并<a href="https://developer.android.com/preview/download.html#flash" target="_blank" rel="external">刷入此更新</a>。 O开发者预览版可用于Pixel，Pixel XL，Pixel C，Nexus 5X，Nexus 6P和Nexus Player。</p>
+<p>非常感谢您的所有反馈。我们今年夏天将在消费者发布工作中继续分享<a href="https://developer.android.com/preview/feedback.html" target="_blank" rel="external">反馈或请求</a>。我们期待在Android O上看到您的应用程序！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Shoewann wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎订阅公众号GoogleNews</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得本文对您有用，请随意 ¥打赏支持 ！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image/wechat-reward-image.png" alt="Shoewann WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image/alipay-reward-image.jpg" alt="Shoewann Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Develop/" rel="tag">#Develop</a>
+          
+            <a href="/tags/Featured/" rel="tag">#Featured</a>
+          
+            <a href="/tags/Android-O/" rel="tag">#Android O</a>
+          
+            <a href="/tags/android-o-apis/" rel="tag">#android o apis</a>
+          
+            <a href="/tags/AndroidO/" rel="tag">#AndroidO</a>
+          
+            <a href="/tags/API/" rel="tag">#API</a>
+          
+            <a href="/tags/Developer-Preview/" rel="tag">#Developer Preview</a>
+          
+            <a href="/tags/Project-Treble/" rel="tag">#Project Treble</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/19/android-announces-support-for-kotlin/" rel="next" title="Android 宣布支持Kotlin">
+                <i class="fa fa-chevron-left"></i> Android 宣布支持Kotlin
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+    
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share?uid=2133336" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2133336" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+     <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva3.sinaimg.cn/crop.0.0.1006.1006.180/c0be968ejw8fc6p7uuw2aj20ry0ry7bk.jpg"
+               alt="Shoewann" />
+          <p class="site-author-name" itemprop="name">Shoewann</p>
+          <p class="site-description motion-element" itemprop="description">Android Developer & Google Fans</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shoewann0402" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>	
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/105335827263542549191" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                  Google
+                </a>
+              </span>	
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/f556edce86df418" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>	
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100007875337753" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>	
+            
+          
+        </div>
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://developers.google.cn" title="Google Developers" target="_blank">Google Developers</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://chinagdg.org/" title="China GDG" target="_blank">China GDG</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://yangbo.tech/" title="Geek Dev" target="_blank">Geek Dev</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weibo.com/287008" title="Google谷歌爱好者" target="_blank">Google谷歌爱好者</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.pixcn.cn/" title="Pixel 中文网" target="_blank">Pixel 中文网</a>
+                </li>
+              
+            </ul>
+          </div>	
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#确保你的应用兼容到Android-O"><span class="nav-number">1.</span> <span class="nav-text">确保你的应用兼容到Android O</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Android-O功能和API来增强您的应用程序"><span class="nav-number">2.</span> <span class="nav-text">使用Android O功能和API来增强您的应用程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始获取开发者预览版3"><span class="nav-number">3.</span> <span class="nav-text">开始获取开发者预览版3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将您的应用发布到Google-Play中的Alpha，Beta或制作频道"><span class="nav-number">4.</span> <span class="nav-text">将您的应用发布到Google Play中的Alpha，Beta或制作频道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何获得预览更新"><span class="nav-number">5.</span> <span class="nav-text">如何获得预览更新</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=53d134f8b341e142187766151e2617bebba89a98906bd4e1b2affe576aab199a"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="Google技术分享交流" title="Google技术分享交流"></a>
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shoewann</span>
+　<script>
+　　　var cnzz_s_tag = document.createElement('script');
+　　　cnzz_s_tag.type = 'text/javascript';
+　　　cnzz_s_tag.async = true;
+　　　cnzz_s_tag.charset = "utf-8";
+　　　cnzz_s_tag.src = "https://s95.cnzz.com/z_stat.php?id=1259071960&web_id=1259071960&async=1";
+　　　var root_s = document.getElementsByTagName('script')[0];
+　　　root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+　</script>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 91777, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 91777, xid: "2017/06/09/android-o-apis-are-final-get-your-apps/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/91777/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ACMTtyiajBtyriIPCjgyQbkW-gzGzoHsz", "6DCk5HyLXFUQI3gFXrBR7b1z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+	
+</body>
+</html>
