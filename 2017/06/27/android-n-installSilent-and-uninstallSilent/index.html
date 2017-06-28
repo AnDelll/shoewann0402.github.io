@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Shoewann's Personal Blog">
 <meta property="og:description" content="最近在做静默安装和卸载功能的时候，应用程序放到系统分区(/system/priv-app/)执行pm命令实现静默安装和卸载的方式在7.0上安装、卸载失败。Google 在N上加强了安全权限，对此用本文来记录如何解决7.0上的静默安装和静默卸载。">
 <meta property="og:image" content="https://shoewann0402.github.io/images/android_nougat.png">
-<meta property="og:updated_time" content="2017-06-28T05:22:41.223Z">
+<meta property="og:updated_time" content="2017-06-28T08:32:49.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android N 静默安装和卸载">
 <meta name="twitter:description" content="最近在做静默安装和卸载功能的时候，应用程序放到系统分区(/system/priv-app/)执行pm命令实现静默安装和卸载的方式在7.0上安装、卸载失败。Google 在N上加强了安全权限，对此用本文来记录如何解决7.0上的静默安装和静默卸载。">
@@ -379,7 +379,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/android_nougat.png" rel="gallery_cj4gk1lhw002pi3pbj3f1jald"
+                 href="/images/android_nougat.png" rel="gallery_cj4gqur5q002l4ppbw8pu1nwk"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/android_nougat.png" itemprop="contentUrl"/>
               </a>
@@ -454,12 +454,14 @@
 <p>我尝试着给这个null赋值一个固定的包名:com.wt.testshortcut</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">06-28 12:13:39.306 1393-1717/system_process D/PackageManagerShellCommand: =====&gt;opt: -k</div><div class="line">06-28 12:13:39.306 1393-1717/system_process D/PackageManagerShellCommand: =====&gt;opt: --user</div><div class="line">06-28 12:13:39.306 1393-1717/system_process D/PackageManagerShellCommand: =====&gt;packageName: com.ifeng.news2</div><div class="line">06-28 12:13:39.306 1393-1717/system_process D/PackageManagerShellCommand: =====&gt;splitName: null</div><div class="line">06-28 12:13:39.306 1393-1717/system_process D/PackageInstallerService: ======&gt;packageName: com.ifeng.news2</div><div class="line">06-28 12:13:39.306 1393-1717/system_process D/PackageInstallerService: ======&gt;callerPackageName: com.wt.testshortcut</div><div class="line">06-28 12:13:39.306 1393-1717/system_process D/PackageInstallerService: ======&gt;callingUid: 10045</div><div class="line">06-28 12:13:39.306 1393-1717/system_process D/PackageInstallerService: ======&gt;callerPackageName: com.wt.testshortcut</div></pre></td></tr></table></figure>
 <p>此时的callerPackageName固定为com.wt.testshortcut，结果倒是没有报null的错误了，但是命令还是无效，并且应用还出现了ANR现象 …..</p>
+<p>尝试着给这个null赋值一个固定的包名的做法是不行的</p>
+<p>经过同事的讨论分析，只要满足PackageInstallerService.uninstall()中不走进对callingUid的判断，不去AppOpsManager.checkPackage()代码即可。也就是需要<strong>callingUid=Process.SHELL_UID（0）</strong>或者<strong>callingUid=Process.SHELL_UID (2000)</strong></p>
+<p>最后的解决方式：代码里在使用<strong>pm uninstall [-k] –user 0 PackageName</strong>的基础上,并在AndroidMainifest.xml下添加<strong>android:shareUerId=”android.uid.shell”</strong>，并需要在系统里进行Android<strong>源码编译</strong>,成功的完成了静默卸载。</p>
 <h2 id="后记-1"><a href="#后记-1" class="headerlink" title="后记"></a>后记</h2><p>记得之前在Android M 上也是静默卸载失败，当时替换为下面的这种方式解决了卸载的问题:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</div><div class="line">PendingIntent sender = PendingIntent.getActivity(context, <span class="number">0</span>, intent, <span class="number">0</span>);</div><div class="line">PackageInstaller mPackageInstaller = context.getPackageManager().getPackageInstaller();</div><div class="line">mPackageInstaller.uninstall(pkgName, sender.getIntentSender());<span class="comment">// 卸载APK</span></div><div class="line">Log.d(TAG, <span class="string">"uninstallApk: "</span> + pkgName);</div></pre></td></tr></table></figure>
 <p>参考：<a href="https://zhuanlan.zhihu.com/p/21585970" target="_blank" rel="external">Android M静默卸载解决方案的探索</a></p>
-<p>但是上面的这种方式在Android N上也没有任何效果了</p>
-<p>嗯，目前静默卸载这个问题还在解决中…. </p>
-<p>有知道解决办法的麻烦在文章评论处告知一下，谢谢了！</p>
+<p>但是上面的这种方式在Android N上也没有任何效果了。</p>
+<p>针对上面静默卸载的方式，大家有兴趣再分析看看有没有其他的解决办法。</p>
 <blockquote>
 <p>本文为原创文章，转载请注明出处，如有不足，欢迎指正，感谢你的阅读。</p>
 </blockquote>
