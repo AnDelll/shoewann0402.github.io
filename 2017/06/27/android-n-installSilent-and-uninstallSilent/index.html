@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Shoewann's Personal Blog">
 <meta property="og:description" content="最近在做静默安装和卸载功能的时候，应用程序放到系统分区(/system/priv-app/)执行pm命令实现静默安装和卸载的方式在7.0上安装、卸载失败。Google 在N上加强了安全权限，对此用本文来记录如何解决7.0上的静默安装和静默卸载。">
 <meta property="og:image" content="https://shoewann0402.github.io/images/android_nougat.png">
-<meta property="og:updated_time" content="2017-06-28T02:01:14.710Z">
+<meta property="og:updated_time" content="2017-06-28T02:23:06.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android N 静默安装和卸载">
 <meta name="twitter:description" content="最近在做静默安装和卸载功能的时候，应用程序放到系统分区(/system/priv-app/)执行pm命令实现静默安装和卸载的方式在7.0上安装、卸载失败。Google 在N上加强了安全权限，对此用本文来记录如何解决7.0上的静默安装和静默卸载。">
@@ -379,7 +379,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/android_nougat.png" rel="gallery_cj4gcv6np002j3ypbx75px4il"
+                 href="/images/android_nougat.png" rel="gallery_cj4gdms2w002jhlpblvvy0vsl"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/android_nougat.png" itemprop="contentUrl"/>
               </a>
@@ -444,7 +444,7 @@
 <p>PackageInstallerService.uninstall()里面调用AppOpsManager.checkPackage()，需要传递<strong>callerPackageName</strong>的参数，因为它是null了，导致后面CheckNotNull()方法抛出了java.lang.NullPointerException异常</p>
 <p><img src="/images/Screenshot20170627205539.png" alt="Screenshot20170627205539.png"></p>
 <p>这个<strong>callerPackageName</strong>，不是我需要去卸载应用的包名，而是我需要去执行卸载操作的应用的包名。分析上面的pm uninstall命令，也并没有明确指定哪儿需要传入我当前应用的包名。</p>
-<p>好吧，我也尝试像静默安装一样添加当前包名的参数，了使用Terminal终端来执行pm uninstall命令卸载:</p>
+<p>好吧，我也尝试像静默安装一样添加当前包名的参数，使用Terminal终端来执行pm uninstall命令卸载:</p>
 <p><img src="/images/Screenshot20170627210607.png" alt="Screenshot20170627210607.png"></p>
 <p>结果！命令无效 …..</p>
 <h2 id="后记-1"><a href="#后记-1" class="headerlink" title="后记"></a>后记</h2><p>嗯，目前静默卸载这个问题还在解决中…. </p>
