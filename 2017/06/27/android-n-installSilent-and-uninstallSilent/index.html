@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Shoewann's Personal Blog">
 <meta property="og:description" content="最近在做静默安装和卸载功能的时候，应用程序放到系统分区(/system/priv-app/)执行pm命令实现静默安装和卸载的方式在7.0上安装、卸载失败。Google 在N上加强了安全权限，对此用本文来记录如何解决7.0上的静默安装和静默卸载。">
 <meta property="og:image" content="https://shoewann0402.github.io/images/android_nougat.png">
-<meta property="og:updated_time" content="2017-06-28T02:23:06.871Z">
+<meta property="og:updated_time" content="2017-06-28T03:31:11.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android N 静默安装和卸载">
 <meta name="twitter:description" content="最近在做静默安装和卸载功能的时候，应用程序放到系统分区(/system/priv-app/)执行pm命令实现静默安装和卸载的方式在7.0上安装、卸载失败。Google 在N上加强了安全权限，对此用本文来记录如何解决7.0上的静默安装和静默卸载。">
@@ -379,7 +379,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/android_nougat.png" rel="gallery_cj4gdms2w002jhlpblvvy0vsl"
+                 href="/images/android_nougat.png" rel="gallery_cj4gg31se002oi9pb9uzpvhu5"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/android_nougat.png" itemprop="contentUrl"/>
               </a>
@@ -447,6 +447,11 @@
 <p>好吧，我也尝试像静默安装一样添加当前包名的参数，使用Terminal终端来执行pm uninstall命令卸载:</p>
 <p><img src="/images/Screenshot20170627210607.png" alt="Screenshot20170627210607.png"></p>
 <p>结果！命令无效 …..</p>
+<p>再来往前看PackageManagerShellCommand.runUninstall()这个方法</p>
+<p><img src="/images/Screenshot20170628111723.png" alt="Screenshot20170628111723.png"></p>
+<p>这个方法是运行卸载，取出command命令里面的每一段。其中可以看到option选项只有“-k”、“–user”，“packageName”是我们需要指定卸载掉的包名。再往下看到最底部，有一个uninstall的方法，里面的第二个参数传的是“null”,它正好是我们需要传过去的<strong>callerPackageName</strong>。</p>
+<p>是不是这个地方设置了null,导致了后面为null呢？</p>
+<p>我尝试着给这个null赋值一个固定的包名:com.wt.testshortcut，结果倒是没有报null的错误了，但是应用没有任何反应，而且还有一点ANR …..</p>
 <h2 id="后记-1"><a href="#后记-1" class="headerlink" title="后记"></a>后记</h2><p>嗯，目前静默卸载这个问题还在解决中…. </p>
 <p>有知道解决办法的麻烦在文章评论处告知一下，谢谢了！</p>
 <blockquote>
