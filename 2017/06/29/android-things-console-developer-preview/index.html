@@ -1,0 +1,1124 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Developer Preview,Android Things,IoT," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="原文来自: Android Things Console developer preview
+
+今天我们启动了Android Things 控制台开发者预览版，这个控制台允许开发者去管理在他们的Android Things IoT设备上运行的软件，包括创建工厂镜像，以及升级操作系统和开发者提供的APK。设备需要运行一个来源于Android Things 控制台下载的系统镜像，为了未来接收更新升级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Things 控制台开发者预览版">
+<meta property="og:url" content="https://shoewann0402.github.io/2017/06/29/android-things-console-developer-preview/index.html">
+<meta property="og:site_name" content="Shoewann's Personal Blog">
+<meta property="og:description" content="原文来自: Android Things Console developer preview
+
+今天我们启动了Android Things 控制台开发者预览版，这个控制台允许开发者去管理在他们的Android Things IoT设备上运行的软件，包括创建工厂镜像，以及升级操作系统和开发者提供的APK。设备需要运行一个来源于Android Things 控制台下载的系统镜像，为了未来接收更新升级">
+<meta property="og:image" content="https://shoewann0402.github.io/images/product_creation_and_product_settings_image0.png.jpg">
+<meta property="og:updated_time" content="2017-06-29T01:07:56.362Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Things 控制台开发者预览版">
+<meta name="twitter:description" content="原文来自: Android Things Console developer preview
+
+今天我们启动了Android Things 控制台开发者预览版，这个控制台允许开发者去管理在他们的Android Things IoT设备上运行的软件，包括创建工厂镜像，以及升级操作系统和开发者提供的APK。设备需要运行一个来源于Android Things 控制台下载的系统镜像，为了未来接收更新升级">
+<meta name="twitter:image" content="https://shoewann0402.github.io/images/product_creation_and_product_settings_image0.png.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://shoewann0402.github.io/2017/06/29/android-things-console-developer-preview/"/>
+
+
+  <title> Android Things 控制台开发者预览版 | Shoewann's Personal Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259071960&web_id=1259071960" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shoewann's Personal Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Love Google Technology , Just Do It !</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android Things 控制台开发者预览版
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-29T08:56:37+08:00" content="2017-06-29">
+              2017-06-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/AndroidThings/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidThings</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/AndroidThings/IoT/" itemprop="url" rel="index">
+                    <span itemprop="name">IoT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+           <!--noindex-->
+             <span class="post-comments-count">
+              &nbsp;|&nbsp;
+                 <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                   <a href="/2017/06/29/android-things-console-developer-preview/#comments" itemprop="discussionUrl">
+                     <span class="post-comments-count hc-comment-count" data-xid="2017/06/29/android-things-console-developer-preview/" itemprop="commentsCount"></span>
+                  </a>
+                </span>
+             </span>
+             <!--/noindex-->
+            
+          
+
+          
+         
+          
+          
+             <span id="/2017/06/29/android-things-console-developer-preview/" class="leancloud_visitors" data-flag-title="Android Things 控制台开发者预览版">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="//schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 href="/images/product_creation_and_product_settings_image0.png.jpg" rel="gallery_cj4hqf48t002y4wpbi0vt45ua"
+                 itemscope itemtype="//schema.org/ImageObject" itemprop="url">
+                <img src="/images/product_creation_and_product_settings_image0.png.jpg" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>原文来自: <a href="https://android-developers.googleblog.com/2017/06/android-things-console-developer-preview.html" target="_blank" rel="external">Android Things Console developer preview</a></p>
+</blockquote>
+<p>今天我们启动了<a href="https://partner.android.com/things/console" target="_blank" rel="external">Android Things 控制台</a>开发者预览版，这个控制台允许开发者去管理在他们的Android Things IoT设备上运行的软件，包括创建工厂镜像，以及升级操作系统和开发者提供的APK。设备需要运行一个来源于Android Things 控制台下载的系统镜像，为了未来接收更新升级，比如即将到来的开发者预览版5。Google为over-the-air(OTA)空中升级提供了所有的基础设施，因此，开发者能够着重于它们具体的应用,不必去建立自己的实现 —— 使得它们的物联网设备会比之前更快更安全的进入市场。</p>
+<a id="more"></a>
+<p>让我们来逛一圈控制台，看看它提供了哪些功能：</p>
+<h1 id="产品创建和产品设置"><a href="#产品创建和产品设置" class="headerlink" title="产品创建和产品设置"></a>产品创建和产品设置</h1><p>开发者首先定义一个产品，包括选择设备依赖的名称以及System-on-Moule(SoM)系统对模块的类型。大多数的开发者当他们在构建物联网设备的时候希望使用Google Play服务，在这里作为可选的功能被配置，OEM分区的大小也被配置，必须有足够巨大去包括任意一个APK未来增长的大小</p>
+<p><img src="/images/product_creation_and_product_settings_image1.png" alt="product_creation_and_product_settings_image1.png"></p>
+<h1 id="工厂镜像"><a href="#工厂镜像" class="headerlink" title="工厂镜像"></a>工厂镜像</h1><p>一部设备需要初始化基本固件，才能从你的控制台上接收正确产品的未来更新升级。对于初学者，你能够简单的使用“创建构建配置”去构建具有你的产品配置的空包的默认工厂镜像。这个工厂镜像然后能够被下载，并刷入到你的设备，你能够通过sideloading一个APK文件开始在它上面开发。</p>
+<p>稍候，一旦你有准备你将要部署到你的产品中的所有设备的应用程序，你能够上传捆绑到控制台。这个捆绑是一个ZIP压缩文件包含了一个主要的APK文件，用户空间驱动程序在一个APK文件中作为一个服务，任意一个额外的APK文件通过主要的APK文件被启动。一个<a href="https://source.android.com/devices/tech/ota/device_code#boot-animation" target="_blank" rel="external">启动动画.zip</a>文件也是被支持的，将会在系统启动过程中被展示。上传的捆绑ZIP文件用于生成完整系统映像能够部署到设备。更多有关于捆绑ZIP文件内容的信息在<a href="https://developer.android.com/things/console/app_bundle.html" target="_blank" rel="external">文档</a>中可用。</p>
+<p><img src="/images/product_creation_and_product_settings_image2.png" alt="product_creation_and_product_settings_image2.png"></p>
+<h1 id="OTA升级"><a href="#OTA升级" class="headerlink" title="OTA升级"></a>OTA升级</h1><p>这个选项卡允许开发者去选择:应将哪个系统镜像推送到产品设备的队列。开发者选择了一个，然后“推送到设备”开始这个流程，然后将更新升级安全的推送到了所有的设备上，安装到A/B分区中的一个，并在设备重启的时候进行激活。如果检测到任何故障，这个设备将会自动回滚到上一个已知版本，因此为你更新是一直是可能的。开发者将能够测试新的Android Things发布版，并决定设备是否应该自动更新。</p>
+<p><img src="/images/product_creation_and_product_settings_image3.png" alt="product_creation_and_product_settings_image3.png"></p>
+<h1 id="反馈"><a href="#反馈" class="headerlink" title="反馈"></a>反馈</h1><p>Android Things控制台当前是一个预览版，我们正在做很多功能和自定义的工作。我们鼓励所有的Android Things开发者去检出Android Things控制台并提供反馈。你能够提交<a href="https://code.google.com/p/android/issues/entry?template=Android%20Things%20bug%20report" target="_blank" rel="external">错误报告</a>和<a href="https://code.google.com/p/android/issues/entry?template=Android%20Things%20feature%20request" target="_blank" rel="external">新功能请求</a>,在<a href="http://stackoverflow.com/questions/tagged/android-things" target="_blank" rel="external">Stack Overflow</a>提出任何问题。对于学习更多有关于Android Things控制台,阅读详细<a href="https://developer.android.com/things/console/index.html" target="_blank" rel="external">文档</a>，我们也鼓励每一个人去加入在Google+上面的<a href="https://g.co/iotdev" target="_blank" rel="external">Google的物联网开发者交流社区</a>，一个很棒的资源来获得更新和讨论想法。</p>
+<blockquote>
+<p>以上是对Anroid 官网博客文章的翻译，如果不足，欢迎指正，谢谢</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Shoewann wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎订阅公众号GoogleNews</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得本文对您有用，请随意 ¥打赏支持 ！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image/wechat-reward-image.png" alt="Shoewann WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image/alipay-reward-image.jpg" alt="Shoewann Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Developer-Preview/" rel="tag">#Developer Preview</a>
+          
+            <a href="/tags/Android-Things/" rel="tag">#Android Things</a>
+          
+            <a href="/tags/IoT/" rel="tag">#IoT</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/27/android-n-installSilent-and-uninstallSilent/" rel="next" title="Android N 静默安装和卸载">
+                <i class="fa fa-chevron-left"></i> Android N 静默安装和卸载
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+    
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share?uid=2133336" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2133336" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+     <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva3.sinaimg.cn/crop.0.0.1006.1006.180/c0be968ejw8fc6p7uuw2aj20ry0ry7bk.jpg"
+               alt="Shoewann" />
+          <p class="site-author-name" itemprop="name">Shoewann</p>
+          <p class="site-description motion-element" itemprop="description">Android Developer & Google Fans</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">93</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shoewann0402" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>	
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/105335827263542549191" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                  Google
+                </a>
+              </span>	
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/f556edce86df418" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>	
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100007875337753" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>	
+            
+          
+        </div>
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://developers.google.cn" title="Google Developers" target="_blank">Google Developers</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://chinagdg.org/" title="China GDG" target="_blank">China GDG</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://yangbo.tech/" title="Geek Dev" target="_blank">Geek Dev</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weibo.com/287008" title="Google谷歌爱好者" target="_blank">Google谷歌爱好者</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.pixcn.cn/" title="Pixel 中文网" target="_blank">Pixel 中文网</a>
+                </li>
+              
+            </ul>
+          </div>	
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#产品创建和产品设置"><span class="nav-number">1.</span> <span class="nav-text">产品创建和产品设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工厂镜像"><span class="nav-number">2.</span> <span class="nav-text">工厂镜像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OTA升级"><span class="nav-number">3.</span> <span class="nav-text">OTA升级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反馈"><span class="nav-number">4.</span> <span class="nav-text">反馈</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=53d134f8b341e142187766151e2617bebba89a98906bd4e1b2affe576aab199a"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="Google技术分享交流" title="Google技术分享交流"></a>
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shoewann</span>
+　<script>
+　　　var cnzz_s_tag = document.createElement('script');
+　　　cnzz_s_tag.type = 'text/javascript';
+　　　cnzz_s_tag.async = true;
+　　　cnzz_s_tag.charset = "utf-8";
+　　　cnzz_s_tag.src = "https://s95.cnzz.com/z_stat.php?id=1259071960&web_id=1259071960&async=1";
+　　　var root_s = document.getElementsByTagName('script')[0];
+　　　root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+　</script>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 91777, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 91777, xid: "2017/06/29/android-things-console-developer-preview/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/91777/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ACMTtyiajBtyriIPCjgyQbkW-gzGzoHsz", "6DCk5HyLXFUQI3gFXrBR7b1z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+	
+</body>
+</html>
