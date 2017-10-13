@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[介绍Android即时应用SDK 1.1]]></title>
+      <url>%2F2017%2F10%2F13%2Fintroducing-android-instant-apps-sdk-11%2F</url>
+      <content type="text"><![CDATA[原文来自：Introducing Android Instant Apps SDK 1.1 自从我们在Google I/O上面公开启动,我们已经努力工作去提升开发者构建即时应用的体验。今天我们激动的宣布Android即时应用SDK1.1可用。一些高度请求的功能，像提升NDK的支持、配置APKs以此减少二进制的大小，以及一个全新的API，当用户从一个即时应用程序过渡到已安装好应用程序，去保持用户的上下文。 介绍配置APKs对于一个非常棒的即时应用体验，应用二进制需要精益和良好的结构。这也是为什么我们要介绍配置APKs 配置APKs允许开发者隔离设备－验证资源和依赖在APKs里面的本地库。对于一个应用使用配置APKs,Android即时应用核心将只会加载资源和本地库相关的给用户的设备，从而减少即时应用程序在设备上的总大小。 我们当前支持配置APKs的显示密度，CPU的体系结构(ABI),以及语言。这些，我们看到在已加载的二进制大小平均降低了10%。给定应用程序的实际节省依赖于资源文件数和本地库，能够被配置。 以一个示例来说，一个用户在一部LDPI屏幕密度的ARM设备上设置了中文语言，接收与设备无关的代码和资源，然后只能获取配置APKs是ARM本地库、中文语言、以及LDPI资源。它们将不能够接收到其他任意的配置APKs，比如x86的库，西班牙语言的字符串，或者HDPI的资源。 为你的应用设置配置APKs只需要简单的改变你的gradle文件的设置。跟随我们公开的文档步骤。 安装之后的持久化用户上下文在Android奥尼奥，即时版本应用的内置存储可以直接用于安装版本应用程序。这次发布的SDK,我们能够在旧版本的Android核心上启用这个功能，包括棒棒糖、棉花糖、和牛轧糖的设备。 提取即时应用程序的内置存储，安装应用程序现在能够调用InstantAppsClient.getInstantAppData())使用即时应用程序Google Play服务API，以及获得一个即时应用程序内置存储的ZIP文件。 检出我们示例代码和文档)获取如何使用这个API的更多详细。 开始构建你的Android即时应用在最新版的SDK上构建你的即时应用程序是简单的，只需要在Android Studio里面打开SDK Manager，然后升级你的Instant App Development SDK到1.1.0。我们迫不及待的想看到你为即时应用程序构建这些新的功能特性。 以上是对Anroid 官网博客文章的翻译，如果不足，欢迎指正，谢谢]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[谷歌助理能够帮助您控制Android媒体应用程序]]></title>
       <url>%2F2017%2F10%2F12%2Fthe-google-assistant-can-help-control%2F</url>
       <content type="text"><![CDATA[原文来自：The Google Assistant can help control your Android media apps 谷歌助理可用贯穿通了手机，音响，安卓电视以及更多。它能够帮助用户在一天中完成更多的工作 —— 这儿它们需要添加一些事情到去完成的列表，打开电灯，或者播放一首歌曲。 音乐是特别的,助理有大量的提供。它能够通过设备(“播放摇滚乐”)理解媒体命令，并支持媒体控制(像暂停、跳过、快进、赞成)，用户也能通过谷歌助理控制安卓媒体播放。例如，您告诉谷歌助理”暂停回放”，无需抬起手指就能暂停回放。或者说”在Universal音乐播放器上播放摇滚乐”来播放音乐 为了让用户在使用您的媒体应用中的谷歌助理时能够控制回放，您可以使用MediaSessionAPI去让这件事发生。我们建议您在制作应用程序与Google Assistant的集成时，使用MediaSession。 在您的应用程序中如何使用MediaSession ？您必须实现一个MediaSession,在与谷歌助理进行交互时处理所描述的一组规定的动作。 这里是一些示例项目，能够帮您开始在您的媒体应用程序里面使用MediaSession 媒体浏览器服务示例 Universal 音乐播放器示例 助理与Leanback样本集成示例 对于想了解学习更多关于MediaSession，这里有一些好的资源： 理解MediaSession [使用MediaSession]https://developer.android.com/guide/topics/media-apps/working-with-a-media-session.html) 使用谷歌助理在安卓电视上进行视频回放 谷歌助理如何使用MediaSession？谷歌助理使用MediaSession时和其他外部控制器(比如安卓可穿戴设备)相同的方式使用MediaSession。每一个控制器都会导致您的应用程序状态变化。并且这儿需要有一个方式去响应这些变化。这就是MediaSession的发挥作用的地方。 通过使用MediaSession,谷歌助理能够控制您的应用程序的媒体播放，以及保持同步其当前状态 如何使用MediaSession测试我的应用程序？一旦您实现了MediaSession您将可能想去测试，如何在您的应用程序以外去控制媒体播放，媒体控制器测试工具被创建去模拟外部控制您的媒体播放，您可以验证当其他应用程序(比如谷歌助理)与您的应用程序就行互动时，它将可以按预期方式工作。 以上是对Anroid 官网博客文章的翻译，如果不足，欢迎指正，谢谢]]></content>
