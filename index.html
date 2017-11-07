@@ -284,6 +284,187 @@
             
               
                 
+                <a class="post-title-link" href="/2017/11/07/announcing-architecture-components-10/" itemprop="url">
+                  公布架构组件1.0稳定
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-07T17:09:47+08:00" content="2017-11-07">
+              2017-11-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/Architecture-Components/" itemprop="url" rel="index">
+                    <span itemprop="name">Architecture Components</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+           <!--noindex-->
+             <span class="post-comments-count">
+              &nbsp;|&nbsp;
+                 <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                   <a href="/2017/11/07/announcing-architecture-components-10/#comments" itemprop="discussionUrl">
+                     <span class="post-comments-count hc-comment-count" data-xid="2017/11/07/announcing-architecture-components-10/" itemprop="commentsCount"></span>
+                  </a>
+                </span>
+             </span>
+             <!--/noindex-->
+            
+          
+
+          
+         
+          
+          
+             <span id="/2017/11/07/announcing-architecture-components-10/" class="leancloud_visitors" data-flag-title="公布架构组件1.0稳定">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="//schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 href="/images/Announcing Architecture Components 1.0 Stable.webp" rel="gallery_cj9pepoht0034egpbp530krdc"
+                 itemscope itemtype="//schema.org/ImageObject" itemprop="url">
+                <img src="/images/Announcing Architecture Components 1.0 Stable.webp" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        
+          
+            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>原文来自：<a href="https://android-developers.googleblog.com/2017/11/announcing-architecture-components-10.html" target="_blank" rel="external">Announcing Architecture Components 1.0 Stable</a></p>
+</blockquote>
+<p>Android运行在数十亿台设备上,从高端手机到飞机座椅靠背。在这个庞大的设备范围Android操作系统积极的管理资源已取得了良好的表现，有的时候能构建出强大复杂的应用程序。</p>
+<p>为了使它变得更加简单，我们在Google I/O大会上启动了一个预览版的架构组件，在应用程序架构上提供指导。包括了像生命周期管理和数据持久化等通用任务的库。总而言之，这些基础的组件通过较少的代码样本去写模块化应用程序使它成为可能。因此开发者们能够关注于创新而不是重新造轮子 —— 并且我们希望在未来保持在这个基础上去构建。</p>
+<p>今天我们很高兴的宣布了<code>Room</code>和<code>Lifecycle</code><a href="http://developer.android.com/arch" target="_blank" rel="external">架构组件</a>库到了1.0稳定。这些API已经为生产应用程序和库做好了准备，是我们建议开发者寻找架构用程序架构的帮助以及本地存储(尽管这里这里是建议，但是不要求)。<code>Lifecycle</code>现在也能够和<a href="https://developer.android.com/topic/libraries/support-library/index.html" target="_blank" rel="external">支持库</a>集成，因此你能够使用像AppCompatActivity这样标准的类去使用它们。</p>
+<p>尽管我们在今天声明它们稳定，公测的组件已经在应用程序中一起使用了，有数十亿次安装。顶端开发者，像Zappos,已经能花费更多的时间去感谢架构组件什么是最重要的:<br><img src="/images/zappos-logo.jpg" alt="zappos-logo.jpg"></p>
+<p><em>在Android架构组件发布之前，我们有自己的ViewModel实现，我们使用Loaders和Dependency注入，通过更改配置去保存我们的ViewModel。我们最近切换到了Android架构组件ViewModel实现，所有的样板都消失了。我们发现我们可以花费更多的时间在设计、业务逻辑以及测试上面，在写样板和担心Android生命周期上的问题也会少一点了</em></p>
+<p><em>我们也开始去使用LiveData将它直接勾进Android生命周期里。我们使用它去回收和展示网络数据，并且不必再去关心网络呼叫订阅管理 —— Zappos公司Android软件工程师大卫亨利</em></p>
+<p>架构组件提供了一个示例，灵活而适用的方法让开发者们免去了一些共同问题，因此他们能够关注于构建更棒的体验，这个是依靠于应用程序架构向导的核心构建块。</p>
+<h2 id="Lifecycle"><a href="#Lifecycle" class="headerlink" title="Lifecycle"></a>Lifecycle</h2><p>每一个android开发者必须要处理操作系统开始、停止以及销毁它们的活动。这就意味着管理组件的状态——比如观察被使用去更新UI界面——如同你移动通过生命周期一样。<a href="https://developer.android.com/topic/libraries/architecture/lifecycle.html" target="_blank" rel="external">Lifecycle</a>(生命周期)能够创建<em>生命周期-感知</em>组件来管理它们自己的生命周期，减少泄漏或者崩溃的可能性。Lifecycle库是像LiveData等其它架构组件的基础</p>
+<h2 id="LiveData"><a href="#LiveData" class="headerlink" title="LiveData"></a>LiveData</h2><p><a href="https://developer.android.com/topic/libraries/architecture/livedata.html" target="_blank" rel="external">LiveData</a>(动态数据)是一个支持数据并提供更新可观察的生命周期-感知。你的UI代码订阅更改并提供LiveData一个参考到<a href="https://developer.android.com/reference/android/arch/lifecycle/Lifecycle.html" target="_blank" rel="external">Lifecycle</a>。因为LiveData是生命周期-感知，当它的生命周期被开始或者被恢复，它将提供更新，但是当生命周期主被销毁，则停止提供更新。LiveData是一个简单的方式去构建被动的UI界面，更安全更高效。</p>
+<h2 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h2><p><a href="https://developer.android.com/topic/libraries/architecture/viewmodel.html" target="_blank" rel="external">ViewModel</a>(视图模型)像Activity和Fragment一样从生命周期的实体分离视图数据和逻辑的所有权。一个ViewModel是被保留的直到与它相关联的Acitivty和Fragment永久的被抛弃——这就意味着视图数据能够像一个Fragment由于旋转而重新被创建幸存。ViewModel不仅仅是消除生命周期共同问题，它们帮助构建更模块化方便测试。</p>
+<h2 id="Room"><a href="#Room" class="headerlink" title="Room"></a>Room</h2><p>几乎所有的应用都需要在本地存储数据，当自从版本1开始Android绑定了SQLite和平台，直接使用它是很痛苦的。<a href="https://developer.android.com/topic/libraries/architecture/room.html" target="_blank" rel="external">Room</a>(房间)是一个简单的对象映射层，利用较少的样板提供满功率的SQLite。特性像编译时间查询验证并内置迁移，使构建一个强大的持久层更加容易。当与LiveData集成，让Room提供数据库支持、可观察的生命周期感知。Room对于管理本地存储，融合了简单、强大和稳健。我们希望你能够尝试它一下。</p>
+<h2 id="App架构向导以及更多"><a href="#App架构向导以及更多" class="headerlink" title="App架构向导以及更多"></a>App架构向导以及更多</h2><p>最后但并不是不重要的，我们创建了一个<a href="https://developer.android.com/topic/libraries/architecture/guide.html" target="_blank" rel="external">应用程序架构指南</a> 为所有的开发者提供实用的核心原则，有关使用架构组件的具体指南，因为我们从你们那儿清楚的听到了一致的答复指南是重要的。今天我们适当的更新了<a href="https://developer.android.com/" target="_blank" rel="external">开发者文档</a>去指出架构组件。我们在<a href="http://developer.android.com/arch" target="_blank" rel="external">架构组件站点</a>也有一套丰富的视频、代码实验室和示例应用程序可用，来获得更多。</p>
+<h2 id="看这个空间"><a href="#看这个空间" class="headerlink" title="看这个空间"></a>看这个空间</h2><p>尽管第一组架构组件现在是稳定，我们知道这儿还有更多工作需要做。在过去的几个月中，我们听取了<a href="https://developer.android.com/topic/libraries/architecture/feedback.html" target="_blank" rel="external">你的反馈</a>进行了提高，我们也在最近启动了一个新的架构组件,<a href="https://developer.android.com/topic/libraries/architecture/paging.html" target="_blank" rel="external">PagedList</a>，对于alpha,回应你们的反馈，用RecyclerView处理大数据集太困难了，这仅仅是开始——我们有更多基本的组件在开发，我们将在期待在接下来的几个月中宣布。</p>
+<p>我们对架构组件的期望是让开发者在移动设备上能够专注于提供独特的全新体验。我们很荣幸我们能够最终宣布它们作为正式生产使用,我们要感谢社区，一路上给了一些很棒的反馈，我们期待这继续讨论这篇文章的评论。最后，对于那些等待这个正式启动的人来说，<a href="http://developer.android.com/arch" target="_blank" rel="external">从今天开始</a></p>
+<blockquote>
+<p>以上是对Anroid 官网博客文章的翻译，如果不足，欢迎指正，谢谢</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/10/13/introducing-android-instant-apps-sdk-11/" itemprop="url">
                   介绍Android即时应用SDK 1.1
                 </a>
@@ -369,7 +550,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/android-instant-apps.jpg" rel="gallery_cj8pj9120004ny7pbm7i6qgts"
+                 href="/images/android-instant-apps.jpg" rel="gallery_cj9pepoix004hegpbm00phlwj"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/android-instant-apps.jpg" itemprop="contentUrl"/>
               </a>
@@ -524,7 +705,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/MediaSession.gif" rel="gallery_cj8pj912c0055y7pb51sr9b36"
+                 href="/images/MediaSession.gif" rel="gallery_cj9pepojj004vegpbyt23k8wt"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/MediaSession.gif" itemprop="contentUrl"/>
               </a>
@@ -692,7 +873,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/google_io_2017_source.png" rel="gallery_cj8pj911n003xy7pbpw16a7i9"
+                 href="/images/google_io_2017_source.png" rel="gallery_cj9pepoif0040egpbkssndfwm"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/google_io_2017_source.png" itemprop="contentUrl"/>
               </a>
@@ -872,7 +1053,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/android-o-dp-4-1.png" rel="gallery_cj8pj911l003ry7pbrltygt8x"
+                 href="/images/android-o-dp-4-1.png" rel="gallery_cj9pepoi0003hegpb4f6ojt9b"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/android-o-dp-4-1.png" itemprop="contentUrl"/>
               </a>
@@ -1052,7 +1233,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/android-things-hackster-io.png" rel="gallery_cj8pj91160031y7pbghta65lk"
+                 href="/images/android-things-hackster-io.png" rel="gallery_cj9pepohz003eegpb3grtsemx"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/android-things-hackster-io.png" itemprop="contentUrl"/>
               </a>
@@ -1231,7 +1412,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/product_creation_and_product_settings_image0.png.jpg" rel="gallery_cj8pj9115002zy7pb1pto8l2a"
+                 href="/images/product_creation_and_product_settings_image0.png.jpg" rel="gallery_cj9pepohj002segpb6bpnyb51"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/product_creation_and_product_settings_image0.png.jpg" itemprop="contentUrl"/>
               </a>
@@ -1398,7 +1579,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/android_nougat.png" rel="gallery_cj8pj910x002oy7pbs670eoqs"
+                 href="/images/android_nougat.png" rel="gallery_cj9pepohq002yegpbn0210i6y"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/android_nougat.png" itemprop="contentUrl"/>
               </a>
@@ -1576,7 +1757,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/androidthings.png" rel="gallery_cj8pj9126004wy7pbr405bqjf"
+                 href="/images/androidthings.png" rel="gallery_cj9pepoj8004pegpbvc20h83r"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/androidthings.png" itemprop="contentUrl"/>
               </a>
@@ -1752,7 +1933,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/images/webview-security-logo.png" rel="gallery_cj8pj912e0059y7pbj96mjuj4"
+                 href="/images/webview-security-logo.png" rel="gallery_cj9pepoqf00ffegpb8o8htn0c"
                  itemscope itemtype="//schema.org/ImageObject" itemprop="url">
                 <img src="/images/webview-security-logo.png" itemprop="contentUrl"/>
               </a>
@@ -1772,197 +1953,6 @@
 <p>应用程序中对于外部和不信任内容的处理经常是重要的功能之一。新闻阅读器显示头条新闻文章、购物应用展示销售物品的目录。作为处理不信任内容而带来的相关风险是一个攻击者能够损害您的应用程序主要的方式之一，即传递给你错误格式的内容。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/06/24/whats-new-in-webview-security/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/09/android-o-apis-are-final-get-your-apps/" itemprop="url">
-                  Android O API是最终的，让您的应用程序准备好！
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-09T12:13:39+08:00" content="2017-06-09">
-              2017-06-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/Android-O/" itemprop="url" rel="index">
-                    <span itemprop="name">Android O</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/Android-O/Android-Studio/" itemprop="url" rel="index">
-                    <span itemprop="name">Android Studio</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/Android-O/Android-Studio/Google-I-O-2017/" itemprop="url" rel="index">
-                    <span itemprop="name">Google I/O 2017</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-           <!--noindex-->
-             <span class="post-comments-count">
-              &nbsp;|&nbsp;
-                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                   <a href="/2017/06/09/android-o-apis-are-final-get-your-apps/#comments" itemprop="discussionUrl">
-                     <span class="post-comments-count hc-comment-count" data-xid="2017/06/09/android-o-apis-are-final-get-your-apps/" itemprop="commentsCount"></span>
-                  </a>
-                </span>
-             </span>
-             <!--/noindex-->
-            
-          
-
-          
-         
-          
-          
-             <span id="/2017/06/09/android-o-apis-are-final-get-your-apps/" class="leancloud_visitors" data-flag-title="Android O API是最终的，让您的应用程序准备好！">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-        <div class="post-gallery" itemscope itemtype="//schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="/images/android-o-logo.png" rel="gallery_cj8pj9114002wy7pbxke589v5"
-                 itemscope itemtype="//schema.org/ImageObject" itemprop="url">
-                <img src="/images/android-o-logo.png" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
-
-      
-        
-          <blockquote>
-<p>原文来自: <a href="https://android-developers.googleblog.com/2017/06/android-o-apis-are-final-get-your-apps.html">Android O APIs are final, get your apps ready!</a></p>
-</blockquote>
-<p>在三周以前的Google I/O大会上，我们<a href="https://android-developers.googleblog.com/2017/05/whats-new-in-android-o-developer.html">宣布</a>了Android O开发者预览版2，以及关键的主题<strong>Fluid Experiences和Vitals</strong>，并强调了我们通过<a href="https://android-developers.googleblog.com/2017/05/here-comes-treble-modular-base-for.html">Project Treble</a>实现模块化基础的工作。它也是我们发布第一个优质候选人的重要里程碑。我们在主题演讲和分组会议期间，谈论了大量关于Android有什么新的东西——如果你错过了直播流，<a href="https://www.youtube.com/user/androiddevelopers/playlists?sort=dd&amp;view=50&amp;shelf_id=14">这里</a>请务查看完整的会议档案。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/06/09/android-o-apis-are-final-get-your-apps/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2034,7 +2024,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-count">65</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2042,7 +2032,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2051,7 +2041,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">102</span>
+                <span class="site-state-item-count">106</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
